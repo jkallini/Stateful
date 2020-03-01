@@ -4,7 +4,7 @@ body {
 }
 
 .fsm-state:hover {
-    fill: lightcoral;
+    fill: plum;
     stroke-width: 3;
 }
 
