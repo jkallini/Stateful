@@ -2,3 +2,24 @@ body {
     font-family: sans-serif;
     text-align: center;
 }
+
+.fsm-state:hover {
+    fill: lightcoral;
+    stroke-width: 3;
+}
+
+.fsm-state {
+    fill: lightblue;
+    stroke-width: 2;
+    stroke: black;
+}
+
+.fsm-elem {
+    stroke-width: 2;
+    stroke: black;
+    fill: none;
+}
+
+.fsm-text {
+    font-family: sans-serif;
+}

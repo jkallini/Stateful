@@ -1,10 +1,27 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <title>Stateful | Home</title>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <h1>Stateful</h1>
 An online tutor for learning about finite state machines and regular languages.
-{% endblock %}
+<br>
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse class="fsm-state" cx="87.5" cy="103.5" rx="30" ry="30"/>
+	<text class="fsm-text" x="82.5" y="109.5">1</text>
+	<ellipse class="fsm-state" cx="219.5" cy="103.5" rx="30" ry="30"/>
+	<text class="fsm-text" x="214.5" y="109.5">2</text>
+	<ellipse class="fsm-elem" cx="219.5" cy="103.5" rx="24" ry="24"/>
+	<polygon class="fsm-elem" points="117.5,103.5 189.5,103.5"/>
+	<polygon fill="black" points="189.5,103.5 181.5,98.5 181.5,108.5"/>
+	<text class="fsm-text" x="149.5" y="124.5">a</text>
+	<path class="fsm-elem" d="M 74.275,76.703 A 22.5,22.5 0 1 1 100.725,76.703"/>
+	<text x="82.5" y="27.5">b</text>
+	<polygon fill="black" stroke-width="1" points="100.725,76.703 109.473,73.17 101.382,67.292"/>
+	<path class="fsm-elem" d="M 206.275,76.703 A 22.5,22.5 0 1 1 232.725,76.703"/>
+	<text class="fsm-text" x="205.5" y="27.5">a, b</text>
+	<polygon fill="black" stroke-width="1" points="232.725,76.703 241.473,73.17 233.382,67.292"/>
+	<polygon class="fsm-elem" points="16.5,103.5 57.5,103.5"/>
+	<polygon fill="black" stroke-width="1" points="57.5,103.5 49.5,98.5 49.5,108.5"/>
+</svg>
+
+</svg> {% endblock %}
