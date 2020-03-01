@@ -19,6 +19,21 @@ function convertLatexShortcuts(text) {
     return text;
 }
 
+function textToXML(text) {
+    text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    var result = '';
+    for (var i = 0; i < text.length; i++) {
+        var c = text.charCodeAt(i);
+        if (c >= 0x20 && c <= 0x7E) {
+            result += text[i];
+        } else {
+            result += '&#' + c + ';';
+        }
+    }
+    return result;
+}
+
+
 function drawArrow(c, x, y, angle) {
     var dx = Math.cos(angle);
     var dy = Math.sin(angle);
@@ -97,17 +112,17 @@ function drawUsing(c) {
     c.translate(0.5, 0.5);
 
     for (var i = 0; i < nodes.length; i++) {
-        c.lineWidth = 1;
+        c.lineWidth = 2;
         c.fillStyle = c.strokeStyle = (nodes[i] == selectedObject) ? 'purple' : 'black';
         nodes[i].draw(c);
     }
     for (var i = 0; i < links.length; i++) {
-        c.lineWidth = 1;
+        c.lineWidth = 2;
         c.fillStyle = c.strokeStyle = (links[i] == selectedObject) ? 'purple' : 'black';
         links[i].draw(c);
     }
     if (currentLink != null) {
-        c.lineWidth = 1;
+        c.lineWidth = 2;
         c.fillStyle = c.strokeStyle = 'black';
         currentLink.draw(c);
     }
