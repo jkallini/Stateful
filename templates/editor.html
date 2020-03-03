@@ -1,84 +1,11 @@
 {% extends 'base.html' %} {% block head %}
-
 <title>Stateful | Finite State Machine Editor</title>
-<style>
-    body {
-        text-align: center;
-        background: whitesmoke;
-    }
-    
-    canvas {
-        display: block;
-        background: white;
-        border-radius: 20px;
-        -moz-border-radius: 20px;
-        margin: 10px auto;
-    }
-    
-    a {
-        color: black;
-    }
-    
-    div {
-        margin: 30px auto;
-        text-align: left;
-        max-width: 800px;
-    }
-    
-    .error {
-        display: block;
-        color: red;
-        font-size: 28px;
-        line-height: 30px;
-        padding: 30px;
-    }
-    
-    p {
-        margin: 30px 0;
-        line-height: 20px;
-    }
-    
-    .center {
-        text-align: center;
-    }
-    
-    textarea {
-        display: none;
-        width: 75%;
-        height: 400px;
-        margin: 0 auto;
-    }
-</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/editor.css') }}">
 <script src="{{ url_for('static', filename='js/svg.js') }}"></script>
 <script src="{{ url_for('static', filename='js/fsm.js') }}"></script>
 <script src="{{ url_for('static', filename='js/math.js') }}"></script>
 <script src="{{ url_for('static', filename='js/save.js') }}"></script>
-<!-- <script src="{{ url_for('static', filename='js/canvas-blur.js') }}"></script> -->
-<script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-        //get canvas
-        let canv = document.getElementById('canvas');
-
-        const width = 800;
-        const height = 580;
-        const pixelRatio = window.devicePixelRatio || 1;
-        //get context
-        let ctx = canv.getContext('2d');
-
-        const scale = 1;
-
-        canv.width = scale * width * pixelRatio;
-        canv.height = scale * height * pixelRatio;
-
-        canv.style.width = `${scale * width}px`;
-        canv.style.height = `${scale * height}px`;
-
-        ctx.mozImageSmoothingEnabled = false;
-        ctx.imageSmoothingEnabled = false;
-
-        ctx.scale(scale * pixelRatio, scale * pixelRatio);
-    });
-</script>
+<script src="{{ url_for('static', filename='js/scale-canvas.js') }}"></script>
 <script>
     /*
      * base64.js - Base64 encoding and decoding functions
