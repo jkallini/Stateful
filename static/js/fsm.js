@@ -1,5 +1,7 @@
-// Original by Evan Wallace
-// Edited by Julie Kallini
+/*
+ * Original code from Finite State Machine Designer by Evan Wallace (http://madebyevan.com/fsm/).
+ * Edited by Julie Kallini.
+ */
 
 var greekLetterNames = ['Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega'];
 
@@ -372,38 +374,7 @@ function output(text) {
     element.value = text;
 }
 
-function saveAsPNG() {
-    var oldSelectedObject = selectedObject;
-    selectedObject = null;
-    drawUsing(canvas.getContext('2d'));
-    selectedObject = oldSelectedObject;
-    var pngData = canvas.toDataURL('image/png');
-    document.location.href = pngData;
-}
-
-function saveAsSVG() {
-    var exporter = new ExportAsSVG();
-    var oldSelectedObject = selectedObject;
-    selectedObject = null;
-    drawUsing(exporter);
-    selectedObject = oldSelectedObject;
-    var svgData = exporter.toSVG();
-    output(svgData);
-    // Chrome isn't ready for this yet, the 'Save As' menu item is disabled
-    // document.location.href = 'data:image/svg+xml;base64,' + btoa(svgData);
-}
-
-function saveAsLaTeX() {
-    var exporter = new ExportAsLaTeX();
-    var oldSelectedObject = selectedObject;
-    selectedObject = null;
-    drawUsing(exporter);
-    selectedObject = oldSelectedObject;
-    var texData = exporter.toLaTeX();
-    output(texData);
-}
-
-// Links
+/* Links */
 
 function Link(a, b) {
     this.nodeA = a;
@@ -603,7 +574,7 @@ Node.prototype.containsPoint = function(x, y) {
     return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y) < nodeRadius * nodeRadius;
 };
 
-// self-links
+/* SelfLinks */
 
 function SelfLink(node, mouse) {
     this.node = node;
@@ -676,7 +647,7 @@ SelfLink.prototype.containsPoint = function(x, y) {
     return (Math.abs(distance) < hitTargetPadding);
 };
 
-// start link
+/* StartLinks */
 
 function StartLink(node, start) {
     this.node = node;
@@ -741,7 +712,7 @@ StartLink.prototype.containsPoint = function(x, y) {
     return (percent > 0 && percent < 1 && Math.abs(distance) < hitTargetPadding);
 };
 
-// temp-link
+/* Temp Links */
 
 function TemporaryLink(from, to) {
     this.from = from;

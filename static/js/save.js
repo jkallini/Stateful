@@ -1,3 +1,8 @@
+/*
+ * Original code from Finite State Machine Designer by Evan Wallace (http://madebyevan.com/fsm/).
+ * Edited by Julie Kallini.
+ */
+
 function restoreBackup() {
     if (!localStorage || !JSON) {
         return;

@@ -1,3 +1,8 @@
+/*
+ * Original code from Finite State Machine Designer by Evan Wallace (http://madebyevan.com/fsm/).
+ * Edited by Julie Kallini.
+ */
+
 function det(a, b, c, d, e, f, g, h, i) {
     return a * e * i + b * f * g + c * d * h - a * f * h - b * d * i - c * e * g;
 }
