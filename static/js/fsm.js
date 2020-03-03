@@ -267,6 +267,13 @@ window.onload = function() {
             draw();
         }
     };
+
+    document.getElementById("clearCanvas").onclick =
+        function() {
+            localStorage['fsm'] = ''
+            location.reload()
+        };
+
 }
 
 var shift = false;
