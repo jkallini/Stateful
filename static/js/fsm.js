@@ -274,6 +274,15 @@ window.onload = function() {
             location.reload()
         };
 
+    // function to convert JSON into OpenFST representation
+    document.getElementById("printFSM").onclick =
+        function() {
+            // Store JSON data in a JS variable
+            var json = localStorage['fsm'];
+
+            output(json);
+        };
+
 }
 
 var shift = false;
