@@ -278,9 +278,20 @@ window.onload = function() {
     document.getElementById("printFSM").onclick =
         function() {
             // Store JSON data in a JS variable
-            var json = localStorage['fsm'];
+            var fsm = localStorage['fsm'];
+            //var json = JSON.parse(fsm);
 
-            output(json);
+            output(fsm);
+
+            // ajax the JSON to the server
+            $.post("/postmethod", {
+                    javascript_data: fsm
+                },
+                function() {
+
+                });
+            // // stop link reloading the page
+            // event.preventDefault();
         };
 
 }

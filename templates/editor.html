@@ -1,6 +1,10 @@
 {% extends 'base.html' %} {% block head %}
 <title>Stateful | Finite State Machine Editor</title>
+
+<!-- Styles -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/editor.css') }}">
+
+<!-- JS files for FSM editor -->
 <script src="{{ url_for('static', filename='js/svg.js') }}"></script>
 <script src="{{ url_for('static', filename='js/fsm.js') }}"></script>
 <script src="{{ url_for('static', filename='js/math.js') }}"></script>
@@ -40,8 +44,14 @@
         }
     }
 </script>
+
+<!-- AJAX -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 {% endblock %} {% block body %}
+
 <h1>Finite State Machine Editor</h1>
+
 <canvas id="canvas" width="800" height="580">
     <span class="error">Your browser does not support<br>the HTML5 &lt;canvas&gt; element</span>
 </canvas>
@@ -68,6 +78,7 @@
     </ul>
     <p>This was made in HTML5 and JavaScript using the canvas element.</p>
     <p class="center"><a href="/">Back to Homepage</a></p>
+
 </div>
 
 {% endblock %}
