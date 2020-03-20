@@ -283,17 +283,19 @@ window.onload = function() {
 
             output(fsm);
 
-            // ajax the JSON to the server
-            $.post("/postmethod", {
-                    javascript_data: fsm
-                },
-                function() {
-
-                });
-            // // stop link reloading the page
-            // event.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/postmethod",
+                data: { javascript_data: fsm },
+                success: callbackFunc
+            })
         };
 
+}
+
+function callbackFunc(response) {
+    // do something with the response
+    console.log(response);
 }
 
 var shift = false;
