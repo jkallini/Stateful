@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request
-import json
+import fsm as FSM
 
 app = Flask(__name__)
 
@@ -14,11 +14,10 @@ def editor():
     return render_template('editor.html')
 
 
-@app.route('/postmethod', methods=['POST'])
-def get_post_javascript_data():
+@app.route('/fsmreceiver', methods=['POST'])
+def fsmreceiver():
 	jsdata = request.form['javascript_data']
-	json.loads(jsdata)
-	print(jsdata)
+	FSM.parse_json(jsdata)
 	return jsdata
 
 

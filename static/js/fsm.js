@@ -285,7 +285,7 @@ window.onload = function() {
 
             $.ajax({
                 type: "POST",
-                url: "/postmethod",
+                url: "/fsmreceiver",
                 data: { javascript_data: fsm },
                 success: callbackFunc
             })
