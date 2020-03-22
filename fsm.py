@@ -90,6 +90,9 @@ def get_DFA_transitions(fsm, states, node_map, alphabet):
                     raise Exception("State " + n1 + " has more than one outgoing"
                                     + " transition labeled \"" + link_label + "\"!")
                 transitions[n1][link_label] = n2
+    
+    if initial_state == None:
+        raise Exception("There's no start state!")
 
     # verify that all states have transitions for each symbol
     for state, links in transitions.items():
@@ -107,7 +110,7 @@ def get_NFA_transitions(fsm, states, node_map, alphabet):
     for state in states:
         transitions[state] = {}
 
-    initial_state = ''
+    initial_state = None
     for l in fsm['links']:
         link_type = l['type']
         link_labels = l[TEXT].split(",")
@@ -141,6 +144,9 @@ def get_NFA_transitions(fsm, states, node_map, alphabet):
                 if link_label not in transitions[n1]:
                     transitions[n1][link_label] = set()
                 transitions[n1][link_label].add(n2)
+
+    if initial_state == None:
+        raise Exception("There's no start state!")
 
     return initial_state, transitions
 
