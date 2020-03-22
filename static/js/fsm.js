@@ -284,7 +284,7 @@ window.onload = function() {
             $.ajax({
                 type: "POST",
                 url: "/fsmreceiver",
-                data: { fsm_json: fsm, deterministic: true },
+                data: { fsm_json: fsm, deterministic: false },
                 success: callbackFunc
             })
         };

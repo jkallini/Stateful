@@ -115,6 +115,10 @@ def get_NFA_transitions(fsm, states, node_map, alphabet):
         for label in link_labels:
             link_label = label.strip()
 
+            # convert \epsilon to '' for automata library
+            if link_label == EPS:
+                link_label = ''
+
             # case 1: StartLink
             if link_type == "StartLink":
                 # check if we've seen a start state before
@@ -126,26 +130,17 @@ def get_NFA_transitions(fsm, states, node_map, alphabet):
             # case 2: SelfLink
             if link_type == "SelfLink":
                 n = node_map[l['node']]
-                if link_label in transitions[n]:
-                    raise Exception("State " + n + " has more than one outgoing"
-                                    + " transition labeled \"" + link_label + "\"!")
-                transitions[n][link_label] = n
+                if link_label not in transitions[n]:
+                    transitions[n][link_label] = set()
+                transitions[n][link_label].add(n)
 
             # case 3: Link
             if link_type == "Link":
                 n1 = node_map[l['nodeA']]
                 n2 = node_map[l['nodeB']]
-                if link_label in transitions[n1]:
-                    raise Exception("State " + n1 + " has more than one outgoing"
-                                    + " transition labeled \"" + link_label + "\"!")
-                transitions[n1][link_label] = n2
-
-    # verify that all states have transitions for each symbol
-    for state, links in transitions.items():
-        for symbol in alphabet:
-            if symbol not in links:
-                raise Exception("State " + state + " is missing a transition"
-                                + " for symbol \"" + symbol + "\"!")
+                if link_label not in transitions[n1]:
+                    transitions[n1][link_label] = set()
+                transitions[n1][link_label].add(n2)
 
     return initial_state, transitions
 
@@ -156,12 +151,16 @@ def parse_json(json_string, det):
     try:
         states, final_states, node_map = get_states(fsm)
         input_symbols = get_alphabet(fsm, det)
-        initial_state, transitions = \
-            get_DFA_transitions(fsm, states, node_map, input_symbols)
+        if det:
+            initial_state, transitions = \
+                get_DFA_transitions(fsm, states, node_map, input_symbols)
+        else:
+            initial_state, transitions = \
+                get_NFA_transitions(fsm, states, node_map, input_symbols)
     except Exception as e:
         return str(e)
 
-    dfa = DFA(
+    dfa = NFA(
         states=states,
         input_symbols=input_symbols,
         transitions=transitions,
