@@ -16,9 +16,13 @@ def editor():
 
 @app.route('/fsmreceiver', methods=['POST'])
 def fsmreceiver():
-    jsdata = request.form['javascript_data']
-    ret = None
-    return FSM.parse_json(jsdata)
+    fsm_json = request.form['fsm_json']
+    deterministic = request.form['deterministic']
+    if deterministic == 'true':
+        det = True
+    else:
+        det = False
+    return fsm_json + "\n" + FSM.parse_json(fsm_json, det)
 
 
 if __name__ == "__main__":
