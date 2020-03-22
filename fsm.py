@@ -36,10 +36,13 @@ def get_alphabet(fsm):
     input_symbols = set()
     for l in fsm['links']:
         if l['type'] == 'Link' or l['type'] == 'SelfLink':
-            label = l[TEXT]
-            if label == '':
+            if l[TEXT] == '':
                 raise Exception("A transition is missing a label!")
-            input_symbols.add(label)
+            labels = l[TEXT].split(",")
+            for label in labels:
+                if label == "":
+                    raise Exception("A transition has an invalid label!")
+                input_symbols.add(label.strip())
     return input_symbols
 
 
@@ -52,32 +55,35 @@ def get_DFA_transitions(fsm, states, node_map, alphabet):
     initial_state = ''
     for l in fsm['links']:
         link_type = l['type']
-        link_label = l[TEXT]
+        link_labels = l[TEXT].split(",")
 
-        # case 1: StartLink
-        if link_type == "StartLink":
-            # check if we've seen a start state before
-            if initial_state != '':
-                raise Exception("More than one state is " +
-                                "labeled as the start state!")
-            initial_state = node_map[l['node']]
+        for label in link_labels:
+            link_label = label.strip()
 
-        # case 2: SelfLink
-        if link_type == "SelfLink":
-            n = node_map[l['node']]
-            if link_label in transitions[n]:
-                raise Exception("State " + n + " has more than one outgoing"
-                                + " transition labeled \"" + link_label + "\"!")
-            transitions[n][link_label] = n
+            # case 1: StartLink
+            if link_type == "StartLink":
+                # check if we've seen a start state before
+                if initial_state != '':
+                    raise Exception("More than one state is " +
+                                    "labeled as the start state!")
+                initial_state = node_map[l['node']]
 
-        # case 3: Link
-        if link_type == "Link":
-            n1 = node_map[l['nodeA']]
-            n2 = node_map[l['nodeB']]
-            if link_label in transitions[n1]:
-                raise Exception("State " + n1 + " has more than one outgoing"
-                                + " transition labeled \"" + link_label + "\"!")
-            transitions[n1][link_label] = n2
+            # case 2: SelfLink
+            if link_type == "SelfLink":
+                n = node_map[l['node']]
+                if link_label in transitions[n]:
+                    raise Exception("State " + n + " has more than one outgoing"
+                                    + " transition labeled \"" + link_label + "\"!")
+                transitions[n][link_label] = n
+
+            # case 3: Link
+            if link_type == "Link":
+                n1 = node_map[l['nodeA']]
+                n2 = node_map[l['nodeB']]
+                if link_label in transitions[n1]:
+                    raise Exception("State " + n1 + " has more than one outgoing"
+                                    + " transition labeled \"" + link_label + "\"!")
+                transitions[n1][link_label] = n2
 
     # verify that all states have transitions for each symbol
     for state, links in transitions.items():
@@ -108,8 +114,11 @@ def parse_json(json_string):
         final_states=final_states
     )
 
-    return dfa.initial_state + "\n" + str(dfa.states) + "\n" + str(dfa.transitions) \
-        + "\n" + str(dfa.final_states)
+    return "Initial State: " + dfa.initial_state + "\n" + \
+        "Alphabet: " + str(dfa.input_symbols) + "\n" + \
+            "States: " + str(dfa.states) + "\n" + \
+                "Transitions: " + str(dfa.transitions) + "\n" + \
+                    "Final States: " + str(dfa.final_states)
 
 # Check if state q_i and q_j are equivalent. Returns True if
 # q_i and q_j are both final states or both intermediate states,
