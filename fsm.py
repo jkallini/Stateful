@@ -2,38 +2,123 @@ import json
 from automata.fa.dfa import DFA
 from automata.fa.nfa import NFA
 
+TEXT = 'text'
+
+
+# Get states, final states, and node-state map of the FSM.
+def get_states(fsm):
+    states = set()
+    final_states = set()
+    node_map = {}
+    for i in range(0, len(fsm['nodes'])):
+        n = fsm['nodes'][i]
+        label = n[TEXT]
+
+        # check if state is given a unique label
+        if label == '':
+            raise Exception("A state is missing a label!")
+        if label in states:
+            raise Exception("More than one state has label \"" + label + "\"!")
+        states.add(label)
+
+        # if accept state, add it to set of final states
+        if n['isAcceptState']:
+            final_states.add(label)
+
+        # add index and state to mapping
+        node_map[i] = label
+
+    return states, final_states, node_map
+
+
+# Get input alphabet of this fsm.
+def get_alphabet(fsm):
+    input_symbols = set()
+    for l in fsm['links']:
+        if l['type'] == 'Link' or l['type'] == 'SelfLink':
+            label = l[TEXT]
+            if label == '':
+                raise Exception("A transition is missing a label!")
+            input_symbols.add(label)
+    return input_symbols
+
+
+def get_DFA_transitions(fsm, states, node_map, alphabet):
+
+    transitions = {}
+    for state in states:
+        transitions[state] = {}
+
+    initial_state = ''
+    for l in fsm['links']:
+        link_type = l['type']
+        link_label = l[TEXT]
+
+        # case 1: StartLink
+        if link_type == "StartLink":
+            # check if we've seen a start state before
+            if initial_state != '':
+                raise Exception("More than one state is " +
+                                "labeled as the start state!")
+            initial_state = node_map[l['node']]
+
+        # case 2: SelfLink
+        if link_type == "SelfLink":
+            n = node_map[l['node']]
+            if link_label in transitions[n]:
+                raise Exception("State " + n + " has more than one outgoing"
+                                + " transition labeled \"" + link_label + "\"!")
+            transitions[n][link_label] = n
+
+        # case 3: Link
+        if link_type == "Link":
+            n1 = node_map[l['nodeA']]
+            n2 = node_map[l['nodeB']]
+            if link_label in transitions[n1]:
+                raise Exception("State " + n1 + " has more than one outgoing"
+                                + " transition labeled \"" + link_label + "\"!")
+            transitions[n1][link_label] = n2
+
+    # verify that all states have transitions for each symbol
+    for state, links in transitions.items():
+        for symbol in alphabet:
+            if symbol not in links:
+                raise Exception("State " + state + " is missing a transition"
+                                + " for symbol \"" + symbol + "\"!")
+
+    return initial_state, transitions
+
 
 def parse_json(json_string):
-    json.loads(json_string)
+    fsm = json.loads(json_string)
+
+    try:
+        states, final_states, node_map = get_states(fsm)
+        input_symbols = get_alphabet(fsm)
+        initial_state, transitions = \
+            get_DFA_transitions(fsm, states, node_map, input_symbols)
+    except Exception as e:
+        return str(e)
+
     dfa = DFA(
-        states={'q0', 'q1'},
-        input_symbols={'0', '1'},
-        transitions={
-            'q0': {'0': 'q0', '1': 'q1'},
-            'q1': {'0': 'q1', '1': 'q1'}
-        },
-        initial_state='q0',
-        final_states={'q0'}
-    )
-    dfa2 = DFA(
-        states={'q0', 'q1', 'q2'},
-        input_symbols={'0', '1'},
-        transitions={
-            'q0': {'0': 'q2', '1': 'q1'},
-            'q1': {'0': 'q1', '1': 'q1'},
-            'q2': {'0': 'q2', '1': 'q1'}
-        },
-        initial_state='q0',
-        final_states={'q0', 'q1'}
+        states=states,
+        input_symbols=input_symbols,
+        transitions=transitions,
+        initial_state=initial_state,
+        final_states=final_states
     )
 
-    print(equal(dfa, dfa2))
+    return dfa.initial_state + "\n" + str(dfa.states) + "\n" + str(dfa.transitions) \
+        + "\n" + str(dfa.final_states)
 
 # Check if state q_i and q_j are equivalent. Returns True if
 # q_i and q_j are both final states or both intermediate states,
 # and false otherwise.
+
+
 def equal_states(qi, qj, dfa1, dfa2):
     return bool(qi in dfa1.final_states) == bool(qj in dfa2.final_states)
+
 
 def equal(fsm1, fsm2):
 
@@ -55,7 +140,7 @@ def equal(fsm1, fsm2):
         dfa2 = DFA.from_nfa(fsm2)
     else:
         dfa2 = fsm2
-    
+
     # get minimal DFAs
     min_dfa1 = dfa1.minify()
     min_dfa2 = dfa2.minify()
@@ -85,5 +170,5 @@ def equal(fsm1, fsm2):
             new_pair = (ri, rj)
             if new_pair not in visited_pairs:
                 state_pairs.append(new_pair)
-    
+
     return True
