@@ -280,6 +280,7 @@ window.onload = function() {
             // Store JSON data in a JS variable
             var fsm = localStorage['fsm'];
             //var json = JSON.parse(fsm);
+            console.log(fsm)
 
             $.ajax({
                 type: "POST",
@@ -293,7 +294,6 @@ window.onload = function() {
 
 function callbackFunc(response) {
     // do something with the response
-    console.log(response);
     output(response);
 }
 

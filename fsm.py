@@ -58,7 +58,7 @@ def get_DFA_transitions(fsm, states, node_map, alphabet):
     for state in states:
         transitions[state] = {}
 
-    initial_state = ''
+    initial_state = None
     for l in fsm['links']:
         link_type = l['type']
         link_labels = l[TEXT].split(",")
@@ -69,7 +69,7 @@ def get_DFA_transitions(fsm, states, node_map, alphabet):
             # case 1: StartLink
             if link_type == "StartLink":
                 # check if we've seen a start state before
-                if initial_state != '':
+                if initial_state != None:
                     raise Exception("More than one state is " +
                                     "labeled as the start state!")
                 initial_state = node_map[l['node']]
@@ -125,7 +125,7 @@ def get_NFA_transitions(fsm, states, node_map, alphabet):
             # case 1: StartLink
             if link_type == "StartLink":
                 # check if we've seen a start state before
-                if initial_state != '':
+                if initial_state != None:
                     raise Exception("More than one state is " +
                                     "labeled as the start state!")
                 initial_state = node_map[l['node']]

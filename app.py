@@ -22,7 +22,7 @@ def fsmreceiver():
         det = True
     else:
         det = False
-    return fsm_json + "\n" + FSM.parse_json(fsm_json, det)
+    return FSM.parse_json(fsm_json, det)
 
 
 if __name__ == "__main__":
