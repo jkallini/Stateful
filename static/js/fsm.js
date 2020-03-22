@@ -281,8 +281,6 @@ window.onload = function() {
             var fsm = localStorage['fsm'];
             //var json = JSON.parse(fsm);
 
-            output(fsm);
-
             $.ajax({
                 type: "POST",
                 url: "/fsmreceiver",
@@ -296,6 +294,7 @@ window.onload = function() {
 function callbackFunc(response) {
     // do something with the response
     console.log(response);
+    output(response);
 }
 
 var shift = false;
