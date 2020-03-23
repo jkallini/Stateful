@@ -7,11 +7,12 @@
 
 :root {
     --main-blue: #0784C0;
+    --main-dark-blue: rgb(5, 111, 160);
     --main-aqua: #26C5C1;
     --main-green: rgb(93, 201, 129);
     --main-light-green: rgb(114, 233, 130);
     --main-lime: rgb(210, 255, 32);
-    --blue: #var(--main-blue);
+    --blue: var(--main-blue);
     --indigo: #6610f2;
     --purple: #6f42c1;
     --pink: #e83e8c;
@@ -2571,8 +2572,8 @@ fieldset:disabled a.btn {
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #0069d9;
-    border-color: #0062cc
+    background-color: var(--main-dark-blue);
+    border-color: var(--main-dark-blue)
 }
 
 .btn-primary.focus,
@@ -2583,15 +2584,15 @@ fieldset:disabled a.btn {
 .btn-primary.disabled,
 .btn-primary:disabled {
     color: #fff;
-    background-color: #var(--main-blue);
-    border-color: #var(--main-blue)
+    background-color: var(--main-blue);
+    border-color: var(--main-blue)
 }
 
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,
 .show>.btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #0062cc;
+    background-color: var(--main-dark-blue);
     border-color: #005cbf
 }
 
@@ -5205,7 +5206,7 @@ a.badge:hover {
 a.badge-primary:focus,
 a.badge-primary:hover {
     color: #fff;
-    background-color: #0062cc
+    background-color: var(--main-dark-blue);
 }
 
 a.badge-primary.focus,
@@ -6807,7 +6808,7 @@ a.bg-primary:focus,
 a.bg-primary:hover,
 button.bg-primary:focus,
 button.bg-primary:hover {
-    background-color: #0062cc!important
+    background-color: var(--main-dark-blue)!important
 }
 
 .bg-secondary {
