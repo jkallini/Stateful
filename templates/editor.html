@@ -47,11 +47,11 @@
 {% endblock %} {% block body %}
 
 <!-- Page Content -->
-<div id="content">
+<div id="content" style="text-align: center">
 
-    <h1 class="display-3">Finite State Machine Editor</h1>
+    <h1>Finite State Machine Editor</h1>
 
-    <canvas id="canvas" width="800" height="580">
+    <canvas id="canvas">
     <span class="error">Your browser does not support<br>the HTML5 &lt;canvas&gt; element</span>
 </canvas>
 
@@ -68,7 +68,7 @@
             <li><b>Add a state:</b> double-click on the canvas</li>
             <li><b>Add an arrow:</b> shift-drag on the canvas</li>
             <li><b>Move something:</b> drag it around</li>
-            <li><b>Delete something:</b> click it and press the delete key (not the backspace key)</li>
+            <li><b>Delete something:</b> click it and press the delete key (not the backspace key). On Mac, this is fn + delete.</li>
         </ul>
         <ul>
             <li><b>Make accept state:</b> double-click on an existing state</li>
@@ -76,7 +76,6 @@
             <li><b>Type greek letter:</b> put a backslash before it (like "\beta")</li>
         </ul>
         <p>This was made in HTML5 and JavaScript using the canvas element.</p>
-        <p class="center"><a href="/">Back to Homepage</a></p>
     </div>
 </div>
 

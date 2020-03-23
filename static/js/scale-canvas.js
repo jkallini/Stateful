@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     let canv = document.getElementById('canvas');
 
     const width = 800;
-    const height = 580;
+    const height = 480;
     const pixelRatio = window.devicePixelRatio || 1;
 
     //get context

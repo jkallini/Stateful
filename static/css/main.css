@@ -1,14 +1,31 @@
 body {
-    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    background: #ebfffc;
+}
+
+h1 {
+    color: var(--main-blue)
+}
+
+b {
+    color: var(--main-blue)
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
 }
 
 .fsm-state:hover {
-    fill: plum;
+    fill: var(--main-lime);
     stroke-width: 3;
 }
 
 .fsm-state {
-    fill: lightblue;
+    fill: var(--main-light-green);
     stroke-width: 2;
     stroke: black;
 }
