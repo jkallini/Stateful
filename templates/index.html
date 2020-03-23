@@ -1,11 +1,14 @@
 {% extends 'base.html' %} {% block head %}
 <title>Stateful | Home</title>
 {% endblock %} {% block body %}
-<h1>Stateful</h1>
-An online tutor for learning about finite state machines and regular languages.
-<br>
+<!-- Page Content -->
+<div id="content">
 
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <h1>Stateful</h1>
+    An online tutor for learning about finite state machines and regular languages.
+    <br>
+
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
 	<ellipse class="fsm-state" stroke="black" stroke-width="2" cx="1081.5" cy="1208.5" rx="30" ry="30"/>
 	<ellipse class="fsm-state" stroke="black" stroke-width="2" cx="81.5" cy="98.5" rx="30" ry="30"/>
 	<text x="75.5" y="104.5" font-family="Sans-serif" font-size="20">1</text>
@@ -25,9 +28,9 @@ An online tutor for learning about finite state machines and regular languages.
 	<polygon fill="black" stroke-width="2" points="240.725,71.703 249.473,68.17 241.382,62.292"/>
 </svg>
 
-<br>
+    <br>
 
-<svg width="300" height="300" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <svg width="300" height="300" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	<ellipse class="fsm-state" stroke="black" stroke-width="2" fill="none" cx="1081.5" cy="1208.5" rx="30" ry="30"/>
 	<ellipse class="fsm-state" stroke="black" stroke-width="2" fill="none" cx="81.5" cy="98.5" rx="30" ry="30"/>
 	<text x="75.5" y="104.5" font-family="Sans-serif" font-size="20">1</text>
@@ -58,8 +61,10 @@ An online tutor for learning about finite state machines and regular languages.
 	<polygon fill="black" stroke-width="2" points="141.275,226.297 132.527,229.83 140.618,235.708"/>
 </svg>
 
-<br>
+    <br>
 
-<a href="/editor">View FSM editor</a>
+    <a href="/editor">View FSM editor</a>
 
-</svg> {% endblock %}
+    </svg>
+</div>
+{% endblock %}

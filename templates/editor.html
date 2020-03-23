@@ -44,40 +44,40 @@
     }
 </script>
 
-<!-- AJAX -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
 {% endblock %} {% block body %}
 
-<h1>Finite State Machine Editor</h1>
+<!-- Page Content -->
+<div id="content">
 
-<canvas id="canvas" width="800" height="580">
+    <h1 class="display-3">Finite State Machine Editor</h1>
+
+    <canvas id="canvas" width="800" height="580">
     <span class="error">Your browser does not support<br>the HTML5 &lt;canvas&gt; element</span>
 </canvas>
 
-<div>
-    <div class="center">
-        <button id="clearCanvas">Clear the Canvas</button>
-        <button id="printFSM">Print my FSM</button>
-        <br>
-        <br>
-        <textarea id="output"></textarea>
+    <div class="info-div">
+        <div class="center">
+            <button id="clearCanvas">Clear the Canvas</button>
+            <button id="printFSM">Print my FSM</button>
+            <br>
+            <br>
+            <textarea id="output"></textarea>
+        </div>
+        <p>The big white box above is the FSM designer.&nbsp; Here's how to use it:</p>
+        <ul>
+            <li><b>Add a state:</b> double-click on the canvas</li>
+            <li><b>Add an arrow:</b> shift-drag on the canvas</li>
+            <li><b>Move something:</b> drag it around</li>
+            <li><b>Delete something:</b> click it and press the delete key (not the backspace key)</li>
+        </ul>
+        <ul>
+            <li><b>Make accept state:</b> double-click on an existing state</li>
+            <li><b>Type numeric subscript:</b> put an underscore before the number (like "S_0")</li>
+            <li><b>Type greek letter:</b> put a backslash before it (like "\beta")</li>
+        </ul>
+        <p>This was made in HTML5 and JavaScript using the canvas element.</p>
+        <p class="center"><a href="/">Back to Homepage</a></p>
     </div>
-    <p>The big white box above is the FSM designer.&nbsp; Here's how to use it:</p>
-    <ul>
-        <li><b>Add a state:</b> double-click on the canvas</li>
-        <li><b>Add an arrow:</b> shift-drag on the canvas</li>
-        <li><b>Move something:</b> drag it around</li>
-        <li><b>Delete something:</b> click it and press the delete key (not the backspace key)</li>
-    </ul>
-    <ul>
-        <li><b>Make accept state:</b> double-click on an existing state</li>
-        <li><b>Type numeric subscript:</b> put an underscore before the number (like "S_0")</li>
-        <li><b>Type greek letter:</b> put a backslash before it (like "\beta")</li>
-    </ul>
-    <p>This was made in HTML5 and JavaScript using the canvas element.</p>
-    <p class="center"><a href="/">Back to Homepage</a></p>
-
 </div>
 
 {% endblock %}
