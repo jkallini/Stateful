@@ -57,26 +57,30 @@
 
     <div class="info-div">
         <div class="center">
-            <button id="clearCanvas" type="button" class="btn btn-primary">Clear the Canvas</button>
-            <button id="printFSM" type="button" class="btn btn-primary">Print my FSM</button>
+            <!-- Clear canvas button -->
+            <button data-toggle="tooltip" rel="tooltip" data-placement="top" title="Clear my Canvas" id="clearCanvas" type="button" class="btn btn-primary">Clear <i class="fas fa-trash" aria-hidden="true"></i></button>
+
+            <!-- Button trigger modal -->
+
+            <span data-toggle="modal" data-target="#infoModal">
+                    <button type="button" class="btn btn-primary" data-toggle="tooltip" rel="tooltip" data-placement="top" title="How to use the Canvas">
+                        Info <i class="fas fa-info-circle" aria-hidden="true"></i>
+                    </button>
+
+            </span> {% include 'editor-info.html' %}
+
+            <!-- Submit FSM -->
+            <button id="printFSM" type="button" class="btn btn-primary">Submit <i class="fas fa-check" aria-hidden="true"></i></button>
             <br>
             <br>
             <textarea id="output"></textarea>
         </div>
-        <p>The big white box above is the FSM designer.&nbsp; Here's how to use it:</p>
-        <ul>
-            <li><b>Add a state:</b> double-click on the canvas</li>
-            <li><b>Add an arrow:</b> shift-drag on the canvas</li>
-            <li><b>Move something:</b> drag it around</li>
-            <li><b>Delete something:</b> click it and press the delete key (not the backspace key). On Mac, this is fn + delete.</li>
-        </ul>
-        <ul>
-            <li><b>Make accept state:</b> double-click on an existing state</li>
-            <li><b>Type numeric subscript:</b> put an underscore before the number (like "S_0")</li>
-            <li><b>Type greek letter:</b> put a backslash before it (like "\beta")</li>
-        </ul>
-        <p>This was made in HTML5 and JavaScript using the canvas element.</p>
     </div>
-</div>
 
-{% endblock %}
+    <script type="text/javascript">
+        $(function() {
+            $("[rel='tooltip']").tooltip();
+        });
+    </script>
+
+    {% endblock %}
