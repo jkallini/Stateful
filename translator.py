@@ -22,7 +22,7 @@ problem_bank = {
                        final_states={'1'})
                ),
     2: Problem(probid=2,
-               description="Design a DFA that recognizes the language \(\color{#056fa0}{L \in \{ a,b\}^*}\), <br/> where the number of \(\color{#056fa0}{b}\)'s is even.",
+               description="Design a DFA that recognizes the language \(\color{#056fa0}{L \subseteq \{ a,b\}^*}\), <br/> where the number of \(\color{#056fa0}{b}\)'s is even.",
                fsm=DFA(states={'1', '2'},
                        input_symbols={'a', 'b'},
                        transitions={'1': {'a': '1', 'b': '2'},

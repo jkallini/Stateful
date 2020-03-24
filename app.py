@@ -22,11 +22,6 @@ def index():
     return make_response(html)
 
 
-@app.route('/editor')
-def editor():
-    return render_template('editor.html')
-
-
 @app.route('/practice')
 def practice():
     return render_template('practice.html')
