@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block head %}
+<title>Stateful | Home</title>
+{% endblock %} {% block body %}
+<!-- Page Content -->
+<div id="content" style="text-align: center">
+
+    <h1>Practice Questions</h1>
+    <h3 style="color:var(--main-aqua)">DFA Questions</h3>
+    {% for i in range(5) %}
+    <h5><a href="/problem/{{i + 1}}">Problem {{ i + 1 }}</a></h5>{% endfor %}
+
+    <h3 style="color:var(--main-aqua)">NFA Questions</h3>
+    {% for i in range(5) %}
+    <h5><a href="/problem/{{i + 6}}">Problem {{ i + 6 }}</a></h5>{% endfor %}
+
+</div>
+{% endblock %}

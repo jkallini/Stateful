@@ -27,6 +27,11 @@ def editor():
     return render_template('editor.html')
 
 
+@app.route('/practice')
+def practice():
+    return render_template('practice.html')
+
+
 @app.route('/problem/<int:probid>')
 def problem(probid):
 
