@@ -49,7 +49,7 @@
 <!-- Page Content -->
 <div id="content" style="text-align: center">
 
-    <h2>Problem {{ probid }}</h2>
+    <h2 style="color: var(--main-green)">Problem {{ probid }}</h2>
 
     <h5>{{ description }}</h5>
 
@@ -100,7 +100,7 @@
                     url: "/submit",
                     data: {
                         fsm_json: fsm,
-                        deterministic: false
+                        probid: '{{ probid }}'
                     },
                     success: callbackFunc
                 })

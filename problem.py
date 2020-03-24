@@ -21,6 +21,9 @@ class Problem:
     def get_id(self):
         return self._id
 
+    def get_fsm(self):
+        return self._fsm
+
     def get_description(self):
         return self._description
 

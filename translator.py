@@ -26,5 +26,7 @@ def probid_exists(probid):
     return (probid in problem_bank)
 
 
-def get_problem_description(probid):
-    return problem_bank[probid].get_description()
+def get_problem(probid):
+    if not probid_exists(probid):
+        return "probid " + str(probid) + " does not exist"
+    return problem_bank[probid]
