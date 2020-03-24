@@ -6117,14 +6117,17 @@ a.close.disabled {
     -ms-flex-pack: justify;
     justify-content: space-between;
     padding: 1rem 1rem;
-    border-bottom: 1px solid #dee2e6;
     border-top-left-radius: .3rem;
-    border-top-right-radius: .3rem
+    border-top-right-radius: .3rem;
+    background: var(--main-aqua);
+    color: white;
 }
 
 .modal-header .close {
     padding: 1rem 1rem;
-    margin: -1rem -1rem -1rem auto
+    margin: -1rem -1rem -1rem auto;
+    color: var(--main-lime);
+    outline: none;
 }
 
 .modal-title {
@@ -6149,7 +6152,9 @@ a.close.disabled {
     padding: 1rem;
     border-top: 1px solid #dee2e6;
     border-bottom-right-radius: .3rem;
-    border-bottom-left-radius: .3rem
+    border-bottom-left-radius: .3rem;
+    background: var(--main-aqua);
+    color: white;
 }
 
 .modal-footer>:not(:first-child) {

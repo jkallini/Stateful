@@ -115,17 +115,17 @@ function drawUsing(c) {
 
     for (var i = 0; i < nodes.length; i++) {
         c.lineWidth = 2;
-        c.fillStyle = c.strokeStyle = (nodes[i] == selectedObject) ? 'purple' : 'black';
+        c.fillStyle = c.strokeStyle = (nodes[i] == selectedObject) ? 'yellowgreen' : '#006699';
         nodes[i].draw(c);
     }
     for (var i = 0; i < links.length; i++) {
         c.lineWidth = 2;
-        c.fillStyle = c.strokeStyle = (links[i] == selectedObject) ? 'purple' : 'black';
+        c.fillStyle = c.strokeStyle = (links[i] == selectedObject) ? 'yellowgreen' : '#006699';
         links[i].draw(c);
     }
     if (currentLink != null) {
         c.lineWidth = 2;
-        c.fillStyle = c.strokeStyle = 'black';
+        c.fillStyle = c.strokeStyle = '#006699';
         currentLink.draw(c);
     }
 
