@@ -49,7 +49,8 @@ def get_alphabet(fsm, det):
                     raise Exception("A transition has an invalid label!")
                 if label == EPS:
                     if det:
-                        raise Exception("A DFA should not have epsilon transitions!")
+                        raise Exception(
+                            "A DFA should not have epsilon transitions!")
                     else:
                         label = ''
                 input_symbols.add(label.strip())
@@ -94,7 +95,7 @@ def get_DFA_transitions(fsm, states, node_map, alphabet):
                     raise Exception("State " + n1 + " has more than one outgoing"
                                     + " transition labeled \"" + link_label + "\"!")
                 transitions[n1][link_label] = n2
-    
+
     if initial_state == None:
         raise Exception("There's no start state!")
 
@@ -155,44 +156,9 @@ def get_NFA_transitions(fsm, states, node_map, alphabet):
     return initial_state, transitions
 
 
-def parse_json(json_string, det):
-    fsm = json.loads(json_string)
-
-    try:
-        states, final_states, node_map = get_states(fsm)
-        input_symbols = get_alphabet(fsm, det)
-        if det:
-            initial_state, transitions = \
-                get_DFA_transitions(fsm, states, node_map, input_symbols)
-        else:
-            initial_state, transitions = \
-                get_NFA_transitions(fsm, states, node_map, input_symbols)
-    except Exception as e:
-        response = {'title': "Oops!", 'message': str(e)}
-        return json.dumps(response)
-
-    dfa = NFA(
-        states=states,
-        input_symbols=input_symbols,
-        transitions=transitions,
-        initial_state=initial_state,
-        final_states=final_states
-    )
-
-    message = "Initial State: " + dfa.initial_state + "\n" + \
-        "Alphabet: " + str(dfa.input_symbols) + "\n" + \
-            "States: " + str(dfa.states) + "\n" + \
-                "Transitions: " + str(dfa.transitions) + "\n" + \
-                    "Final States: " + str(dfa.final_states)
-    
-    response = {'title': "Good Job!", 'message': message}
-    return json.dumps(response)
-
 # Check if state q_i and q_j are equivalent. Returns True if
 # q_i and q_j are both final states or both intermediate states,
 # and false otherwise.
-
-
 def equal_states(qi, qj, dfa1, dfa2):
     return bool(qi in dfa1.final_states) == bool(qj in dfa2.final_states)
 
@@ -249,3 +215,46 @@ def equal(fsm1, fsm2):
                 state_pairs.append(new_pair)
 
     return True
+
+
+def parse_json(json_string, is_deterministic):
+    fsm = json.loads(json_string)
+
+    try:
+        states, final_states, node_map = get_states(fsm)
+        input_symbols = get_alphabet(fsm, is_deterministic)
+        if is_deterministic:
+            initial_state, transitions = \
+                get_DFA_transitions(fsm, states, node_map, input_symbols)
+        else:
+            initial_state, transitions = \
+                get_NFA_transitions(fsm, states, node_map, input_symbols)
+    except Exception as e:
+        response = {'title': "Oops!", 'message': str(e)}
+        return json.dumps(response)
+
+    if is_deterministic:
+        fsm = DFA(
+            states=states,
+            input_symbols=input_symbols,
+            transitions=transitions,
+            initial_state=initial_state,
+            final_states=final_states
+        )
+    else:
+        fsm = NFA(
+            states=states,
+            input_symbols=input_symbols,
+            transitions=transitions,
+            initial_state=initial_state,
+            final_states=final_states
+        )
+
+    message = "Initial State: " + fsm.initial_state + "\n" + \
+        "Alphabet: " + str(fsm.input_symbols) + "\n" + \
+        "States: " + str(fsm.states) + "\n" + \
+        "Transitions: " + str(fsm.transitions) + "\n" + \
+        "Final States: " + str(fsm.final_states)
+
+    response = {'title': "Good Job!", 'message': message}
+    return json.dumps(response)
