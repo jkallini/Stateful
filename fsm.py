@@ -8,6 +8,10 @@ EPS = '\\epsilon'
 
 # Get states, final states, and node-state map of the FSM.
 def get_states(fsm):
+
+    if len(fsm['nodes']) == 0:
+        raise Exception("You didn't submit anything!")
+
     states = set()
     final_states = set()
     node_map = {}
@@ -164,7 +168,8 @@ def parse_json(json_string, det):
             initial_state, transitions = \
                 get_NFA_transitions(fsm, states, node_map, input_symbols)
     except Exception as e:
-        return str(e)
+        response = {'title': "Oops!", 'message': str(e)}
+        return json.dumps(response)
 
     dfa = NFA(
         states=states,
@@ -174,11 +179,14 @@ def parse_json(json_string, det):
         final_states=final_states
     )
 
-    return "Initial State: " + dfa.initial_state + "\n" + \
+    message = "Initial State: " + dfa.initial_state + "\n" + \
         "Alphabet: " + str(dfa.input_symbols) + "\n" + \
             "States: " + str(dfa.states) + "\n" + \
                 "Transitions: " + str(dfa.transitions) + "\n" + \
                     "Final States: " + str(dfa.final_states)
+    
+    response = {'title': "Good Job!", 'message': message}
+    return json.dumps(response)
 
 # Check if state q_i and q_j are equivalent. Returns True if
 # q_i and q_j are both final states or both intermediate states,

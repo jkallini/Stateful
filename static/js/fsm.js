@@ -293,8 +293,10 @@ window.onload = function() {
 }
 
 function callbackFunc(response) {
+
+    var res = JSON.parse(response);
     // do something with the response
-    output(response);
+    output(res.title, res.message);
 }
 
 var shift = false;
@@ -396,10 +398,9 @@ function crossBrowserRelativeMousePos(e) {
     };
 }
 
-function output(text) {
-    var element = document.getElementById('output');
-    element.style.display = 'block';
-    element.value = text;
+function output(title, message) {
+    document.getElementById('submitModalLabel').innerHTML = title;
+    document.getElementById('output').innerHTML = message;
 }
 
 /* Links */
