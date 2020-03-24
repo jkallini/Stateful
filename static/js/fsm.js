@@ -274,29 +274,8 @@ window.onload = function() {
             location.reload()
         };
 
-    // function to convert JSON into OpenFST representation
-    document.getElementById("printFSM").onclick =
-        function() {
-            // Store JSON data in a JS variable
-            var fsm = localStorage['fsm'];
-            //var json = JSON.parse(fsm);
-            console.log(fsm)
+    initQuestionHandler()
 
-            $.ajax({
-                type: "POST",
-                url: "/fsmreceiver",
-                data: { fsm_json: fsm, deterministic: false },
-                success: callbackFunc
-            })
-        };
-
-}
-
-function callbackFunc(response) {
-
-    var res = JSON.parse(response);
-    // do something with the response
-    output(res.title, res.message);
 }
 
 var shift = false;
