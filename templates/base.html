@@ -20,7 +20,13 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">{% block head %}{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+    <!-- MathJax CDN -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    {% block head %}{% endblock %}
 </head>
 
 <body>

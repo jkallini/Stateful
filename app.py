@@ -34,9 +34,7 @@ def problem(probid):
         return render_template('index.html')
 
     problem = TL.get_problem(probid)
-    html = render_template('problem.html',
-    probid=probid,
-    description=problem.get_description())
+    html = render_template('problem.html', problem=problem)
     response = make_response(html)
     return response
 
@@ -48,24 +46,27 @@ def submit():
     fsm_json = request.form['fsm_json']
     probid = int(request.form['probid'])
 
+    # verify that this problem exists (it should)
     if not TL.probid_exists(probid):
         response = {'title': "An Error Occurred",
                     'message': "Sorry for the inconvenience!"}
         return response
 
+    # get the problem and parse it into JSON
     problem = TL.get_problem(probid)
-
     det = problem.is_deterministic()
-
     error, fsm_or_exception = FSM.parse_json(fsm_json, det)
 
+    # check if the input is valid
     if error:
-        response = {'title': "Oops!",
+        response = {'title': "Oops! Your FSM is invalid!",
                     'message': str(fsm_or_exception)}
         return json.dumps(response)
 
+    # retrieve solution
     solution = problem.get_fsm()
 
+    # check student's answer against solution
     if not FSM.equal(solution, fsm_or_exception):
         response = {'title': "Incorrect",
         'message': "That's not quite right. Give it another try!"}
