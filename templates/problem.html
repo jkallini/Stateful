@@ -49,7 +49,9 @@
 <!-- Page Content -->
 <div id="content" style="text-align: center">
 
-    <h1>Finite State Machine Editor</h1>
+    <h2>Problem {{ probid }}</h2>
+
+    <h5>{{ description }}</h5>
 
     <canvas id="canvas">
     <span class="error">Your browser does not support<br>the HTML5 &lt;canvas&gt; element</span>
@@ -95,7 +97,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "/fsmreceiver",
+                    url: "/submit",
                     data: {
                         fsm_json: fsm,
                         deterministic: false

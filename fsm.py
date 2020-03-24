@@ -5,6 +5,14 @@ from automata.fa.nfa import NFA
 TEXT = 'text'
 EPS = '\\epsilon'
 
+def fsm_str(fsm):
+    string = "Initial State: " + fsm.initial_state + "\n" + \
+        "Alphabet: " + str(fsm.input_symbols) + "\n" + \
+        "States: " + str(fsm.states) + "\n" + \
+        "Transitions: " + str(fsm.transitions) + "\n" + \
+        "Final States: " + str(fsm.final_states)
+    return string
+
 
 # Get states, final states, and node-state map of the FSM.
 def get_states(fsm):
@@ -163,6 +171,8 @@ def equal_states(qi, qj, dfa1, dfa2):
     return bool(qi in dfa1.final_states) == bool(qj in dfa2.final_states)
 
 
+# Check whether fsm1 and fsm2 recognize the same language.
+# If so, return true, else return false.
 def equal(fsm1, fsm2):
 
     # first check alphabet equivalence
@@ -230,8 +240,7 @@ def parse_json(json_string, is_deterministic):
             initial_state, transitions = \
                 get_NFA_transitions(fsm, states, node_map, input_symbols)
     except Exception as e:
-        response = {'title': "Oops!", 'message': str(e)}
-        return json.dumps(response)
+        return True, str(e)
 
     if is_deterministic:
         fsm = DFA(
@@ -250,11 +259,4 @@ def parse_json(json_string, is_deterministic):
             final_states=final_states
         )
 
-    message = "Initial State: " + fsm.initial_state + "\n" + \
-        "Alphabet: " + str(fsm.input_symbols) + "\n" + \
-        "States: " + str(fsm.states) + "\n" + \
-        "Transitions: " + str(fsm.transitions) + "\n" + \
-        "Final States: " + str(fsm.final_states)
-
-    response = {'title': "Good Job!", 'message': message}
-    return json.dumps(response)
+    return False, fsm
