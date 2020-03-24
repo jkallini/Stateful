@@ -51,7 +51,7 @@
 
     <h2 style="color: var(--main-green)">Problem {{ problem.get_id() }}</h2>
 
-    <h5>{{ problem.get_description() }}</h5>
+    <h5>{{ problem.get_description()|safe }}</h5>
 
     <canvas id="canvas">
     <span class="error">Your browser does not support<br>the HTML5 &lt;canvas&gt; element</span>
