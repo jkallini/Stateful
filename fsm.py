@@ -206,8 +206,17 @@ def equal(fsm1, fsm2):
     # first check alphabet equivalence
     alpha1 = fsm1.input_symbols
     alpha2 = fsm2.input_symbols
+    print(alpha1, alpha2)
+
+    if '' in alpha1:
+        alpha1.remove('')
+    if '' in alpha2:
+        alpha2.remove('')
+
+    print(alpha1, alpha2)
 
     if alpha1 != alpha2:
+        print('here1')
         return False
 
     alphabet = alpha1
@@ -243,6 +252,7 @@ def equal(fsm1, fsm2):
         qi, qj = state_pairs.pop()
         visited_pairs.add((qi, qj))
         if not equal_states(qi, qj, min_dfa1, min_dfa2):
+            print('here2')
             return False
 
         for sym in alphabet:

@@ -54,7 +54,7 @@ problem_bank = {
     5: Problem(probid=5,
                description="Design an NFA that recognizes the strings 'cat' and 'cats' only. <br> You may assume that the input alphabet is \(\color{#056fa0}{\Sigma = \{ c, a, t, s\}}\).",
                fsm=NFA(states={'1', '2', '3', '4', '5'},
-                       input_symbols={'c', 'a', 't', 's'},
+                       input_symbols={'c', 'a', 't', 's', ''},
                        transitions={'1': {'c': {'2'}}, '2': {'a': {'3'}}, '3': {
                            't': {'4'}}, '4': {'s': {'5'}}, '5': {}},
                        initial_state='1',
