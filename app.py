@@ -73,7 +73,8 @@ def submit():
         'message': "That's not quite right. Give it another try!"}
     else:
         response = {'title': "Good Job!",
-                    'message': FSM.fsm_str(fsm_or_exception)}
+                    'message': 'Here is a symbolic representation of your FSM: <br>' \
+                        + FSM.fsm_str(fsm_or_exception)}
     return json.dumps(response)
 
 

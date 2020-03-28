@@ -4,10 +4,12 @@ from automata.fa.nfa import NFA
 
 TEXT = 'text'
 EPS = '\\epsilon'
+EPS_TEX = '\\varepsilon'
+
 
 def print_set(set_to_print):
     set_string = '\{'
-    states = list(set_to_print)
+    states = sorted(set_to_print)
     for i in range(len(states)):
         if i == len(states) - 1:
             set_string += states[i]
@@ -15,6 +17,7 @@ def print_set(set_to_print):
         set_string += states[i] + ','
     set_string += '\}'
     return set_string
+
 
 def fsm_str(fsm):
 
@@ -25,6 +28,8 @@ def fsm_str(fsm):
     trans_string = ''
     for state, transitions in fsm.transitions.items():
         for sym, end in transitions.items():
+            if sym == '':
+                sym = EPS_TEX
             if type(end) == set:
                 end_string = print_set(end)
                 trans_string += '\(\color{#056fa0}{ \delta (' + \
@@ -38,7 +43,7 @@ def fsm_str(fsm):
     string = "\(\color{#056fa0}{ Q = " + state_string + "}\) <br/>" + \
         "\(\color{#056fa0}{ \Sigma = " + alpha_string + "}\) <br/>" + \
         trans_string + "\(\color{#056fa0}{ q_0 = " + fsm.initial_state + "}\) <br/>" \
-            + "\(\color{#056fa0}{ F = " + final_string + "}\) <br/>"
+        + "\(\color{#056fa0}{ F = " + final_string + "}\) <br/>"
     return string
 
 
@@ -59,7 +64,8 @@ def get_states(fsm):
         if label == '':
             raise Exception("A state is missing a label!")
         if label in states:
-            raise Exception("More than one state has label \"" + label + "\"!")
+            raise Exception(
+                "More than one state has label \(\color{#056fa0}{" + label + "}\)!")
         states.add(label)
 
         # if accept state, add it to set of final states
@@ -119,8 +125,8 @@ def get_DFA_transitions(fsm, states, node_map, alphabet):
             if link_type == "SelfLink":
                 n = node_map[l['node']]
                 if link_label in transitions[n]:
-                    raise Exception("State " + n + " has more than one outgoing"
-                                    + " transition labeled \"" + link_label + "\"!")
+                    raise Exception("State \(\color{#056fa0}{" + n + "}\) has more than one outgoing"
+                                    + " transition labeled \(\color{#056fa0}{" + link_label + "}\)!")
                 transitions[n][link_label] = n
 
             # case 3: Link
@@ -128,8 +134,8 @@ def get_DFA_transitions(fsm, states, node_map, alphabet):
                 n1 = node_map[l['nodeA']]
                 n2 = node_map[l['nodeB']]
                 if link_label in transitions[n1]:
-                    raise Exception("State " + n1 + " has more than one outgoing"
-                                    + " transition labeled \"" + link_label + "\"!")
+                    raise Exception("State \(\color{#056fa0}{" + n1 + "}\) has more than one outgoing"
+                                    + " transition labeled \(\color{#056fa0}{" + link_label + "}\)!")
                 transitions[n1][link_label] = n2
 
     if initial_state == None:
@@ -139,8 +145,8 @@ def get_DFA_transitions(fsm, states, node_map, alphabet):
     for state, links in transitions.items():
         for symbol in alphabet:
             if symbol not in links:
-                raise Exception("State " + state + " is missing a transition"
-                                + " for symbol \"" + symbol + "\"!")
+                raise Exception("State \(\color{#056fa0}{" + state + "}\) is missing a transition"
+                                + " for symbol \(\color{#056fa0}{" + symbol + "}\)!")
 
     return initial_state, transitions
 
