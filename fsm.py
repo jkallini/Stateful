@@ -5,40 +5,41 @@ from automata.fa.nfa import NFA
 TEXT = 'text'
 EPS = '\\epsilon'
 
-# def fsm_str(fsm):
-#     string = "Initial State: " + fsm.initial_state + "\n" + \
-#         "Alphabet: " + str(fsm.input_symbols) + "\n" + \
-#         "States: " + str(fsm.states) + "\n" + \
-#         "Transitions: " + str(fsm.transitions) + "\n" + \
-#         "Final States: " + str(fsm.final_states)
-#     return string
+def print_set(set_to_print):
+    set_string = '\{'
+    states = list(set_to_print)
+    for i in range(len(states)):
+        if i == len(states) - 1:
+            set_string += states[i]
+            break
+        set_string += states[i] + ','
+    set_string += '\}'
+    return set_string
 
 def fsm_str(fsm):
 
-    state_string = '\{'
-    for state in fsm.states:
-        state_string += state
-    state_string += '\}'
+    state_string = print_set(fsm.states)
 
-    alpha_string = '\{'
-    for sym in fsm.input_symbols:
-        alpha_string += sym
-    alpha_string += '\}'
+    alpha_string = print_set(fsm.input_symbols)
 
-    trans_string = '\{'
+    trans_string = ''
     for state, transitions in fsm.transitions.items():
         for sym, end in transitions.items():
-            alpha_string += '\delta (' + state + ',' + sym + ')' \
-                + ' = ' + end
-    alpha_string += '\}'
+            if type(end) == set:
+                end_string = print_set(end)
+                trans_string += '\(\color{#056fa0}{ \delta (' + \
+                    state + ',' + sym + ')' + ' = ' + end_string + '}\) <br/>'
+            else:
+                trans_string += '\(\color{#056fa0}{ \delta (' + \
+                    state + ',' + sym + ')' + ' = ' + end + '}\) <br/>'
 
-    string = "\\(\color{#056fa0}{   Q = " + state_string + "<br>" + \
-        "\Sigma = " + alpha_string + "\n" + \
-        "States: " + str(fsm.states) + "\n" + \
-        "Transitions: " + str(fsm.transitions) + "\n" + \
-        "Final States: " + str(fsm.final_states) + \
-            "\\)"
-    return '\\(Q\\)'
+    final_string = print_set(fsm.final_states)
+
+    string = "\(\color{#056fa0}{ Q = " + state_string + "}\) <br/>" + \
+        "\(\color{#056fa0}{ \Sigma = " + alpha_string + "}\) <br/>" + \
+        trans_string + "\(\color{#056fa0}{ q_0 = " + fsm.initial_state + "}\) <br/>" \
+            + "\(\color{#056fa0}{ F = " + final_string + "}\) <br/>"
+    return string
 
 
 # Get states, final states, and node-state map of the FSM.
