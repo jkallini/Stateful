@@ -5,13 +5,40 @@ from automata.fa.nfa import NFA
 TEXT = 'text'
 EPS = '\\epsilon'
 
+# def fsm_str(fsm):
+#     string = "Initial State: " + fsm.initial_state + "\n" + \
+#         "Alphabet: " + str(fsm.input_symbols) + "\n" + \
+#         "States: " + str(fsm.states) + "\n" + \
+#         "Transitions: " + str(fsm.transitions) + "\n" + \
+#         "Final States: " + str(fsm.final_states)
+#     return string
+
 def fsm_str(fsm):
-    string = "Initial State: " + fsm.initial_state + "\n" + \
-        "Alphabet: " + str(fsm.input_symbols) + "\n" + \
+
+    state_string = '\{'
+    for state in fsm.states:
+        state_string += state
+    state_string += '\}'
+
+    alpha_string = '\{'
+    for sym in fsm.input_symbols:
+        alpha_string += sym
+    alpha_string += '\}'
+
+    trans_string = '\{'
+    for state, transitions in fsm.transitions.items():
+        for sym, end in transitions.items():
+            alpha_string += '\delta (' + state + ',' + sym + ')' \
+                + ' = ' + end
+    alpha_string += '\}'
+
+    string = "\\(\color{#056fa0}{   Q = " + state_string + "<br>" + \
+        "\Sigma = " + alpha_string + "\n" + \
         "States: " + str(fsm.states) + "\n" + \
         "Transitions: " + str(fsm.transitions) + "\n" + \
-        "Final States: " + str(fsm.final_states)
-    return string
+        "Final States: " + str(fsm.final_states) + \
+            "\\)"
+    return '\\(Q\\)'
 
 
 # Get states, final states, and node-state map of the FSM.

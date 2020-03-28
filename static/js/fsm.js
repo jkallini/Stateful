@@ -378,8 +378,11 @@ function crossBrowserRelativeMousePos(e) {
 }
 
 function output(title, message) {
-    document.getElementById('submitModalLabel').innerHTML = title;
-    document.getElementById('output').innerHTML = message;
+    $('#submitModalLabel').html(title);
+    $('#output').html(unescape(message));
+    // MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    MathJax.Hub.Queue(
+        function() { $("#output").html(message); }, ["Typeset", MathJax.Hub, 'output']);
 }
 
 /* Links */
