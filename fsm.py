@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+
+# -----------------------------------------------------------------------
+# fsm.py
+# author: Julie Kallini
+# -----------------------------------------------------------------------
+
 import json
 from automata.fa.dfa import DFA
 from automata.fa.nfa import NFA

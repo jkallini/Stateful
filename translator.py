@@ -29,7 +29,7 @@ problem_bank = {
                                     '2': {'b': '1', 'a': '2'}},
                        initial_state='1',
                        final_states={'1'}),
-                difficulty=Problem.EASY
+               difficulty=Problem.EASY
                ),
     3: Problem(probid=3,
                description="Design a DFA that recognizes the language \(\color{#056fa0}{L \subseteq \{ x, y\}^*}\) <br> of strings that begin with \(\color{#056fa0}{x}\) and end with \(\color{#056fa0}{y}\).",
@@ -41,9 +41,21 @@ problem_bank = {
                                     '4': {'y': '4', 'x': '3'}},
                        initial_state='1',
                        final_states={'4'}),
-                difficulty=Problem.EASY
+               difficulty=Problem.EASY
                ),
     4: Problem(probid=4,
+               description="Design a DFA over the alphabet \(\color{#056fa0}{\Sigma = \{a,b,c\}}\) that accepts any string with \(\color{#056fa0}{aab}\) as a substring.",
+               fsm=DFA(states={'1', '2', '3', '4'},
+                       input_symbols={'a', 'b', 'c'},
+                       transitions={'1': {'a': '2', 'b': '1', 'c': '1'},
+                                    '2': {'a': '3', 'b': '1', 'c': '1'},
+                                    '3': {'a': '3', 'b': '4', 'c': '1'},
+                                    '4': {'a': '4', 'b': '4', 'c': '4'}},
+                       initial_state='1',
+                       final_states={'4'}),
+               difficulty=Problem.MEDI
+               ),
+    5: Problem(probid=5,
                description="Design a DFA that recognizes the language \( \color{#056fa0}{ L = \{ w \in \{0\}^* : |w| \\text{ is not divisible by } 3 \} } \).",
                fsm=DFA(states={'1', '2', '3'},
                        input_symbols={'0'},
@@ -52,17 +64,48 @@ problem_bank = {
                                     '3': {'0': '1'}},
                        initial_state='1',
                        final_states={'2', '3'}),
-                difficulty=Problem.MEDI
+               difficulty=Problem.MEDI
                ),
-    5: Problem(probid=5,
+    6: Problem(probid=6,
                description="Design an NFA that recognizes the strings 'cat' and 'cats' only. <br> You may assume that the input alphabet is \(\color{#056fa0}{\Sigma = \{ c, a, t, s\}}\).",
                fsm=NFA(states={'1', '2', '3', '4', '5'},
                        input_symbols={'c', 'a', 't', 's', ''},
-                       transitions={'1': {'c': {'2'}}, '2': {'a': {'3'}}, '3': {
-                           't': {'4'}}, '4': {'s': {'5'}}, '5': {}},
+                       transitions={'1': {'c': {'2'}},
+                                    '2': {'a': {'3'}},
+                                    '3': {'t': {'4'}},
+                                    '4': {'s': {'5'}},
+                                    '5': {}},
                        initial_state='1',
                        final_states={'4', '5'}),
-                difficulty=Problem.EASY
+               difficulty=Problem.EASY
+               ),
+    7: Problem(probid=7,
+               description="Design an NFA over the alphabet \(\color{#056fa0}{\Sigma = \{a,b,c\}}\) that accepts any string with \(\color{#056fa0}{aab}\) as a substring.",
+               fsm=NFA(states={'1', '2', '3', '4'},
+                       input_symbols={'a', 'b', 'c'},
+                       transitions={'1': {'a': {'1', '2'}, 'b': {'1'}, 'c': {'1'}},
+                                    '2': {'a': {'3'}, 'b': {'1'}, 'c': {'1'}},
+                                    '3': {'a': {'3'}, 'b': {'4'}, 'c': {'1'}},
+                                    '4': {'a': {'4'}, 'b': {'4'}, 'c': {'4'}}},
+                       initial_state='1',
+                       final_states={'4'}),
+               difficulty=Problem.EASY
+               ),
+    8: Problem(probid=8,
+               description="Design an NFA over the alphabet \(\color{#056fa0}{\Sigma = \{a,b,c\}}\) that accepts any string with \(\color{#056fa0}{ba}\) or \(\color{#056fa0}{cab}\) as a substring.",
+               fsm=NFA(states={'1', '2', '3', '4', '5', '6', '7', '8'},
+                       input_symbols={'a', 'b', 'c'},
+                       transitions={'1': {'': {'2', '6'}},
+                                    '2': {'c': {'3'}},
+                                    '3': {'a': {'4'}},
+                                    '4': {'b': {'5'}},
+                                    '5': {},
+                                    '6': {'b': {'7'}},
+                                    '7': {'a': {'8'}},
+                                    '8': {}},
+                       initial_state='1',
+                       final_states={'5', '8'}),
+               difficulty=Problem.EASY
                )
 }
 

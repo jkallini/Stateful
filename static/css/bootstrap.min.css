@@ -2533,7 +2533,7 @@ textarea.form-control.is-invalid {
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
-    border-radius: .25rem;
+    border-radius: 100px;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 
@@ -3158,7 +3158,7 @@ fieldset:disabled a.btn {
 
 .btn-link {
     font-weight: 400;
-    color: #var(--main-blue);
+    color: var(--main-blue);
     text-decoration: none
 }
 
@@ -3184,7 +3184,7 @@ fieldset:disabled a.btn {
     padding: .5rem 1rem;
     font-size: 1.25rem;
     line-height: 1.5;
-    border-radius: .3rem
+    border-radius: 100px
 }
 
 .btn-group-sm>.btn,
@@ -3192,7 +3192,7 @@ fieldset:disabled a.btn {
     padding: .25rem .5rem;
     font-size: .875rem;
     line-height: 1.5;
-    border-radius: .2rem
+    border-radius: 100px;
 }
 
 .btn-block {
