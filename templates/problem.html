@@ -51,6 +51,13 @@
 
     <h2 style="color: var(--main-green)">Problem {{ problem.get_id() }}</h2>
 
+    <h5 style="padding-bottom: 5px">
+        {% if problem.get_difficulty() == 0 %}
+        <span class="badge badge-pill badge-success">Easy</span>{% endif %} {% if problem.get_difficulty() == 1 %}
+        <span class="badge badge-pill" style='background: #ffbf00;color: white'>Medium</span> {% endif %} {% if problem.get_difficulty() == 2 %}
+        <span class="badge badge-pill badge-danger">Hard</span> {% endif %}
+    </h5>
+
     <h5>{{ problem.get_description()|safe }}</h5>
 
     <canvas id="canvas">

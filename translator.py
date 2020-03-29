@@ -14,13 +14,13 @@ problem_bank = {
 
     # DFA problems
     1: Problem(probid=1,
-               description="Design a DFA that recognizes \(\color{#056fa0}{L = \{ a,b\}^*}\), <br/> the language of all strings that contain \(\color{#056fa0}{a}\)\'s or \(\color{#056fa0}{b}\)\'s.",
+               description="Design a DFA that recognizes \(\color{#056fa0}{L = \{ a,b\}^*}\), <br/> the language of all strings with any number of \(\color{#056fa0}{a}\)\'s or \(\color{#056fa0}{b}\)\'s.",
                fsm=DFA(states={'1'},
                        input_symbols={'a', 'b'},
                        transitions={'1': {'a': '1', 'b': '1'}},
                        initial_state='1',
-                       final_states={'1'})
-               ),
+                       final_states={'1'}),
+               difficulty=Problem.EASY),
     2: Problem(probid=2,
                description="Design a DFA that recognizes the language \(\color{#056fa0}{L \subseteq \{ a,b\}^*}\), <br/> where the number of \(\color{#056fa0}{b}\)'s is even.",
                fsm=DFA(states={'1', '2'},
@@ -28,7 +28,8 @@ problem_bank = {
                        transitions={'1': {'a': '1', 'b': '2'},
                                     '2': {'b': '1', 'a': '2'}},
                        initial_state='1',
-                       final_states={'1'})
+                       final_states={'1'}),
+                difficulty=Problem.EASY
                ),
     3: Problem(probid=3,
                description="Design a DFA that recognizes the language \(\color{#056fa0}{L \subseteq \{ x, y\}^*}\) <br> of strings that begin with \(\color{#056fa0}{x}\) and end with \(\color{#056fa0}{y}\).",
@@ -39,7 +40,8 @@ problem_bank = {
                                     '3': {'y': '4', 'x': '3'},
                                     '4': {'y': '4', 'x': '3'}},
                        initial_state='1',
-                       final_states={'4'})
+                       final_states={'4'}),
+                difficulty=Problem.EASY
                ),
     4: Problem(probid=4,
                description="Design a DFA that recognizes the language \( \color{#056fa0}{ L = \{ w \in \{0\}^* : |w| \\text{ is not divisible by } 3 \} } \).",
@@ -49,7 +51,8 @@ problem_bank = {
                                     '2': {'0': '3'},
                                     '3': {'0': '1'}},
                        initial_state='1',
-                       final_states={'2', '3'})
+                       final_states={'2', '3'}),
+                difficulty=Problem.MEDI
                ),
     5: Problem(probid=5,
                description="Design an NFA that recognizes the strings 'cat' and 'cats' only. <br> You may assume that the input alphabet is \(\color{#056fa0}{\Sigma = \{ c, a, t, s\}}\).",
@@ -58,7 +61,8 @@ problem_bank = {
                        transitions={'1': {'c': {'2'}}, '2': {'a': {'3'}}, '3': {
                            't': {'4'}}, '4': {'s': {'5'}}, '5': {}},
                        initial_state='1',
-                       final_states={'4', '5'})
+                       final_states={'4', '5'}),
+                difficulty=Problem.EASY
                )
 }
 
