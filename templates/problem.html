@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block head %}
-<title>Stateful | Finite State Machine Editor</title>
+<title>Stateful | Problem {{ problem.get_id() }}</title>
 
 <!-- Styles -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/editor.css') }}">
@@ -49,60 +49,64 @@
 <!-- Page Content -->
 <div id="content" style="text-align: center">
 
-    <h2 style="color: var(--main-green)">Problem {{ problem.get_id() }}</h2>
+    <div class='container'>
 
-    <h5 style="padding-bottom: 5px">
-        {% if problem.get_difficulty() == 0 %}
-        <span class="badge badge-pill badge-success">Easy</span>{% endif %} {% if problem.get_difficulty() == 1 %}
-        <span class="badge badge-pill" style='background: #ffbf00;color: white'>Medium</span> {% endif %} {% if problem.get_difficulty() == 2 %}
-        <span class="badge badge-pill badge-danger">Hard</span> {% endif %}
-    </h5>
+        <h2 style="color: var(--main-green)">Problem {{ problem.get_id() }}</h2>
 
-    <h5>{{ problem.get_description()|safe }}</h5>
+        <h5 style="padding-bottom: 5px">
+            {% if problem.get_difficulty() == 0 %}
+            <span class="badge badge-pill badge-success">Easy</span>{% endif %} {% if problem.get_difficulty() == 1 %}
+            <span class="badge badge-pill" style='background: #ffbf00;color: white'>Medium</span> {% endif %}
+            {% if problem.get_difficulty() == 2 %}
+            <span class="badge badge-pill badge-danger">Hard</span> {% endif %}
+        </h5>
 
-    <canvas id="canvas">
-    <span class="error">Your browser does not support<br>the HTML5 &lt;canvas&gt; element</span>
-</canvas>
+        <h5>{{ problem.get_description()|safe }}</h5>
 
-    <div class="info-div">
-        <div class="center">
-            <!-- Clear canvas button -->
-            <button data-toggle="tooltip" rel="tooltip" data-placement="top" title="Clear my Canvas" id="clearCanvas" type="button" class="btn btn-primary" style="margin-right: 5px; margin-left: 5px">
-                Clear 
-            <i class="fas fa-trash" aria-hidden="true" style="margin-right: 5px; margin-left: 5px"></i></button>
+        <canvas id="canvas">
+            <span class="error">Your browser does not support<br>the HTML5 &lt;canvas&gt; element</span>
+        </canvas>
 
-            <!-- Button trigger modal -->
-            <span data-toggle="modal" data-target="#infoModal">
-            <button type="button" class="btn btn-primary" data-toggle="tooltip"
-            rel="tooltip" data-placement="top" title="How to use the Canvas"
-            style="margin-right: 5px; margin-left: 5px">
-                Info <i class="fas fa-info-circle" aria-hidden="true"></i>
-            </button>
-        </span> {% include 'editor-info.html' %}
+        <div class="info-div">
+            <div class="center">
+                <!-- Clear canvas button -->
+                <button data-toggle="tooltip" rel="tooltip" data-placement="top" title="Clear my Canvas"
+                    id="clearCanvas" type="button" class="btn btn-primary" style="margin-right: 5px; margin-left: 5px">
+                    Clear
+                    <i class="fas fa-trash" aria-hidden="true" style="margin-right: 5px; margin-left: 5px"></i></button>
 
-            <!-- Submit FSM -->
-            <span data-toggle="modal" data-target="#submitModal">
-            <button id="printFSM" type="button" class="btn btn-primary" type="button"
-            class="btn btn-primary" data-toggle="tooltip" rel="tooltip" data-placement="top"
-            title="Submit my Answer" style="margin-right: 5px; margin-left: 5px">
-                Submit <i class="fas fa-check" aria-hidden="true"></i>
-            </button>
-        </span> {% include 'editor-response.html' %}
+                <!-- Button trigger modal -->
+                <span data-toggle="modal" data-target="#infoModal">
+                    <button type="button" class="btn btn-primary" data-toggle="tooltip" rel="tooltip"
+                        data-placement="top" title="How to use the Canvas" style="margin-right: 5px; margin-left: 5px">
+                        Info <i class="fas fa-info-circle" aria-hidden="true"></i>
+                    </button>
+                </span> {% include 'editor-info.html' %}
+
+                <!-- Submit FSM -->
+                <span data-toggle="modal" data-target="#submitModal">
+                    <button id="printFSM" type="button" class="btn btn-primary" type="button" class="btn btn-primary"
+                        data-toggle="tooltip" rel="tooltip" data-placement="top" title="Submit my Answer"
+                        style="margin-right: 5px; margin-left: 5px">
+                        Submit <i class="fas fa-check" aria-hidden="true"></i>
+                    </button>
+                </span> {% include 'editor-response.html' %}
+            </div>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         $("[rel='tooltip']").tooltip();
     });
 </script>
 
 <script>
-    initQuestionHandler = function() {
+    initQuestionHandler = function () {
         // function to convert JSON into OpenFST representation
         document.getElementById("printFSM").onclick =
-            function() {
+            function () {
                 // Store JSON data in a JS variable
                 var fsm = localStorage['fsm'];
                 //var json = JSON.parse(fsm);

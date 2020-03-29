@@ -7,8 +7,19 @@ h1 {
     color: var(--main-blue)
 }
 
-b {
-    color: var(--main-blue)
+p {
+    font-size: 18px;
+}
+
+.br-lg {
+    display: block;
+    margin-bottom: 1em;
+}
+
+.term {
+    color: var(--main-blue);
+    font-weight: 1000;
+    font-style: italic;
 }
 
 a,

@@ -25,6 +25,13 @@ def index():
 def practice():
     return render_template('practice.html')
 
+@app.route('/lesson/<int:lessonid>')
+def lesson(lessonid):
+    if lessonid == 1:
+        html = render_template('lesson1.html')
+    else:
+        html = render_template('index.html')
+    return make_response(html)
 
 @app.route('/problem/<int:probid>')
 def problem(probid):

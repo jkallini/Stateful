@@ -1,0 +1,113 @@
+{% extends 'base.html' %} {% block head %}
+<title>Stateful | Home</title>
+{% endblock %} {% block body %}
+<!-- Page Content -->
+<div id="content">
+
+    <div class='container' style='max-width: 800px;'>
+
+        <h1 style="color: var(--main-blue); text-align: center">Lesson 1: Deterministic Finite Automata</h1>
+        <br>
+        <h2 style='color: var(--main-green); padding-bottom: 10px'>Introduction to Finite Automata</h2>
+        <p>
+            In this section, we will be studying a simple but ubiquitous model of computation—the finite state machine,
+            or finite automaton. We can define finite automata in terms of their internal
+            <span class='term'>states</span> and their
+            <span class='term'>transitions</span> between those states upon taking in some input.
+
+            <span class="br-lg"></span> To get an intuition for how a finite automaton works, consider a simple light
+            switch in your home. How would you describe the mechanism of a light bulb connected to a switch? Ignoring
+            any details related to physics,
+            you might be thinking that there are two states the switch could possibly be in: 'ON' or 'OFF'.
+        </p>
+        <div style='text-align:center'>
+            <div style='width: 500px; margin:0 auto;'>
+                <text style='color: var(--main-aqua)'>Figure 1.1:</text>
+                <text>The two states of a finite state machine representing a light switch.</text>
+                <br>
+            </div>
+            <svg width="300" height="180" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="74.5" cy="82.5" rx="30"
+                    ry="30" />
+                <text x="54.5" y="88.5" font-family="Sans-serif" font-size="20">OFF</text>
+                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="216.5" cy="82.5" rx="30"
+                    ry="30" />
+                <text x="201.5" y="88.5" font-family="Sans-serif" font-size="20">ON</text>
+            </svg>
+        </div>
+        <p>
+            In the above figure, each circle represents a state of the machine. Now, in order to transition from one
+            state to another, the machine needs to take in some input. What sort of input does a light switch take in?
+            We'll call the input to the switch 'PRESS'
+            since we press a button to turn the switch on or off. If the switch is off, it turns on after being pressed,
+            but it if it is on, it turns off after being pressed. We draw arrows with labels to represent the
+            transitions between states:
+        </p>
+        <div style='text-align:center'>
+            <div style='width: 500px; margin:0 auto;'>
+                <text style='color: var(--main-aqua)'>Figure 1.2:</text>
+                <text>The transitions between the 'ON' and 'OFF' states of a light switch.</text>
+                <br>
+            </div>
+            <svg width="300" height="180" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="74.5" cy="82.5" rx="30"
+                    ry="30" />
+                <text x="54.5" y="88.5" font-family="Sans-serif" font-size="20">OFF</text>
+                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="216.5" cy="82.5" rx="30"
+                    ry="30" />
+                <text x="201.5" y="88.5" font-family="Sans-serif" font-size="20">ON</text>
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 95.513,61.299 A 86.47,86.47 0 0 1 195.487,61.299" />
+                <polygon fill="black" stroke-width="2" points="195.487,61.299 191.85,52.595 186.069,60.755" />
+                <text x="111.5" y="36.5" font-family="Sans-serif" font-size="20">PRESS</text>
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 199.168,106.761 A 78.043,78.043 0 0 1 91.832,106.761" />
+                <polygon fill="black" stroke-width="2" points="91.832,106.761 94.201,115.892 101.078,108.632" />
+                <text x="111.5" y="149.5" font-family="Sans-serif" font-size="20">PRESS</text>
+            </svg>
+        </div>
+
+        <p>Finally, we need some way to indicate the start state of the machine. When the light fixture is first
+            created, before it has been used by anyone, it is off by default. So, 'OFF' is the start state of the
+            machine. We indicate this on our diagram
+            by drawing an arrow that points to the start state:</p>
+
+        <div style='text-align: center;'>
+            <div style='width: 500px; margin:0 auto;'>
+                <text style='color: var(--main-aqua)'>Figure 1.1:</text>
+                <text>The finite state machine for a light switch, with an arrow indicating that 'OFF' is the start
+                    state.</text>
+                <br>
+            </div>
+            <svg width="300" height="180" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="74.5" cy="82.5" rx="30"
+                    ry="30" />
+                <text x="54.5" y="88.5" font-family="Sans-serif" font-size="20">OFF</text>
+                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="216.5" cy="82.5" rx="30"
+                    ry="30" />
+                <text x="201.5" y="88.5" font-family="Sans-serif" font-size="20">ON</text>
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 95.513,61.299 A 86.47,86.47 0 0 1 195.487,61.299" />
+                <polygon fill="black" stroke-width="2" points="195.487,61.299 191.85,52.595 186.069,60.755" />
+                <text x="111.5" y="36.5" font-family="Sans-serif" font-size="20">PRESS</text>
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 199.168,106.761 A 78.043,78.043 0 0 1 91.832,106.761" />
+                <polygon fill="black" stroke-width="2" points="91.832,106.761 94.201,115.892 101.078,108.632" />
+                <text x="111.5" y="149.5" font-family="Sans-serif" font-size="20">PRESS</text>
+                <polygon stroke="black" stroke-width="2" points="3.5,82.5 44.5,82.5" />
+                <polygon fill="black" stroke-width="2" points="44.5,82.5 36.5,77.5 36.5,87.5" />
+            </svg>
+
+        </div>
+        <p>
+            What's notable about finite state machines is how little memory they need to retain. In order for a light
+            switch to work, all the machine needs to know is its current state. It obviously doesn't need to know how
+            many times its button has been pressed,
+            or any other kind of information. Essentially, once the machine has seen an input, that input can be thrown
+            away! It doesn't need to be stored in order for the machine to continue running. This is why these are
+            called finite state machines.
+            They have a number of states and store no additional input, so they have a finite, unchanging amount of
+            memory.</p>
+    </div>
+</div>
+{% endblock %}
