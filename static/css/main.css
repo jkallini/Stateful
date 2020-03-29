@@ -19,18 +19,35 @@ a:focus {
     transition: all 0.3s;
 }
 
-.fsm-state:hover {
-    fill: var(--main-lime);
-    stroke-width: 3;
-}
-
 .fsm-state {
     fill: var(--main-light-green);
     stroke-width: 2;
     stroke: black;
 }
 
-.fsm-elem {
+.fsm-container:hover>.fsm-state {
+    fill: var(--main-lime);
+    stroke-width: 3;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                    supported by Chrome, Opera and Firefox */
+}
+
+
+/* .fsm-elem {
     stroke-width: 2;
     stroke: black;
     fill: none;
@@ -39,4 +56,4 @@ a:focus {
 .fsm-text {
     font-family: sans-serif;
     font-size: 20px;
-}
+} */
