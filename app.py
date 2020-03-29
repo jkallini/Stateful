@@ -10,7 +10,6 @@ import translator as TL
 import fsm as FSM
 from problem import Problem
 import json
-import sys
 
 app = Flask(__name__)
 
