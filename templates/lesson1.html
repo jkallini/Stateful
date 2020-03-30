@@ -14,8 +14,9 @@
             or finite automaton. We can define finite automata in terms of their internal
             <span class='term'>states</span> and their
             <span class='term'>transitions</span> between those states upon taking in some input.
-
-            <span class="br-lg"></span> To get an intuition for how a finite automaton works, consider a simple light
+        </p>
+        <p>
+            To get an intuition for how a finite automaton works, consider a simple light
             switch in your home. How would you describe the mechanism of a light bulb connected to a switch? Ignoring
             any details related to physics,
             you might be thinking that there are two states the switch could possibly be in: 'ON' or 'OFF'.
@@ -74,7 +75,7 @@
 
         <div style='text-align: center;'>
             <div style='width: 500px; margin:0 auto;'>
-                <text style='color: var(--main-aqua)'>Figure 1.1:</text>
+                <text style='color: var(--main-aqua)'>Figure 1.3:</text>
                 <text>The finite state machine for a light switch, with an arrow indicating that 'OFF' is the start
                     state.</text>
                 <br>
@@ -107,7 +108,177 @@
             away! It doesn't need to be stored in order for the machine to continue running. This is why these are
             called finite state machines.
             They have a number of states and store no additional input, so they have a finite, unchanging amount of
-            memory.</p>
+            memory.
+        </p>
+        <p>
+            These machines may seem very primitive, but the truth is that we interact with computers like these all the
+            time. One more example is a one-way automatic door in a mall or a supermarket entrance. An automatic door,
+            like a switch, has two states, but this time they indicate whether the door is 'OPEN' or 'CLOSED'. An
+            automatic door has two pressure-sensitive pads that feed input to the internal mechanism of the door. One
+            pad is in front of the door, and the other is behind the door. The purpose of the front pad is to detect if
+            someone is approaching the door, so that it can open for the person to walk through. The purpose of the back
+            pad is to ensure that the door stays open long enough for person to walk all the way through, and to ensure
+            that no one standing behind the door is struck as it opens.
+        </p>
+        <p>
+            We can express these input conditions to the
+            machine using four transitions: 'FRONT', meaning that there is pressure on the front pad; 'BACK' meaning
+            there is pressure on the back pad; 'BOTH', meaning that there is pressure on both pads; and 'NEITHER',
+            meaning that there is pressure on neither pad. Below is a <span class='term'>state diagram</span> for an
+            automatic door mechanism.
+        </p>
+        <div style='text-align: center;'>
+            <div style='width: 500px; margin:0 auto;'>
+                <text style='color: var(--main-aqua)'>Figure 1.4:</text>
+                <text>The finite state machine for an automatic door, from <i>Introduction to the Theory of
+                        Computation</i> by Sipser.</text>
+                <br>
+            </div>
+            <br>
+            <svg width="412" height="230" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="110.5" cy="103.5" rx="35"
+                    ry="35" />
+                <text x="81.5" y="109.5" font-family="Sans-serif" font-size="20">closed</text>
+                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="308.5" cy="103.5" rx="35"
+                    ry="35" />
+                <text x="286.5" y="109.5" font-family="Sans-serif" font-size="20">open</text>
+                <polygon stroke="black" stroke-width="2" points="27.5,103.5 75.5,103.5" />
+                <polygon fill="black" stroke-width="2" points="75.5,103.5 67.5,98.5 67.5,108.5" />
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 141.274,86.948 A 177.381,177.381 0 0 1 277.726,86.948" />
+                <polygon fill="black" stroke-width="2" points="277.726,86.948 272.264,79.256 268.418,88.487" />
+                <text x="176.5" y="64.5" font-family="Sans-serif" font-size="20">FRONT</text>
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 95.071,72.237 A 26.25,26.25 0 1 1 125.929,72.237" />
+                <text x="2.5" y="15.5" font-family="Sans-serif" font-size="20">BACK, BOTH, NEITHER</text>
+                <polygon fill="black" stroke-width="2" points="125.929,72.237 134.677,68.703 126.587,62.826" />
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 275.313,114.537 A 261.725,261.725 0 0 1 143.687,114.537" />
+                <polygon fill="black" stroke-width="2" points="143.687,114.537 150.173,121.388 152.687,111.709" />
+                <text x="166.5" y="143.5" font-family="Sans-serif" font-size="20">NEITHER</text>
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 323.929,134.763 A 26.25,26.25 0 1 1 293.071,134.763" />
+                <text x="211.5" y="203.5" font-family="Sans-serif" font-size="20">FRONT, BACK, BOTH</text>
+                <polygon fill="black" stroke-width="2" points="293.071,134.763 284.323,138.297 292.413,144.174" />
+            </svg>
+        </div>
+        <p>
+            If the door is closed, and there is pressure on the back pad, both pads, or neither of the pads,
+            the door stays closed. This is represented by the arrow pointing from the 'CLOSED' state to itself. But, if
+            someone only steps on the front pad, the door will open. When in the 'OPEN' state, it will always stay in
+            the open state, until there is pressure on neither of the pads. In that case, it returns to the 'CLOSED'
+            state.
+        </p>
+        <br>
+        <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h4>
+        <div id="quiz"></div>
+        <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
+        <br>
+        <div class='br-lg'></div>
+        <div id="results"></div>
+
     </div>
+
+    <script type='text/javascript'>
+        (function () {
+            function buildQuiz() {
+                // variable to store the HTML output
+                const output = [];
+
+                // for each question...
+                myQuestions.forEach(
+                    (currentQuestion, questionNumber) => {
+
+                        // variable to store the list of possible answers
+                        const answers = [];
+
+                        // and for each available answer...
+                        for (letter in currentQuestion.answers) {
+
+                            // ...add an HTML radio button
+                            answers.push(
+                                `<label>
+              <input type="radio" name="question${questionNumber}" value="${letter}">
+              ${currentQuestion.answers[letter]}
+            </label>`
+                            );
+                        }
+
+                        // add this question and its answers to the output
+                        output.push(
+                            `<div class="question"> ${currentQuestion.question} </div>
+          <div class="answers"> ${answers.join('')} </div>`
+                        );
+                    }
+                );
+
+                // finally combine our output list into one string of HTML and put it on the page
+                quizContainer.innerHTML = output.join('');
+            }
+
+            function showResults() {
+
+                // gather answer containers from our quiz
+                const answerContainers = quizContainer.querySelectorAll('.answers');
+
+                // keep track of user's answers
+                let numCorrect = 0;
+
+                // for each question...
+                myQuestions.forEach((currentQuestion, questionNumber) => {
+
+                    // find selected answer
+                    const answerContainer = answerContainers[questionNumber];
+                    const selector = `input[name=question${questionNumber}]:checked`;
+                    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+                    // if answer is correct
+                    if (userAnswer === currentQuestion.correctAnswer) {
+                        // add to the number of correct answers
+                        numCorrect++;
+
+                        // color the answers green
+                        answerContainers[questionNumber].style.color = 'var(--success)';
+                    }
+                    // if answer is wrong or blank
+                    else {
+                        // color the answers red
+                        answerContainers[questionNumber].style.color = 'var(--danger)';
+                    }
+                });
+
+                // show number of correct answers out of total
+                resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+            }
+
+            const quizContainer = document.getElementById('quiz');
+            const resultsContainer = document.getElementById('results');
+            const submitButton = document.getElementById('submit');
+            const myQuestions = [{
+                    question: "After being pressed 5 times, in what state is the FSM for the light switch?",
+                    answers: {
+                        a: "OFF",
+                        b: "ON"
+                    },
+                    correctAnswer: "b"
+                },
+                {
+                    question: "Say that the FSM for the automatic door receives the following sequence of inputs: FRONT, BACK, NEITHER, FRONT, BOTH, NEITHER, REAR, and NEITHER. What state does the machine end up in?",
+                    answers: {
+                        a: "CLOSED",
+                        b: "OPEN",
+                    },
+                    correctAnswer: "a"
+                }
+            ];
+
+            // Kick things off
+            buildQuiz();
+
+            // Event listeners
+            submitButton.addEventListener('click', showResults);
+        })();
+    </script>
+
 </div>
 {% endblock %}

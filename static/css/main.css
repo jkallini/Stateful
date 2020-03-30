@@ -57,14 +57,13 @@ a:focus {
                                     supported by Chrome, Opera and Firefox */
 }
 
-
-/* .fsm-elem {
-    stroke-width: 2;
-    stroke: black;
-    fill: none;
-}
-
-.fsm-text {
-    font-family: sans-serif;
+.question{
     font-size: 20px;
-} */
+    color: var(--main-blue);
+}
+.answers {
+  margin-bottom: 20px;
+}
+.answers label{
+  display: block;
+}
