@@ -25,12 +25,19 @@ def index():
 def practice():
     return render_template('practice.html')
 
-@app.route('/lesson/<int:lessonid>')
+@app.route('/lesson/<float:lessonid>')
 def lesson(lessonid):
-    if lessonid == 1:
-        html = render_template('lesson1.html')
-    else:
+    try:
+        if lessonid == 1.1:
+            html = render_template('lessons/lesson1-1.html')
+        elif lessonid == 1.2:
+            html = render_template('lessons/lesson1-2.html')
+        else:
+            html = render_template('index.html')
+    except:
+        # TODO: do real error handling here
         html = render_template('index.html')
+
     return make_response(html)
 
 @app.route('/problem/<int:probid>')

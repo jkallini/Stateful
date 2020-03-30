@@ -16,6 +16,10 @@ p {
     margin-bottom: 1em;
 }
 
+.tab-1{
+	display:inline-block; width:20px;
+}
+
 .term {
     color: var(--main-blue);
     font-weight: 1000;
