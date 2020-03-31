@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block head %}
-<title>Stateful | Lesson 1.1</title>
+<title>Stateful | Lesson 1.2</title>
 {% endblock %} {% block body %}
 <!-- Page Content -->
 <div id="content">
@@ -8,167 +8,116 @@
 
         <h1 style="color: var(--main-blue); text-align: center">Lesson 1: Deterministic Finite Automata</h1>
         <br>
-        <h2 style='color: var(--main-green); padding-bottom: 10px'>1.1<span class="tab-1"></span>
-            Introduction to Finite Automata</h2>
+        <h2 style='color: var(--main-green); padding-bottom: 10px'>1.2<span class="tab-1"></span>
+            Defining DFAs Through Set Theory</h2>
         <p>
-            In this section, we will be studying a simple but ubiquitous model of computation—the finite state machine,
-            or finite automaton. We can define finite automata in terms of their internal
-            <span class='term'>states</span> and their
-            <span class='term'>transitions</span> between those states upon taking in some input.
-        </p>
-        <p>
-            To get an intuition for how a finite automaton works, consider a simple light
-            switch in your home. How would you describe the mechanism of a light bulb connected to a switch? Ignoring
-            any details related to physics,
-            you might be thinking that there are two states the switch could possibly be in: 'ON' or 'OFF'.
+            In the last section, we gained a general intuition about a simple computational model known as a finite
+            automaton. In this lesson, we will explore a specific type of finite state machine, known as the
+            deterministic finite automaton (DFA). We will give a precise definition of a DFA in mathematical terms, and
+            become more comfortable with common mathematical notation and definitions that are used in theoretical
+            computer science.
+
+            The following figure presents a <span class='term'>state diagram</span> for a DFA that we will call
+            <span class="math-color">\( M_1 \)</span>. We will be using <span class="math-color">\( M_1 \)</span> to
+            gain an understanding of the different components that make up a DFA in this section.
         </p>
         <div style='text-align:center'>
             <div style='width: 500px; margin:0 auto;'>
-                <text style='color: var(--main-aqua)'>Figure 1.1:</text>
-                <text>The two states of a finite state machine representing a light switch.</text>
+                <text style='color: var(--main-aqua)'>Figure 1.5:</text>
+                <text>The deterministic finite automaton <span class="math-color">\( M_1 \)</span>.</text>
                 <br>
             </div>
-            <svg width="300" height="180" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="74.5" cy="82.5" rx="30"
+            <svg width="410" height="180" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="218.5" cy="109.5" rx="30"
                     ry="30" />
-                <text x="54.5" y="88.5" font-family="Sans-serif" font-size="20">OFF</text>
-                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="216.5" cy="82.5" rx="30"
+                <text x="210.5" y="115.5" font-family="Sans-serif" font-size="20">q&#8322;</text>
+                <ellipse stroke="black" stroke-width="2" fill="none" cx="218.5" cy="109.5" rx="24" ry="24" />
+                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="355.5" cy="109.5" rx="30"
                     ry="30" />
-                <text x="201.5" y="88.5" font-family="Sans-serif" font-size="20">ON</text>
+                <text x="347.5" y="115.5" font-family="Sans-serif" font-size="20">q&#8323;</text>
+                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="91.5" cy="109.5" rx="30"
+                    ry="30" />
+                <text x="83.5" y="115.5" font-family="Sans-serif" font-size="20">q&#8321;</text>
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 245.442,96.463 A 127.221,127.221 0 0 1 328.558,96.463" />
+                <polygon fill="black" stroke-width="2" points="328.558,96.463 322.63,89.124 319.363,98.576" />
+                <text x="281.5" y="80.5" font-family="Sans-serif" font-size="20">0</text>
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 328.269,121.937 A 132.957,132.957 0 0 1 245.731,121.937" />
+                <polygon fill="black" stroke-width="2" points="245.731,121.937 251.784,129.173 254.888,119.667" />
+                <text x="273.5" y="149.5" font-family="Sans-serif" font-size="20">0,1</text>
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 205.275,82.703 A 22.5,22.5 0 1 1 231.725,82.703" />
+                <text x="212.5" y="33.5" font-family="Sans-serif" font-size="20">1</text>
+                <polygon fill="black" stroke-width="2" points="231.725,82.703 240.473,79.17 232.382,73.292" />
+                <polygon stroke="black" stroke-width="2" points="121.5,109.5 188.5,109.5" />
+                <polygon fill="black" stroke-width="2" points="188.5,109.5 180.5,104.5 180.5,114.5" />
+                <text x="149.5" y="100.5" font-family="Sans-serif" font-size="20">1</text>
+                <polygon stroke="black" stroke-width="2" points="7.5,109.5 61.5,109.5" />
+                <polygon fill="black" stroke-width="2" points="61.5,109.5 53.5,104.5 53.5,114.5" />
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 78.275,82.703 A 22.5,22.5 0 1 1 104.725,82.703" />
+                <text x="85.5" y="33.5" font-family="Sans-serif" font-size="20">0</text>
+                <polygon fill="black" stroke-width="2" points="104.725,82.703 113.473,79.17 105.382,73.292" />
             </svg>
         </div>
+        <h3 style='color:var(--main-green); padding-top:18px'>Some Set Theory</h3>
         <p>
-            In the above figure, each circle represents a state of the machine. Now, in order to transition from one
-            state to another, the machine needs to take in some input. What sort of input does a light switch take in?
-            We'll call the input to the switch 'PRESS'
-            since we press a button to turn the switch on or off. If the switch is off, it turns on after being pressed,
-            but it if it is on, it turns off after being pressed. We draw arrows with labels to represent the
-            transitions between states:
-        </p>
-        <div style='text-align:center'>
-            <div style='width: 500px; margin:0 auto;'>
-                <text style='color: var(--main-aqua)'>Figure 1.2:</text>
-                <text>The transitions between the 'ON' and 'OFF' states of a light switch.</text>
-                <br>
-            </div>
-            <svg width="300" height="180" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="74.5" cy="82.5" rx="30"
-                    ry="30" />
-                <text x="54.5" y="88.5" font-family="Sans-serif" font-size="20">OFF</text>
-                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="216.5" cy="82.5" rx="30"
-                    ry="30" />
-                <text x="201.5" y="88.5" font-family="Sans-serif" font-size="20">ON</text>
-                <path stroke="black" stroke-width="2" fill="none"
-                    d="M 95.513,61.299 A 86.47,86.47 0 0 1 195.487,61.299" />
-                <polygon fill="black" stroke-width="2" points="195.487,61.299 191.85,52.595 186.069,60.755" />
-                <text x="111.5" y="36.5" font-family="Sans-serif" font-size="20">PRESS</text>
-                <path stroke="black" stroke-width="2" fill="none"
-                    d="M 199.168,106.761 A 78.043,78.043 0 0 1 91.832,106.761" />
-                <polygon fill="black" stroke-width="2" points="91.832,106.761 94.201,115.892 101.078,108.632" />
-                <text x="111.5" y="149.5" font-family="Sans-serif" font-size="20">PRESS</text>
-            </svg>
-        </div>
-
-        <p>Finally, we need some way to indicate the start state of the machine. When the light fixture is first
-            created, before it has been used by anyone, it is off by default. So, 'OFF' is the start state of the
-            machine. We indicate this on our diagram
-            by drawing an arrow that points to the start state:</p>
-
-        <div style='text-align: center;'>
-            <div style='width: 500px; margin:0 auto;'>
-                <text style='color: var(--main-aqua)'>Figure 1.3:</text>
-                <text>The finite state machine for a light switch, with an arrow indicating that 'OFF' is the start
-                    state.</text>
-                <br>
-            </div>
-            <svg width="300" height="180" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="74.5" cy="82.5" rx="30"
-                    ry="30" />
-                <text x="54.5" y="88.5" font-family="Sans-serif" font-size="20">OFF</text>
-                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="216.5" cy="82.5" rx="30"
-                    ry="30" />
-                <text x="201.5" y="88.5" font-family="Sans-serif" font-size="20">ON</text>
-                <path stroke="black" stroke-width="2" fill="none"
-                    d="M 95.513,61.299 A 86.47,86.47 0 0 1 195.487,61.299" />
-                <polygon fill="black" stroke-width="2" points="195.487,61.299 191.85,52.595 186.069,60.755" />
-                <text x="111.5" y="36.5" font-family="Sans-serif" font-size="20">PRESS</text>
-                <path stroke="black" stroke-width="2" fill="none"
-                    d="M 199.168,106.761 A 78.043,78.043 0 0 1 91.832,106.761" />
-                <polygon fill="black" stroke-width="2" points="91.832,106.761 94.201,115.892 101.078,108.632" />
-                <text x="111.5" y="149.5" font-family="Sans-serif" font-size="20">PRESS</text>
-                <polygon stroke="black" stroke-width="2" points="3.5,82.5 44.5,82.5" />
-                <polygon fill="black" stroke-width="2" points="44.5,82.5 36.5,77.5 36.5,87.5" />
-            </svg>
-
-        </div>
-        <p>
-            What's notable about finite state machines is how little memory they need to retain. In order for a light
-            switch to work, all the machine needs to know is its current state. It obviously doesn't need to know how
-            many times its button has been pressed,
-            or any other kind of information. Essentially, once the machine has seen an input, that input can be thrown
-            away! It doesn't need to be stored in order for the machine to continue running. This is why these are
-            called finite state machines.
-            They have a number of states and store no additional input, so they have a finite, unchanging amount of
-            memory.
+            When describing DFAs, we refer denote their components using a more precise mathematical  as a <span class='term'>set</span> of states.
+            Generally in mathematics, a set is collection of distinct objects, which we call the
+            <span class='term'>elements</span> or <span class='term'>members</span> of the set. Normally, sets are
+            described formally by listing their elements in braces. So we can write
+            <span class="math-color">$$ S_1 = \{ 5, 6, 2\} $$</span>
+            to denote the set <span class="math-color">\( S_1 \)</span> that contains the elements
+            <span class="math-color">\( 5 \)</span>, <span class="math-color">\( 6 \)</span>, and
+            <span class="math-color">\( 2 \)</span>. Since order does not
+            matter when defining sets,
+            <span class="math-color">\( \{ 2, 5, 6\} \)</span> denotes the same set as
+            <span class="math-color">\( S_1 \)</span>. The symbol <span class="math-color">\( \in \)</span>
+            denotes membership within a set. So, we can say that <span class="math-color">\( 5 \in S_1 \)</span>;
+            this means that the number <span class="math-color">\( 5 \)</span> is an element of
+            the set <span class="math-color">\( S_1 \)</span>. Likewise, we can write
+            <span class="math-color">\( 3 \notin S_1 \)</span> to denote that <span class="math-color">\( 3 \)</span>
+            is not a member of the set <span class="math-color">\( S_1 \)</span>.
         </p>
         <p>
-            These machines may seem very primitive, but the truth is that we interact with computers like these all the
-            time. One more example is a one-way automatic door in a mall or a supermarket entrance. An automatic door,
-            like a switch, has two states, but this time they indicate whether the door is 'OPEN' or 'CLOSED'. An
-            automatic door has two pressure-sensitive pads that feed input to the internal mechanism of the door. One
-            pad is in front of the door, and the other is behind the door. The purpose of the front pad is to detect if
-            someone is approaching the door, so that it can open for the person to walk through. The purpose of the back
-            pad is to ensure that the door stays open long enough for person to walk all the way through, and to ensure
-            that no one standing behind the door is struck as it opens.
+            Another common way of defining sets is in what is called <span class='term'>set-builder</span>
+            form. In set-builder form, a set is described by a property that each of its members must satisfy.
+            for instance, writing
+            <span class="math-color">$$ S_2 = \{x : x \text{ is a positive number less than 6} \}$$</span>
+            has the same meaning as
+            <span class="math-color">$$ S_2 = \{ 1, 2, 3, 4, 5\}$$</span>
+            and reads as "<span class="math-color">\( S_2 \)</span> is the set of all elements
+            <span class="math-color">\( x \)</span> such that <span class="math-color">\( x \)</span> is a
+            positive number less than 6." When using set-builder notation, we can also define members
+            of a set in terms of another set:
+            <span class="math-color">$$ S_3 = \{x \in S_2 : x > 3\}$$</span>
+            This notation tells us that <span class="math-color">\( S_3 \)</span> is the set of all elements in
+            <span class="math-color">\( S_2 \)</span> that are greater than <span class="math-color">\( 3 \)</span>.
+            Considering what we know about <span class="math-color">\( S_2 \)</span>, we can see that
+            <span class="math-color">\( S_3 = \{ 4, 5 \} \)</span>. Since every element of
+            <span class="math-color">\( S_3 \)</span> is also a member of <span class="math-color">\( S_2 \)</span>,
+            <span class="math-color">\( S_3 \)</span> is a <span class='term'>subset</span> of <span class="math-color">\( S_2 \)</span>,
+            written as <span class="math-color">\( S_3 \subseteq S_2 \)</span>. 
         </p>
+        <h3 style='color:var(--main-green); padding-top:18px'>Defining DFAs Formally</h3>
         <p>
-            We can express these input conditions to the
-            machine using four transitions: 'FRONT', meaning that there is pressure on the front pad; 'BACK' meaning
-            there is pressure on the back pad; 'BOTH', meaning that there is pressure on both pads; and 'NEITHER',
-            meaning that there is pressure on neither pad. Below is a <span class='term'>state diagram</span> for an
-            automatic door mechanism.
-        </p>
-        <div style='text-align: center;'>
-            <div style='width: 500px; margin:0 auto;'>
-                <text style='color: var(--main-aqua)'>Figure 1.4:</text>
-                <text>The finite state machine for an automatic door, from <i>Introduction to the Theory of
-                        Computation</i> by Sipser.</text>
-                <br>
-            </div>
-            <br>
-            <svg width="412" height="230" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="110.5" cy="103.5" rx="35"
-                    ry="35" />
-                <text x="81.5" y="109.5" font-family="Sans-serif" font-size="20">closed</text>
-                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="308.5" cy="103.5" rx="35"
-                    ry="35" />
-                <text x="286.5" y="109.5" font-family="Sans-serif" font-size="20">open</text>
-                <polygon stroke="black" stroke-width="2" points="27.5,103.5 75.5,103.5" />
-                <polygon fill="black" stroke-width="2" points="75.5,103.5 67.5,98.5 67.5,108.5" />
-                <path stroke="black" stroke-width="2" fill="none"
-                    d="M 141.274,86.948 A 177.381,177.381 0 0 1 277.726,86.948" />
-                <polygon fill="black" stroke-width="2" points="277.726,86.948 272.264,79.256 268.418,88.487" />
-                <text x="176.5" y="64.5" font-family="Sans-serif" font-size="20">FRONT</text>
-                <path stroke="black" stroke-width="2" fill="none"
-                    d="M 95.071,72.237 A 26.25,26.25 0 1 1 125.929,72.237" />
-                <text x="2.5" y="15.5" font-family="Sans-serif" font-size="20">BACK, BOTH, NEITHER</text>
-                <polygon fill="black" stroke-width="2" points="125.929,72.237 134.677,68.703 126.587,62.826" />
-                <path stroke="black" stroke-width="2" fill="none"
-                    d="M 275.313,114.537 A 261.725,261.725 0 0 1 143.687,114.537" />
-                <polygon fill="black" stroke-width="2" points="143.687,114.537 150.173,121.388 152.687,111.709" />
-                <text x="166.5" y="143.5" font-family="Sans-serif" font-size="20">NEITHER</text>
-                <path stroke="black" stroke-width="2" fill="none"
-                    d="M 323.929,134.763 A 26.25,26.25 0 1 1 293.071,134.763" />
-                <text x="211.5" y="203.5" font-family="Sans-serif" font-size="20">FRONT, BACK, BOTH</text>
-                <polygon fill="black" stroke-width="2" points="293.071,134.763 284.323,138.297 292.413,144.174" />
-            </svg>
-        </div>
-        <p>
-            If the door is closed, and there is pressure on the back pad, both pads, or neither of the pads,
-            the door stays closed. This is represented by the arrow pointing from the 'CLOSED' state to itself. But, if
-            someone only steps on the front pad, the door will open. When in the 'OPEN' state, it will always stay in
-            the open state, until there is pressure on neither of the pads. In that case, it returns to the 'CLOSED'
-            state.
+            The sets <span class="math-color">\( S_1 \)</span>,
+            <span class="math-color">\( S_2 \)</span>, and
+            <span class="math-color">\( S_3 \)</span> above are sets of numbers, but a set can have
+            elements of any type, even other sets. To return to
+            the topic of finite automata, we can formally define the attributes of a DFA using sets.
+            
+            One of the defining freatures of a DFA is its set of states, which we denote
+            by <span class="math-color">\( Q \)</span>. For the machine <span class="math-color">\( M_1 \)</span>
+            above, its set of states is <span class="math-color">\( Q = \{ q_1, q_2, q_3 \}\)</span>.
+            The start state, which we typically denote by <span class="math-color">\( q_0 \in Q \)</span>,
+            is an element of a DFA's set of states. The start state of
+            <span class="math-color">\( M_1 \)</span> is <span class="math-color">\( q_2 \)</span>.
+            The set of accept states of a DFA is typically denoted by 
+            <span class="math-color">\( F \)</span>, and since any accept state of a DFA is by definition
+            in the set <span class="math-color">\( Q \)</span>, we know that
+            <span class="math-color">\( F \subseteq Q \)</span>.
         </p>
         <br>
         <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h4>
@@ -179,7 +128,7 @@
             <div id="results"></div>
 
     </div>
-<!-- 
+    <!-- 
     <script type='text/javascript'>
         const myQuestions = [{
             question: "After being pressed 5 times, in what state is the FSM for the light switch?",

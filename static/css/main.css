@@ -21,9 +21,13 @@ p {
 }
 
 .term {
-    color: var(--main-blue);
+    color: var(--main-aqua);
     font-weight: 1000;
     font-style: italic;
+}
+
+.math-color {
+  color: var(--main-blue);
 }
 
 a,
