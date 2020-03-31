@@ -25,6 +25,7 @@ def index():
 def practice():
     return render_template('practice.html')
 
+
 @app.route('/lesson/<float:lessonid>')
 def lesson(lessonid):
     try:
@@ -32,6 +33,8 @@ def lesson(lessonid):
             html = render_template('lessons/lesson1-1.html')
         elif lessonid == 1.2:
             html = render_template('lessons/lesson1-2.html')
+        elif lessonid == 1.3:
+            html = render_template('lessons/lesson1-3.html')
         else:
             html = render_template('index.html')
     except:
@@ -39,6 +42,7 @@ def lesson(lessonid):
         html = render_template('index.html')
 
     return make_response(html)
+
 
 @app.route('/problem/<int:probid>')
 def problem(probid):
@@ -83,11 +87,11 @@ def submit():
     # check student's answer against solution
     if not FSM.equal(solution, fsm_or_exception):
         response = {'title': "Incorrect",
-        'message': "That's not quite right. Give it another try!"}
+                    'message': "That's not quite right. Give it another try!"}
     else:
         response = {'title': "Good Job!",
-                    'message': 'Here is a symbolic representation of your FSM: <br>' \
-                        + FSM.fsm_str(fsm_or_exception)}
+                    'message': 'Here is a symbolic representation of your FSM: <br>'
+                    + FSM.fsm_str(fsm_or_exception)}
     return json.dumps(response)
 
 

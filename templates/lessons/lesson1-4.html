@@ -1,0 +1,106 @@
+{% extends 'base.html' %} {% block head %}
+<title>Stateful | Lesson 1.2</title>
+{% endblock %} {% block body %}
+<!-- Page Content -->
+<div id="content">
+
+    <div class='container' style='max-width: 800px;'>
+
+        <h1 style="color: var(--main-blue); text-align: center">Lesson 1: Deterministic Finite Automata</h1>
+        <br>
+        <h2 style='color: var(--main-green); padding-bottom: 10px'>1.4<span class="tab-1"></span>
+            Mathematics for Finite Automata</h2>
+        <p>
+            The sets we took a look at in the last section are sets of numbers, but a set can have
+            elements of any type, even other sets. To return to
+            the topic of finite automata, we can formally define the attributes of a DFA using sets.
+            
+            One of the defining freatures of a DFA is its set of states, which we denote
+            by <span class="math-color">\( Q \)</span>. Below is the machine <span class="math-color">\( M_1 \)</span>
+            that we took a look at in the last section.
+        </p>
+        <div style='text-align:center'>
+                <div style='width: 500px; margin:0 auto;'>
+                    <text style='color: var(--main-aqua)'>Figure 1.5:</text>
+                    <text>The deterministic finite automaton <span class="math-color">\( M_1 \)</span>.</text>
+                    <br>
+                </div>
+                <svg width="410" height="180" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="218.5" cy="109.5" rx="30"
+                        ry="30" />
+                    <text x="210.5" y="115.5" font-family="Sans-serif" font-size="20">q&#8322;</text>
+                    <ellipse stroke="black" stroke-width="2" fill="none" cx="218.5" cy="109.5" rx="24" ry="24" />
+                    <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="355.5" cy="109.5" rx="30"
+                        ry="30" />
+                    <text x="347.5" y="115.5" font-family="Sans-serif" font-size="20">q&#8323;</text>
+                    <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="91.5" cy="109.5" rx="30"
+                        ry="30" />
+                    <text x="83.5" y="115.5" font-family="Sans-serif" font-size="20">q&#8321;</text>
+                    <path stroke="black" stroke-width="2" fill="none"
+                        d="M 245.442,96.463 A 127.221,127.221 0 0 1 328.558,96.463" />
+                    <polygon fill="black" stroke-width="2" points="328.558,96.463 322.63,89.124 319.363,98.576" />
+                    <text x="281.5" y="80.5" font-family="Sans-serif" font-size="20">0</text>
+                    <path stroke="black" stroke-width="2" fill="none"
+                        d="M 328.269,121.937 A 132.957,132.957 0 0 1 245.731,121.937" />
+                    <polygon fill="black" stroke-width="2" points="245.731,121.937 251.784,129.173 254.888,119.667" />
+                    <text x="273.5" y="149.5" font-family="Sans-serif" font-size="20">0,1</text>
+                    <path stroke="black" stroke-width="2" fill="none"
+                        d="M 205.275,82.703 A 22.5,22.5 0 1 1 231.725,82.703" />
+                    <text x="212.5" y="33.5" font-family="Sans-serif" font-size="20">1</text>
+                    <polygon fill="black" stroke-width="2" points="231.725,82.703 240.473,79.17 232.382,73.292" />
+                    <polygon stroke="black" stroke-width="2" points="121.5,109.5 188.5,109.5" />
+                    <polygon fill="black" stroke-width="2" points="188.5,109.5 180.5,104.5 180.5,114.5" />
+                    <text x="149.5" y="100.5" font-family="Sans-serif" font-size="20">1</text>
+                    <polygon stroke="black" stroke-width="2" points="7.5,109.5 61.5,109.5" />
+                    <polygon fill="black" stroke-width="2" points="61.5,109.5 53.5,104.5 53.5,114.5" />
+                    <path stroke="black" stroke-width="2" fill="none"
+                        d="M 78.275,82.703 A 22.5,22.5 0 1 1 104.725,82.703" />
+                    <text x="85.5" y="33.5" font-family="Sans-serif" font-size="20">0</text>
+                    <polygon fill="black" stroke-width="2" points="104.725,82.703 113.473,79.17 105.382,73.292" />
+                </svg>
+            </div>
+        <p>
+            With the mathamentical toolbox that we explored in this lesson, we are prepared to
+            formally define the DFA <span class="math-color">\( M_1 \}\)</span>. The set of states
+            of <span class="math-color">\( M_1 \}\)</span> is <span class="math-color">\( Q = \{ q_1, q_2, q_3 \}\)</span>.
+            The start state, which we typically denote by <span class="math-color">\( q_0 \in Q \)</span>,
+            is an element of a DFA's set of states. The start state of
+            <span class="math-color">\( M_1 \)</span> is <span class="math-color">\( q_2 \)</span>.
+            The set of accept states of a DFA is typically denoted by 
+            <span class="math-color">\( F \)</span>, and since any accept state of a DFA is by definition
+            in the set <span class="math-color">\( Q \)</span>, we know that
+            <span class="math-color">\( F \subseteq Q \)</span>.
+        </p>
+        <br>
+        <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h4>
+            <div id="quiz"></div>
+            <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
+            <br>
+            <div class='br-lg'></div>
+            <div id="results"></div>
+
+    </div>
+    <!-- 
+    <script type='text/javascript'>
+        const myQuestions = [{
+            question: "After being pressed 5 times, in what state is the FSM for the light switch?",
+            answers: {
+                a: "safdfdasfsfa",
+                b: "asfsfsaf"
+            },
+            correctAnswer: "a"
+        },
+        {
+            question: "Say that the FSM for the automatic door receives the following sequence of inputs: FRONT, BACK, NEITHER, FRONT, BOTH, NEITHER, REAR, and NEITHER. What state does the machine end up in?",
+            answers: {
+                a: "CLOdfddfD",
+                b: "OPEddddN",
+            },
+            correctAnswer: "b"
+        }
+    ];
+    </script>
+    <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script> -->
+
+</div>
+{% endblock %}

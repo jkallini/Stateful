@@ -9,13 +9,11 @@
         <h1 style="color: var(--main-blue); text-align: center">Lesson 1: Deterministic Finite Automata</h1>
         <br>
         <h2 style='color: var(--main-green); padding-bottom: 10px'>1.2<span class="tab-1"></span>
-            Defining DFAs Through Set Theory</h2>
+            The Deterministic Finite State Machine</h2>
         <p>
             In the last section, we gained a general intuition about a simple computational model known as a finite
             automaton. In this lesson, we will explore a specific type of finite state machine, known as the
-            deterministic finite automaton (DFA). We will give a precise definition of a DFA in mathematical terms, and
-            become more comfortable with common mathematical notation and definitions that are used in theoretical
-            computer science.
+            deterministic finite automaton (DFA).
 
             The following figure presents a <span class='term'>state diagram</span> for a DFA that we will call
             <span class="math-color">\( M_1 \)</span>. We will be using <span class="math-color">\( M_1 \)</span> to
@@ -61,77 +59,6 @@
                 <polygon fill="black" stroke-width="2" points="104.725,82.703 113.473,79.17 105.382,73.292" />
             </svg>
         </div>
-        <h3 style='color:var(--main-green); padding-top:18px'>Some Set Theory</h3>
-        <p>
-            When describing DFAs, we refer to their components using precise mathematical notation.
-            One of the most important mathematical concepts in computer science theory is the
-            concept of a <span class='term'>set</span>.
-            Generally in mathematics, a set is collection of distinct objects, which we call the
-            <span class='term'>elements</span> or <span class='term'>members</span> of the set. Normally, sets are
-            described formally by listing their elements in braces. So we can write
-            <span class="math-color">$$ S_1 = \{ 5, 6, 2\} $$</span>
-            to denote the set <span class="math-color">\( S_1 \)</span> that contains the elements
-            <span class="math-color">\( 5 \)</span>, <span class="math-color">\( 6 \)</span>, and
-            <span class="math-color">\( 2 \)</span>. Since order does not
-            matter when defining sets,
-            <span class="math-color">\( \{ 2, 5, 6\} \)</span> denotes the same set as
-            <span class="math-color">\( S_1 \)</span>. The symbol <span class="math-color">\( \in \)</span>
-            denotes membership within a set. So, we can say that <span class="math-color">\( 5 \in S_1 \)</span>;
-            this means that the number <span class="math-color">\( 5 \)</span> is an element of
-            the set <span class="math-color">\( S_1 \)</span>. Likewise, we can write
-            <span class="math-color">\( 3 \notin S_1 \)</span> to denote that <span class="math-color">\( 3 \)</span>
-            is not a member of the set <span class="math-color">\( S_1 \)</span>.
-        </p>
-        <p>
-            Another common way of defining sets is in what is called <span class='term'>set-builder</span>
-            form. In set-builder form, a set is described by a property that each of its members must satisfy.
-            for instance, writing
-            <span class="math-color">$$ S_2 = \{x : x \text{ is a positive number less than 6} \}$$</span>
-            has the same meaning as
-            <span class="math-color">$$ S_2 = \{ 1, 2, 3, 4, 5\}$$</span>
-            and reads as "<span class="math-color">\( S_2 \)</span> is the set of all elements
-            <span class="math-color">\( x \)</span> such that <span class="math-color">\( x \)</span> is a
-            positive number less than 6." When using set-builder notation, we can also define members
-            of a set in terms of another set:
-            <span class="math-color">$$ S_3 = \{x \in S_2 : x > 3\}$$</span>
-            This notation tells us that <span class="math-color">\( S_3 \)</span> is the set of all elements in
-            <span class="math-color">\( S_2 \)</span> that are greater than <span class="math-color">\( 3 \)</span>.
-            Considering what we know about <span class="math-color">\( S_2 \)</span>, we can see that
-            <span class="math-color">\( S_3 = \{ 4, 5 \} \)</span>. Since every element of
-            <span class="math-color">\( S_3 \)</span> is also a member of <span class="math-color">\( S_2 \)</span>,
-            <span class="math-color">\( S_3 \)</span> is a <span class='term'>subset</span> of <span class="math-color">\( S_2 \)</span>,
-            written as <span class="math-color">\( S_3 \subseteq S_2 \)</span>.
-        </p>
-        <p>
-            Every set is a subset of itself. For instance, say we have a set <span class="math-color">\(A\)</span>
-            and a set <span class="math-color">\( B \subseteq A \)</span>. It may be the case that
-            <span class="math-color">\( B = A \)</span>. What if we want to specify that <span class="math-color">\( B \)</span>
-            is a subset of <span class="math-color">\( A \)</span>, but <span class="math-color">\( A \)</span>
-            and <span class="math-color">\( B \)</span> are distinct? There is in fact a term for this. If
-            <span class="math-color">\( B \)</span> is a subset of <span class="math-color">\( A \)</span>, but <span class="math-color">\( A \)</span>
-            and <span class="math-color">\( B \)</span> are distinct sets, then <span class="math-color">\( B \)</span>
-            is a <span term>proper subset</span> of <span class="math-color">\( A \)</span>, written as
-             <span class="math-color">\( B \subset A \)</span>.
-        </p>
-        <h3 style='color:var(--main-green); padding-top:18px'>Defining DFAs Formally</h3>
-        <p>
-            The sets <span class="math-color">\( S_1 \)</span>,
-            <span class="math-color">\( S_2 \)</span>, and
-            <span class="math-color">\( S_3 \)</span> above are sets of numbers, but a set can have
-            elements of any type, even other sets. To return to
-            the topic of finite automata, we can formally define the attributes of a DFA using sets.
-            
-            One of the defining freatures of a DFA is its set of states, which we denote
-            by <span class="math-color">\( Q \)</span>. For the machine <span class="math-color">\( M_1 \)</span>
-            above, its set of states is <span class="math-color">\( Q = \{ q_1, q_2, q_3 \}\)</span>.
-            The start state, which we typically denote by <span class="math-color">\( q_0 \in Q \)</span>,
-            is an element of a DFA's set of states. The start state of
-            <span class="math-color">\( M_1 \)</span> is <span class="math-color">\( q_2 \)</span>.
-            The set of accept states of a DFA is typically denoted by 
-            <span class="math-color">\( F \)</span>, and since any accept state of a DFA is by definition
-            in the set <span class="math-color">\( Q \)</span>, we know that
-            <span class="math-color">\( F \subseteq Q \)</span>.
-        </p>
         <br>
         <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h4>
             <div id="quiz"></div>

@@ -1,0 +1,174 @@
+{% extends 'base.html' %} {% block head %}
+<title>Stateful | Lesson 1.2</title>
+{% endblock %} {% block body %}
+<!-- Page Content -->
+<div id="content">
+
+    <div class='container' style='max-width: 800px;'>
+
+        <h1 style="color: var(--main-blue); text-align: center">Lesson 1: Deterministic Finite Automata</h1>
+        <br>
+        <h2 style='color: var(--main-green); padding-bottom: 10px'>1.3<span class="tab-1"></span>
+            Mathematics for Finite Automata</h2>
+        <p>
+            In this section, we will be learning about some of the essential mathematical concepts and terms that
+            are required for formally defining finite automata. When describing DFAs, we refer to their components using
+            precise notation. We take the time to develop an understanding of rigorous notation because it clears up any
+            kind of confusion or ambiguity that can arise from defining DFAs informally, as we had done in the last section. This
+            will become much more apparent when we present the formal definition of a DFA in the next section.
+        </p>
+        <h3 style='color:var(--main-green); padding-top:18px'>Some Set Theory</h3>
+        <p>
+            One of the most important mathematical concepts in computer science theory is the
+            concept of a <span class='term'>set</span>.
+            Generally in mathematics, a set is collection of distinct objects, which we call the
+            <span class='term'>elements</span> or <span class='term'>members</span> of the set. Normally, sets are
+            described formally by listing their elements in braces. So we can write
+            <span class="math-color">$$ S_1 = \{ 5, 6, 2\} $$</span>
+            to denote the set <span class="math-color">\( S_1 \)</span> that contains the elements
+            <span class="math-color">\( 5 \)</span>, <span class="math-color">\( 6 \)</span>, and
+            <span class="math-color">\( 2 \)</span>. Since order does not
+            matter when defining sets,
+            <span class="math-color">\( \{ 2, 5, 6\} \)</span> denotes the same set as
+            <span class="math-color">\( S_1 \)</span>. The symbol <span class="math-color">\( \in \)</span>
+            denotes membership within a set. So, we can say that <span class="math-color">\( 5 \in S_1 \)</span>;
+            this means that the number <span class="math-color">\( 5 \)</span> is an element of
+            the set <span class="math-color">\( S_1 \)</span>. Likewise, we can write
+            <span class="math-color">\( 3 \notin S_1 \)</span> to denote that <span class="math-color">\( 3 \)</span>
+            is not a member of the set <span class="math-color">\( S_1 \)</span>.
+        </p>
+        <p>
+            Another common way of defining sets is in what is called <span class='term'>set-builder</span>
+            form. In set-builder form, a set is described by a property that each of its members must satisfy.
+            for instance, writing
+            <span class="math-color">$$ S_2 = \{x : x \text{ is a positive number less than 6} \}$$</span>
+            has the same meaning as
+            <span class="math-color">$$ S_2 = \{ 1, 2, 3, 4, 5\}$$</span>
+            and reads as "<span class="math-color">\( S_2 \)</span> is the set of all elements
+            <span class="math-color">\( x \)</span> such that <span class="math-color">\( x \)</span> is a
+            positive number less than 6." When using set-builder notation, we can also define members
+            of a set in terms of another set:
+            <span class="math-color">$$ S_3 = \{x \in S_2 : x > 3\}$$</span>
+            This notation tells us that <span class="math-color">\( S_3 \)</span> is the set of all elements in
+            <span class="math-color">\( S_2 \)</span> that are greater than <span class="math-color">\( 3 \)</span>.
+            Considering what we know about <span class="math-color">\( S_2 \)</span>, we can see that
+            <span class="math-color">\( S_3 = \{ 4, 5 \} \)</span>. Since every element of
+            <span class="math-color">\( S_3 \)</span> is also a member of <span class="math-color">\( S_2 \)</span>,
+            <span class="math-color">\( S_3 \)</span> is a <span class='term'>subset</span> of <span
+                class="math-color">\( S_2 \)</span>,
+            written as <span class="math-color">\( S_3 \subseteq S_2 \)</span>.
+        </p>
+        <p>
+            Every set is a subset of itself. For instance, say we have a set <span class="math-color">\(A\)</span>
+            and a set <span class="math-color">\( B \subseteq A \)</span>. It may be the case that
+            <span class="math-color">\( B = A \)</span>. What if we want to specify that <span class="math-color">\( B
+                \)</span>
+            is a subset of <span class="math-color">\( A \)</span>, but <span class="math-color">\( A \)</span>
+            and <span class="math-color">\( B \)</span> are distinct? There is in fact a term for this. If
+            <span class="math-color">\( B \)</span> is a subset of <span class="math-color">\( A \)</span>, but <span
+                class="math-color">\( A \)</span>
+            and <span class="math-color">\( B \)</span> are distinct sets, then <span class="math-color">\( B \)</span>
+            is a <span term>proper subset</span> of <span class="math-color">\( A \)</span>, written as
+            <span class="math-color">\( B \subset A \)</span>. The empty set
+            <span class="math-color">\( \emptyset \)</span>, which is the set with no elements, is
+            a subset of every set.
+        </p>
+        <h3 style='color:var(--main-green); padding-top:18px'>Defining DFAs Formally</h3>
+        <p>
+            The sets <span class="math-color">\( S_1 \)</span>,
+            <span class="math-color">\( S_2 \)</span>, and
+            <span class="math-color">\( S_3 \)</span> above are sets of numbers, but a set can have
+            elements of any type, even other sets. To return to
+            the topic of finite automata, we can formally define the attributes of a DFA using sets.
+
+            One of the defining freatures of a DFA is its set of states, which we denote
+            by <span class="math-color">\( Q \)</span>. Below is the machine <span class="math-color">\( M_1 \)</span>
+            that we took a look at in the last section.
+        </p>
+        <div style='text-align:center'>
+            <div style='width: 500px; margin:0 auto;'>
+                <text style='color: var(--main-aqua)'>Figure 1.5:</text>
+                <text>The deterministic finite automaton <span class="math-color">\( M_1 \)</span>.</text>
+                <br>
+            </div>
+            <svg width="410" height="180" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="218.5" cy="109.5" rx="30"
+                    ry="30" />
+                <text x="210.5" y="115.5" font-family="Sans-serif" font-size="20">q&#8322;</text>
+                <ellipse stroke="black" stroke-width="2" fill="none" cx="218.5" cy="109.5" rx="24" ry="24" />
+                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="355.5" cy="109.5" rx="30"
+                    ry="30" />
+                <text x="347.5" y="115.5" font-family="Sans-serif" font-size="20">q&#8323;</text>
+                <ellipse class='fsm-state' stroke="black" stroke-width="2" fill="none" cx="91.5" cy="109.5" rx="30"
+                    ry="30" />
+                <text x="83.5" y="115.5" font-family="Sans-serif" font-size="20">q&#8321;</text>
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 245.442,96.463 A 127.221,127.221 0 0 1 328.558,96.463" />
+                <polygon fill="black" stroke-width="2" points="328.558,96.463 322.63,89.124 319.363,98.576" />
+                <text x="281.5" y="80.5" font-family="Sans-serif" font-size="20">0</text>
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 328.269,121.937 A 132.957,132.957 0 0 1 245.731,121.937" />
+                <polygon fill="black" stroke-width="2" points="245.731,121.937 251.784,129.173 254.888,119.667" />
+                <text x="273.5" y="149.5" font-family="Sans-serif" font-size="20">0,1</text>
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 205.275,82.703 A 22.5,22.5 0 1 1 231.725,82.703" />
+                <text x="212.5" y="33.5" font-family="Sans-serif" font-size="20">1</text>
+                <polygon fill="black" stroke-width="2" points="231.725,82.703 240.473,79.17 232.382,73.292" />
+                <polygon stroke="black" stroke-width="2" points="121.5,109.5 188.5,109.5" />
+                <polygon fill="black" stroke-width="2" points="188.5,109.5 180.5,104.5 180.5,114.5" />
+                <text x="149.5" y="100.5" font-family="Sans-serif" font-size="20">1</text>
+                <polygon stroke="black" stroke-width="2" points="7.5,109.5 61.5,109.5" />
+                <polygon fill="black" stroke-width="2" points="61.5,109.5 53.5,104.5 53.5,114.5" />
+                <path stroke="black" stroke-width="2" fill="none"
+                    d="M 78.275,82.703 A 22.5,22.5 0 1 1 104.725,82.703" />
+                <text x="85.5" y="33.5" font-family="Sans-serif" font-size="20">0</text>
+                <polygon fill="black" stroke-width="2" points="104.725,82.703 113.473,79.17 105.382,73.292" />
+            </svg>
+        </div>
+        <p>
+
+            With the mathamentical toolbox that we explored in this lesson, we are prepared to
+            formally define the DFA <span class="math-color">\( M_1 \}\)</span>. The set of states
+            of <span class="math-color">\( M_1 \}\)</span> is <span class="math-color">\( Q = \{ q_1, q_2, q_3
+                \}\)</span>.
+            The start state, which we typically denote by <span class="math-color">\( q_0 \in Q \)</span>,
+            is an element of a DFA's set of states. The start state of
+            <span class="math-color">\( M_1 \)</span> is <span class="math-color">\( q_2 \)</span>.
+            The set of accept states of a DFA is typically denoted by
+            <span class="math-color">\( F \)</span>, and since any accept state of a DFA is by definition
+            in the set <span class="math-color">\( Q \)</span>, we know that
+            <span class="math-color">\( F \subseteq Q \)</span>.
+        </p>
+        <br>
+        <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h4>
+            <div id="quiz"></div>
+            <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
+            <br>
+            <div class='br-lg'></div>
+            <div id="results"></div>
+
+    </div>
+    <!-- 
+    <script type='text/javascript'>
+        const myQuestions = [{
+            question: "After being pressed 5 times, in what state is the FSM for the light switch?",
+            answers: {
+                a: "safdfdasfsfa",
+                b: "asfsfsaf"
+            },
+            correctAnswer: "a"
+        },
+        {
+            question: "Say that the FSM for the automatic door receives the following sequence of inputs: FRONT, BACK, NEITHER, FRONT, BOTH, NEITHER, REAR, and NEITHER. What state does the machine end up in?",
+            answers: {
+                a: "CLOdfddfD",
+                b: "OPEddddN",
+            },
+            correctAnswer: "b"
+        }
+    ];
+    </script>
+    <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script> -->
+
+</div>
+{% endblock %}
