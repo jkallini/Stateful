@@ -379,8 +379,20 @@ function crossBrowserRelativeMousePos(e) {
 
 function output(title, message) {
     $('#submitModalLabel').html(title);
-    MathJax.Hub.Queue(
-        function() { $("#output").html(unescape(message)); }, ["Typeset", MathJax.Hub, 'output']);
+    var result= renderWithDelimitersToString(message);
+    $('#output').html(result);
+}
+
+/* hmzlam/katexWithDelimiters */
+function renderWithDelimitersToString(text)
+{
+   var CleanAndRender=function(str){return katex.renderToString(str.replace(/\\\(|\$\$|\\\)/g,""));}	
+   return text.replace(/(\\\([^]*?\\\))|(\$\$[^]*?\$\$)/g, function(m, bracket, dollar) {
+        if (bracket !== undefined) return CleanAndRender(m);
+        if (dollar !== undefined) 
+        return "<p style='width:100%;text-align:center;'>" + CleanAndRender(m) + "</p>";
+        return m;
+   });
 }
 
 /* Links */
