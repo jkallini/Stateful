@@ -63,7 +63,9 @@
         </div>
         <h3 style='color:var(--main-green); padding-top:18px'>Some Set Theory</h3>
         <p>
-            When describing DFAs, we refer denote their components using a more precise mathematical  as a <span class='term'>set</span> of states.
+            When describing DFAs, we refer to their components using precise mathematical notation.
+            One of the most important mathematical concepts in computer science theory is the
+            concept of a <span class='term'>set</span>.
             Generally in mathematics, a set is collection of distinct objects, which we call the
             <span class='term'>elements</span> or <span class='term'>members</span> of the set. Normally, sets are
             described formally by listing their elements in braces. So we can write
@@ -98,7 +100,18 @@
             <span class="math-color">\( S_3 = \{ 4, 5 \} \)</span>. Since every element of
             <span class="math-color">\( S_3 \)</span> is also a member of <span class="math-color">\( S_2 \)</span>,
             <span class="math-color">\( S_3 \)</span> is a <span class='term'>subset</span> of <span class="math-color">\( S_2 \)</span>,
-            written as <span class="math-color">\( S_3 \subseteq S_2 \)</span>. 
+            written as <span class="math-color">\( S_3 \subseteq S_2 \)</span>.
+        </p>
+        <p>
+            Every set is a subset of itself. For instance, say we have a set <span class="math-color">\(A\)</span>
+            and a set <span class="math-color">\( B \subseteq A \)</span>. It may be the case that
+            <span class="math-color">\( B = A \)</span>. What if we want to specify that <span class="math-color">\( B \)</span>
+            is a subset of <span class="math-color">\( A \)</span>, but <span class="math-color">\( A \)</span>
+            and <span class="math-color">\( B \)</span> are distinct? There is in fact a term for this. If
+            <span class="math-color">\( B \)</span> is a subset of <span class="math-color">\( A \)</span>, but <span class="math-color">\( A \)</span>
+            and <span class="math-color">\( B \)</span> are distinct sets, then <span class="math-color">\( B \)</span>
+            is a <span term>proper subset</span> of <span class="math-color">\( A \)</span>, written as
+             <span class="math-color">\( B \subset A \)</span>.
         </p>
         <h3 style='color:var(--main-green); padding-top:18px'>Defining DFAs Formally</h3>
         <p>
