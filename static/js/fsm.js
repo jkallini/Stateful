@@ -52,7 +52,7 @@ function canvasHasFocus() {
 
 function drawText(c, originalText, x, y, angleOrNull, isSelected) {
     text = convertLatexShortcuts(originalText);
-    c.font = '20px Sans-serif';
+    c.font = '20px Avenir Next';
     var width = c.measureText(text).width;
 
     // center the text

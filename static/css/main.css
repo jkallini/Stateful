@@ -1,5 +1,5 @@
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Avenir';
     background: #f7ffeb;
 }
 
@@ -22,7 +22,7 @@ p {
 
 .term {
     color: var(--main-aqua);
-    font-weight: 1000;
+    font-weight: bold;
     font-style: italic;
 }
 
