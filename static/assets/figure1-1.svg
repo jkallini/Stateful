@@ -1,0 +1,6 @@
+<svg width="300" height="160" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <ellipse stroke="black" stroke-width="2" fill="#72e982" cx="74.5" cy="78.5" rx="30" ry="30" />
+    <text x="54.5" y="84.5" font-family="Avenir Next" font-size="20">OFF</text>
+    <ellipse stroke="black" stroke-width="2" fill="#72e982" cx="205.5" cy="78.5" rx="30" ry="30" />
+    <text x="189.5" y="84.5" font-family="Avenir Next" font-size="20">ON</text>
+</svg>

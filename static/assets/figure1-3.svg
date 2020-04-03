@@ -1,0 +1,14 @@
+<svg width="300" height="180" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <ellipse stroke="black" stroke-width="2" fill='#72e982' cx="74.5" cy="91.5" rx="30" ry="30" />
+    <text x="54.5" y="97.5" font-family="Avenir Next" font-size="20">OFF</text>
+    <ellipse stroke="black" stroke-width="2" fill='#72e982' cx="205.5" cy="91.5" rx="30" ry="30" />
+    <text x="189.5" y="97.5" font-family="Avenir Next" font-size="20">ON</text>
+    <path stroke="black" stroke-width="2" fill="none" d="M 92.014,67.412 A 71.72,71.72 0 0 1 187.986,67.412" />
+    <polygon fill="black" stroke-width="2" points="187.986,67.412 185.386,58.344 178.695,65.776" />
+    <text x="111.5" y="39.5" font-family="Avenir Next" font-size="20">PRESS</text>
+    <path stroke="black" stroke-width="2" fill="none" d="M 186.389,114.361 A 74.425,74.425 0 0 1 93.611,114.361" />
+    <polygon fill="black" stroke-width="2" points="93.611,114.361 96.751,123.257 102.984,115.438" />
+    <text x="111.5" y="151.5" font-family="Avenir Next" font-size="20">PRESS</text>
+    <polygon stroke="black" stroke-width="2" points="3.5,91.5 44.5,91.5" />
+    <polygon fill="black" stroke-width="2" points="44.5,91.5 36.5,86.5 36.5,96.5" />
+</svg>
