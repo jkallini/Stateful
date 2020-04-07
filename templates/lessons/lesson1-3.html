@@ -28,10 +28,10 @@
         </div>
         <p>
 
-            As the name tells us, DFAs are <em>deterministic</em>: when in a certain state, upon reading an input
-            symbol, there is exactly one transition to the next possible state. NFAs are <em>nondeterministic</em>, so
+            As the name tells us, DFAs are <span class='term'>deterministic</span>: when in a certain state, upon reading an input
+            symbol, there is exactly one transition to the next possible state. NFAs are <span class='term'>nondeterministic</span>, so
             several choices for the next state make exist at any point. In particular:
-            <ol>
+            <ul>
                 <li>
                     Multiple transitions labeled with the same input symbol are allowed.
                 </li>
@@ -42,19 +42,30 @@
                 <li>
                     Not all symbols need be included among the transitions leaving each state.
                 </li>
-            </ol>
-            
+            </ul>
+
         </p>
         <p>
-            To decide whether it will accept or reject a string, a DFA will observe the state it is in when it reaches
-            the end of input string. If this state is an <span class='term'>accept state</span>, it will accept the
-            string. If not, it will reject the string. We indicate accept states on diagrams using a double circle. In
-            the machine <span class="math-color">\(M_1\)</span> above, <span class="math-color">\(q_2\)</span> is an
+            So not only can an NFA change state without reading an input symbol, but also, given a current state and
+            input symbol, an NFA can have zero, one, or several possible transitions from each state corresponding to
+            each input symbol. How the machine chooses which transition to follow is not specified. An input string is
+            acceptable if there is any sequence of transitions that can take the machine from the start state to an
             accept state.
         </p>
         <p>
-            To help you understand how a DFA processes an input string to produce an output, step through the example
-            below.
+            Some describe the computation of an NFA as a 'guess'; the machine 'guesses' a sequence of transitions to
+            take, and if a given string is in the NFA's language, the path taken will lead to an accept state with some
+            nonzero probability. If we rerun the machine on the same input string several times, it will eventually run
+            out of possible paths to guess. If any of those paths leads to an accept state, then the string is in the
+            language recognized by the machine.
+        </p>
+        <p>
+            Another way of thinking about NFAs is as a sort of parallel computation. Suppose that we are running an NFA
+            on an input string, and the current state has multiple outgoing transitions for the same symbol. After
+            reading that symbol from the input string, the machine splits into multiple copies of itself and follows all
+            the possibilities in parallel. Each copy takes one of the possible ways to proceed. If one of the copies
+            comes to another state that has multiple outgoing transitions for the same symbol, then <em>the copy</em>
+            splits, and so on.
         </p>
         <br>
         <div style='text-align: center;'>
