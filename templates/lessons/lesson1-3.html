@@ -6,149 +6,232 @@
 
     <div class='container' style='max-width: 800px;'>
 
-        <h1 style="color: var(--main-blue); text-align: center">Lesson 1: Deterministic Finite Automata</h1>
+        <h1 style="color: var(--main-blue); text-align: center">Lesson 1: Introduction to Finite Automata</h1>
         <br>
         <h2 style='color: var(--main-green); padding-bottom: 10px'>1.3<span class="tab-1"></span>
-            Set Theory, Strings, and Languages</h2>
+            The Nondeterministic Finite State Machine</h2>
         <p>
-            In this section, we will be learning about some of the essential mathematical concepts and terms that
-            are required for formally defining finite automata. In particular, we will be introducing set theory and the
-            basics of formal languages. We will see in the upcoming sections that using mathematical notation when
-            defining DFAs will only make studying them easier; having precise rules and notation can clear up any kind
-            of confusion or ambiguity that can arise from defining DFAs informally.
-            <!-- In this section, we will be learning about some of the essential mathematical concepts and terms that
-            are required for formally defining finite automata. When describing DFAs, we refer to their components using
-            precise notation. We take the time to develop an understanding of rigorous notation because it clears up any
-            kind of confusion or ambiguity that can arise from defining DFAs informally, as we had done in the last
-            section. This
-            will become much more apparent when we present the formal definition of a DFA in the next section. -->
+            In this section, we will be learning about another kind of finite state machine, the <span
+                class='term'>nondeterministic finite automaton</span> (NFA).
+
+            The following figure presents a state diagram for a DFA that we will call
+            <span class="math-color">\( N_1 \)</span>. We will be using <span class="math-color">\( N_1 \)</span> to
+            study what's new about NFAs in this section.
         </p>
-        <h3 style='color:var(--main-green); padding-top:18px'>Some Set Theory</h3>
+        <div style='text-align:center'>
+            <div style='width: 500px; margin:0 auto;'>
+                <text style='color: var(--main-aqua)'>Figure 1.7:</text>
+                <text>The deterministic finite automaton <span class="math-color">\( M_1 \)</span>.</text>
+                <br>
+            </div>
+            <img src="{{ url_for('static', filename='assets/figure1-7.svg') }}" alt="Figure 1.7">
+        </div>
         <p>
-            One of the most important mathematical concepts in computer science theory is the
-            concept of a <span class='term'>set</span>.
-            Generally in mathematics, a set is collection of distinct objects, which we call the
-            <span class='term'>elements</span> or <span class='term'>members</span> of the set. Normally, sets are
-            described formally by listing their elements in braces. So we can write
-            <span class="math-color">$$ S_1 = \{ 5, 6, 2\} $$</span>
-            to denote the set <span class="math-color">\( S_1 \)</span> that contains the elements
-            <span class="math-color">\( 5 \)</span>, <span class="math-color">\( 6 \)</span>, and
-            <span class="math-color">\( 2 \)</span>. Since order does not
-            matter when defining sets,
-            <span class="math-color">\( \{ 2, 5, 6\} \)</span> denotes the same set as
-            <span class="math-color">\( S_1 \)</span>.
-        </p>
-        <p>
-            The symbol '<span class="math-color">\( \in \)</span>'
-            denotes membership within a set. So, we can write <span class="math-color">\( 5 \in S_1 \)</span>
-            to express that the number <span class="math-color">\( 5 \)</span> is an element of
-            the set <span class="math-color">\( S_1 \)</span>. Likewise, we can write
-            <span class="math-color">\( 3 \notin S_1 \)</span> to express that <span class="math-color">\( 3 \)</span>
-            is <em>not</em> a member of the set <span class="math-color">\( S_1 \)</span>.
-        </p>
-        <p>
-            Another common way of defining sets is what is called <span class='term'>set-builder</span>
-            form. In set-builder form, a set is described by a property that each of its members must satisfy.
-            for instance, writing
-            <span class="math-color">$$ S_2 = \{x : x \text{ is a positive number less than 6} \}$$</span>
-            has the same meaning as
-            <span class="math-color">$$ S_2 = \{ 1, 2, 3, 4, 5\}$$</span>
-            and reads as "<span class="math-color">\( S_2 \)</span> is the set of all elements
-            <span class="math-color">\( x \)</span> such that <span class="math-color">\( x \)</span> is a
-            positive number less than 6." When using set-builder notation, we can also define members
-            of a set in terms of another set:
-            <span class="math-color">$$ S_3 = \{x \in S_2 : x > 3\}$$</span>
-            There are two main components to the meaning of <span class="math-color">\( S_3 \)</span>: first,
-            "<span class="math-color">\( x \in S_2 \)</span>" tells the reader to consider an element
-            <span class="math-color">\( x \)</span> in <span class="math-color">\( S_2 \)</span>, and
-            "<span class="math-color">\( x > 3 \)</span>" tells the reader that <span class="math-color">\( x \)</span>
-            must be greater than <span class="math-color">\( 3 \)</span> in order to be a member of the set
-            <span class="math-color">\( S_3 \)</span>. In short, this notation tells us that <span class="math-color">\(
-                S_3 \)</span> is the set of all elements in
-            <span class="math-color">\( S_2 \)</span> that are greater than <span class="math-color">\( 3 \)</span>.
-            Considering what we know about <span class="math-color">\( S_2 \)</span>, we can see that
-            <span class="math-color">\( S_3 = \{ 4, 5 \} \)</span>.
+
+            As the name tells us, DFAs are <em>deterministic</em>: when in a certain state, upon reading an input
+            symbol, there is exactly one transition to the next possible state. NFAs are <em>nondeterministic</em>, so
+            several choices for the next state make exist at any point. In particular:
+            <ol>
+                <li>
+                    Multiple transitions labeled with the same input symbol are allowed.
+                </li>
+                <li>
+                    Epsilon-transitions (labeled with <span class="math-color">\( \varepsilon \)</span>) are allowed.
+                    These are transitions that the machine can take <em>without</em> consuming an input symbol.
+                </li>
+                <li>
+                    Not all symbols need be included among the transitions leaving each state.
+                </li>
+            </ol>
+            
         </p>
         <p>
-            A very important concept in set theory is <span class="term">cardinality</span> or <span
-                class="term">size</span>. The cardinality of the set <span class="math-color">\( S_2 \)</span>
-            above, denoted as <span class="math-color">\( |S_2| \)</span> is <span class="math-color">\( 5 \)</span>,
-            since there are five elements in the set <span class="math-color">\( S_2 \)</span>.
-            On the other hand, <span class="math-color">\( |S_3| = 2 \)</span>, since there are only two elements in
-            <span class="math-color">\( S_3 \)</span>.
-        </p>
-        <h3 style='color:var(--main-green); padding-top:18px'>Subsets and Powersets</h3>
-        <p>
-            Take another look at the sets <span class="math-color">\( S_2 \)</span> and
-            <span class="math-color">\( S_3 \)</span> that we have constructed above. Notice that every element of
-            <span class="math-color">\( S_3 \)</span> is also a member of <span class="math-color">\( S_2 \)</span>.
-            Because of this relation between the two sets, <span class="math-color">\( S_3 \)</span> is what we would
-            call a <span class='term'>subset</span> of <span class="math-color">\( S_2 \)</span>,
-            written as <span class="math-color">\( S_3 \subseteq S_2 \)</span>.
+            To decide whether it will accept or reject a string, a DFA will observe the state it is in when it reaches
+            the end of input string. If this state is an <span class='term'>accept state</span>, it will accept the
+            string. If not, it will reject the string. We indicate accept states on diagrams using a double circle. In
+            the machine <span class="math-color">\(M_1\)</span> above, <span class="math-color">\(q_2\)</span> is an
+            accept state.
         </p>
         <p>
-            Every set is a subset of itself. For instance, say we have a set <span class="math-color">\(A\)</span>
-            and a set <span class="math-color">\( B \subseteq A \)</span>. It may be the case that
-            <span class="math-color">\( B = A \)</span>. What if we want to specify that <span class="math-color">\( B
-                \)</span>
-            is a subset of <span class="math-color">\( A \)</span>, but <span class="math-color">\( A \)</span>
-            and <span class="math-color">\( B \)</span> are distinct? There is in fact a term for this. If
-            <span class="math-color">\( B \)</span> is a subset of <span class="math-color">\( A \)</span>, but <span
-                class="math-color">\( A \)</span>
-            and <span class="math-color">\( B \)</span> are distinct sets, then <span class="math-color">\( B \)</span>
-            is a <span class='term'>proper subset</span> of <span class="math-color">\( A \)</span>, written as
-            <span class="math-color">\( B \subset A \)</span>. The <span class='term'>empty set</span>, the set with no
-            elements represented by the symbol <span class="math-color">\( \emptyset \)</span>, is a subset of every
-            set. In fact, it is a proper subset of every set except itself.
+            To help you understand how a DFA processes an input string to produce an output, step through the example
+            below.
         </p>
-        <p>
-            A discussion of subsets of sets leads naturally to a discussion of the <span class='term'>powerset</span>
-            of sets. The powerset of a set <span class="math-color">\( S \)</span>, denoted by
-            <span class="math-color">\( \mathcal{P}(S) \)</span>, is the set of all subsets of <span
-                class="math-color">\( S \)</span>.
-            In the sets we previously mentioned, the elements were numbers. But the elements of a set can be anything,
-            even other sets! This is what we see in the powerset of another set. Its elements are indeed sets. Take as
-            an example, the set <span class="math-color">\( T = \{ 1, 2, 3\} \)</span>. What is the powerset of <span
-                class="math-color">\( T \)</span>? Well, think of all the possible combinations of the numbers within
-            the set. We have a set with no numbers, a set only containing <span class="math-color">\( 1 \)</span>, a set
-            containing <span class="math-color">\( 1 \)</span> and <span class="math-color">\( 2 \)</span> together, and
-            so on. Thus, the powerset of <span class="math-color">\( T \)</span> is
-            <span class="math-color">$$ \mathcal{P}(T) = \{ \emptyset, \{ 1 \}, \{ 2 \}, \{ 3 \},
-                \{ 1, 2 \}, \{ 1, 3 \}, \{ 2, 3 \}, \{ 1, 2, 3 \}\} $$</span>
-            Notice that the emptyset and <span class="math-color">\( T \)</span> are within <span class="math-color">\(
-                \mathcal{P}(T) \)</span>.
-        </p>
-        <h3 style='color:var(--main-green); padding-top:18px'>Defining DFAs Formally</h3>
         <br>
+        <div style='text-align: center;'>
+            <div style='width: 500px; margin:0 auto;'>
+                <text style='color: var(--main-aqua)'>Figure 1.6:</text>
+                <text>A visualization of the concept of a DFA. The transition diagram is part of the internal mechanism
+                    of a machine <span class="math-color">\(M_1\)</span>, and that machine reads strings
+                    character-by-character from an input tape. </text>
+                <br><br>
+            </div>
+            <div id="carouselExampleFade" class="carousel carousel-fade" data-interval="false" data-ride=""
+                data-wrap="false" style='text-align: center'>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-1.svg') }}"
+                            alt="First Slide">
+                        <br><br>
+                        <div style='width: 500px; margin:0 auto;'>
+                            <text>The input string in this case is <span class="math-color">\(1101\)</span>. The
+                                machine's tape scanner starts at the first character, which is a <span
+                                    class="math-color">\(1\)</span>.</text>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-2.svg') }}"
+                            alt="Second slide">
+                        <br><br>
+                        <div style='width: 500px; margin:0 auto;'>
+                            <text>The process begins in <span class="math-color">\(M_1\)</span>'s start state, <span
+                                    class="math-color">\(q_1\)</span>. The machine reads a <span
+                                    class="math-color">\(1\)</span> character from the tape.</text>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-3.svg') }}"
+                            alt="Third slide">
+                        <br><br>
+                        <div style='width: 500px; margin:0 auto;'>
+                            <text>After reading <span class="math-color">\(1\)</span>, <span
+                                    class="math-color">\(M_1\)</span> moves from state <span
+                                    class="math-color">\(q_1\)</span> to state <span class="math-color">\(q_2\)</span>,
+                                since this is the transition from the current state that has <span
+                                    class="math-color">\(1\)</span> as its label.</text>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-4.svg') }}"
+                            alt="Fourth slide">
+                        <br><br>
+                        <div style='width: 500px; margin:0 auto;'>
+                            <text><span class="math-color">\(M_1\)</span> is now in state <span
+                                    class="math-color">\(q_2\)</span>. The machine reads a <span
+                                    class="math-color">\(1\)</span> character from the tape.</text>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-5.svg') }}"
+                            alt="Fifth slide">
+                        <br><br>
+                        <div style='width: 500px; margin:0 auto;'>
+                            <text>After reading <span class="math-color">\(1\)</span>, <span
+                                    class="math-color">\(M_1\)</span> moves from state <span
+                                    class="math-color">\(q_2\)</span> back to state <span
+                                    class="math-color">\(q_2\)</span>, since this is the transition from the current
+                                state that has <span class="math-color">\(1\)</span> as its label.</text>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-6.svg') }}"
+                            alt="Sixth slide">
+                        <br><br>
+                        <div style='width: 500px; margin:0 auto;'>
+                            <text><span class="math-color">\(M_1\)</span> is now in state <span
+                                    class="math-color">\(q_2\)</span>. The machine reads a <span
+                                    class="math-color">\(0\)</span> character from the tape.</text>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-7.svg') }}"
+                            alt="Seventh slide">
+                        <br><br>
+                        <div style='width: 500px; margin:0 auto;'>
+                            <text>After reading <span class="math-color">\(0\)</span>, <span
+                                    class="math-color">\(M_1\)</span> moves from state <span
+                                    class="math-color">\(q_2\)</span> to state <span class="math-color">\(q_3\)</span>,
+                                since this is the transition from the current state that has <span
+                                    class="math-color">\(0\)</span> as its label.</text>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-8.svg') }}"
+                            alt="Eighth slide">
+                        <br><br>
+                        <div style='width: 500px; margin:0 auto;'>
+                            <text><span class="math-color">\(M_1\)</span> is now in state <span
+                                    class="math-color">\(q_3\)</span>. The machine reads a <span
+                                    class="math-color">\(1\)</span> character from the tape.</text>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-9.svg') }}"
+                            alt="Ninth slide">
+                        <br><br>
+                        <div style='width: 500px; margin:0 auto;'>
+                            <text>After reading <span class="math-color">\(1\)</span>, <span
+                                    class="math-color">\(M_1\)</span> moves from state <span
+                                    class="math-color">\(q_3\)</span> to state <span class="math-color">\(q_2\)</span>,
+                                since this is the transition from the current state that has <span
+                                    class="math-color">\(1\)</span> as its label.</text>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-10.svg') }}"
+                            alt="Third slide">
+                        <br><br>
+                        <div style='width: 500px; margin:0 auto;'>
+                            <text><span class="math-color">\(M_1\)</span> is now in state <span
+                                    class="math-color">\(q_2\)</span>. There are no more characters to read from the
+                                tape. Since <span class="math-color">\(q_2\)</span> is an accept state, <span
+                                    class="math-color">\(M_1\)</span> ACCEPTS.</text>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <br><br>
         <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h4>
+            <p style='text-align: center;'>The questions below have refer to the DFA <span
+                    class="math-color">\(M_1\)</span>.</p>
             <div id="quiz"></div>
             <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
             <br>
             <div class='br-lg'></div>
             <div id="results"></div>
 
-    </div>
-    <!-- 
-    <script type='text/javascript'>
-        const myQuestions = [{
-            question: "After being pressed 5 times, in what state is the FSM for the light switch?",
-            answers: {
-                a: "safdfdasfsfa",
-                b: "asfsfsaf"
-            },
-            correctAnswer: "a"
-        },
-        {
-            question: "Say that the FSM for the automatic door receives the following sequence of inputs: FRONT, BACK, NEITHER, FRONT, BOTH, NEITHER, REAR, and NEITHER. What state does the machine end up in?",
-            answers: {
-                a: "CLOdfddfD",
-                b: "OPEddddN",
-            },
-            correctAnswer: "b"
-        }
-    ];
-    </script>
-    <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script> -->
 
-</div>
-{% endblock %}
+            <script type='text/javascript'>
+                const myQuestions = [{
+                        question: "Which of the following strings does \\(M_1\\) not accept?",
+                        answers: {
+                            a: "\\(01010101\\)",
+                            b: "\\(0100\\)",
+                            c: "\\(101000\\)",
+                            d: "\\(100011\\)"
+                        },
+                        correctAnswer: "c"
+                    },
+                    {
+                        question: "In what state is \\(M_1\\) when it finishes reading the string \\(11010011\\)?",
+                        answers: {
+                            a: "\\(q_1\\)",
+                            b: "\\(q_2\\)",
+                            c: "\\(q_3\\)"
+                        },
+                        correctAnswer: "b"
+                    },
+                    {
+                        question: "Which of these descriptions best describes the language of \\(M_1\\)?",
+                        answers: {
+                            a: "All binary strings with at least one \\(1\\)",
+                            b: "All binary strings with an even number of \\(0\\)'s",
+                            c: "All binary strings with at least one \\(1\\) and an even number of \\(0\\)'s",
+                            d: "All binary strings with at least one \\(1\\) and an even number of \\(0\\)'s after the last \\(1\\)"
+                        },
+                        correctAnswer: "d"
+                    }
+                ];
+            </script>
+            <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script>
+
+    </div>
+    {% endblock %}
