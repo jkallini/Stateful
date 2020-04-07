@@ -361,33 +361,32 @@
 
             <script type='text/javascript'>
                 const myQuestions = [{
-                        question: "Which of the following strings does \\(M_1\\) not accept?",
+                        question: "Which of the following strings does \\(N_1\\) not accept?",
                         answers: {
-                            a: "\\(01010101\\)",
-                            b: "\\(0100\\)",
-                            c: "\\(101000\\)",
-                            d: "\\(100011\\)"
+                            a: "\\(baba\\)",
+                            b: "\\(aabb\\)",
+                            c: "\\(bbab\\)",
+                            d: "\\(aaab\\)"
                         },
                         correctAnswer: "c"
                     },
                     {
-                        question: "In what state is \\(M_1\\) when it finishes reading the string \\(11010011\\)?",
+                        question: "In what state(s) is \\(N_1\\) when it finishes reading the string \\(aab\\)?",
                         answers: {
                             a: "\\(q_1\\)",
-                            b: "\\(q_2\\)",
+                            b: "\\(q_2\\) and \\(q_3\\)",
                             c: "\\(q_3\\)"
                         },
                         correctAnswer: "b"
                     },
                     {
-                        question: "Which of these descriptions best describes the language of \\(M_1\\)?",
+                        question: "Which of these descriptions best describes the language of \\(N_1\\)?",
                         answers: {
-                            a: "All binary strings with at least one \\(1\\)",
-                            b: "All binary strings with an even number of \\(0\\)'s",
-                            c: "All binary strings with at least one \\(1\\) and an even number of \\(0\\)'s",
-                            d: "All binary strings with at least one \\(1\\) and an even number of \\(0\\)'s after the last \\(1\\)"
+                            a: "All strings with at least as many \\(a\\)'s as there are \\(b\\)'s",
+                            b: "Any string with no occurrence of \\(bba\\)",
+                            c: "Any string ending in a \\(b\\)"
                         },
-                        correctAnswer: "d"
+                        correctAnswer: "b"
                     }
                 ];
             </script>
