@@ -21,7 +21,7 @@
         <div style='text-align:center'>
             <div style='width: 500px; margin:0 auto;'>
                 <text style='color: var(--main-aqua)'>Figure 1.7:</text>
-                <text>The deterministic finite automaton <span class="math-color">\( M_1 \)</span>.</text>
+                <text>The nondeterministic finite automaton <span class="math-color">\( N_1 \)</span>.</text>
                 <br>
             </div>
             <img src="{{ url_for('static', filename='assets/figure1-7.svg') }}" alt="Figure 1.7">
@@ -72,10 +72,8 @@
         <br>
         <div style='text-align: center;'>
             <div style='width: 500px; margin:0 auto;'>
-                <text style='color: var(--main-aqua)'>Figure 1.6:</text>
-                <text>A visualization of the concept of a DFA. The transition diagram is part of the internal mechanism
-                    of a machine <span class="math-color">\(M_1\)</span>, and that machine reads strings
-                    character-by-character from an input tape. </text>
+                <text style='color: var(--main-aqua)'>Figure 1.8:</text>
+                <text>A visualization of the NFA <span class="math-color">\(N_1\)</span>'s execution. </text>
                 <br><br>
             </div>
             <div id="carouselExampleFade" class="carousel carousel-fade" data-interval="false" data-ride=""
@@ -86,9 +84,11 @@
                             alt="First Slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text>The input string in this case is <span class="math-color">\(1101\)</span>. The
-                                machine's tape scanner starts at the first character, which is a <span
-                                    class="math-color">\(1\)</span>.</text>
+                            <text>The input string in this case is <span class="math-color">\(ababb\)</span>. The
+                                machine's tape scanner starts at the first character, which is an <span
+                                    class="math-color">\(a\)</span>. The NFA starts in its start state
+                                <span class="math-color">\(q_1\)</span>.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -96,9 +96,14 @@
                             alt="Second slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text>The process begins in <span class="math-color">\(M_1\)</span>'s start state, <span
-                                    class="math-color">\(q_1\)</span>. The machine reads a <span
-                                    class="math-color">\(1\)</span> character from the tape.</text>
+                            <text>
+                                We add the states that are reachable from the start state through
+                                <span class="math-color">\( \varepsilon \)</span>-transitions to the set
+                                of 'current' states. There is an <span class="math-color">\( \varepsilon
+                                    \)</span>-transition from state <span class="math-color">\( q_1 \)</span> to <span
+                                    class="math-color">\( q_3 \)</span>, so we add state <span class="math-color">\( q_3
+                                    \)</span> to the set of current states.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -106,11 +111,11 @@
                             alt="Third slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text>After reading <span class="math-color">\(1\)</span>, <span
-                                    class="math-color">\(M_1\)</span> moves from state <span
-                                    class="math-color">\(q_1\)</span> to state <span class="math-color">\(q_2\)</span>,
-                                since this is the transition from the current state that has <span
-                                    class="math-color">\(1\)</span> as its label.</text>
+                            <text>
+                                Now, the set of current states is <span class="math-color">\( q_1 \)</span> and <span
+                                    class="math-color">\( q_3 \)</span>. The machine reads an <span
+                                    class="math-color">\( a \)</span> from the tape.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -118,9 +123,13 @@
                             alt="Fourth slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text><span class="math-color">\(M_1\)</span> is now in state <span
-                                    class="math-color">\(q_2\)</span>. The machine reads a <span
-                                    class="math-color">\(1\)</span> character from the tape.</text>
+                            <text>
+                                Out of the current set of states, there is a transition from <span class="math-color">\(
+                                    q_1 \)</span> back to <span class="math-color">\( q_1 \)</span> labeled with an
+                                <span class="math-color">\( a \)</span>. There is no transition from <span
+                                    class="math-color">\( q_3 \)</span> with the label <span class="math-color">\( a
+                                    \)</span>, so this execution path 'dies'. The set of current states is updated.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -128,11 +137,16 @@
                             alt="Fifth slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text>After reading <span class="math-color">\(1\)</span>, <span
-                                    class="math-color">\(M_1\)</span> moves from state <span
-                                    class="math-color">\(q_2\)</span> back to state <span
-                                    class="math-color">\(q_2\)</span>, since this is the transition from the current
-                                state that has <span class="math-color">\(1\)</span> as its label.</text>
+                            <text>
+                                The set of current states is <span class="math-color">\( q_1 \)</span>.
+                                We add the states that are reachable from <span class="math-color">\( q_1 \)</span>
+                                through
+                                <span class="math-color">\( \varepsilon \)</span>-transitions to the set
+                                of current states. There is an <span class="math-color">\( \varepsilon
+                                    \)</span>-transition from state <span class="math-color">\( q_1 \)</span> to <span
+                                    class="math-color">\( q_3 \)</span>, so we add state <span class="math-color">\( q_3
+                                    \)</span> to the set of current states.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -140,9 +154,11 @@
                             alt="Sixth slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text><span class="math-color">\(M_1\)</span> is now in state <span
-                                    class="math-color">\(q_2\)</span>. The machine reads a <span
-                                    class="math-color">\(0\)</span> character from the tape.</text>
+                            <text>
+                                Now, the set of current states is <span class="math-color">\( q_1 \)</span> and <span
+                                    class="math-color">\( q_3 \)</span>. The machine reads a <span class="math-color">\(
+                                    b \)</span> from the tape.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -150,11 +166,15 @@
                             alt="Seventh slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text>After reading <span class="math-color">\(0\)</span>, <span
-                                    class="math-color">\(M_1\)</span> moves from state <span
-                                    class="math-color">\(q_2\)</span> to state <span class="math-color">\(q_3\)</span>,
-                                since this is the transition from the current state that has <span
-                                    class="math-color">\(0\)</span> as its label.</text>
+                            <text>
+                                Out of the current set of states, there is a transition from <span class="math-color">\(
+                                    q_1 \)</span> to <span class="math-color">\( q_2 \)</span> labeled with a
+                                <span class="math-color">\( b \)</span>,
+                                and
+                                a transition from <span class="math-color">\(
+                                    q_3 \)</span> back to <span class="math-color">\( q_3 \)</span> labeled with a
+                                <span class="math-color">\( b \)</span>. The set of current states is updated.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -162,9 +182,16 @@
                             alt="Eighth slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text><span class="math-color">\(M_1\)</span> is now in state <span
-                                    class="math-color">\(q_3\)</span>. The machine reads a <span
-                                    class="math-color">\(1\)</span> character from the tape.</text>
+                            <text>
+                                The set of current states is <span class="math-color">\( q_2 \)</span>
+                                and <span class="math-color">\( q_3 \)</span>.
+                                We add the states that are reachable from these states
+                                through
+                                <span class="math-color">\( \varepsilon \)</span>-transitions to the set
+                                of current states. There are no <span class="math-color">\( \varepsilon
+                                    \)</span>-transitions from states <span class="math-color">\( q_2 \)</span> or <span
+                                    class="math-color">\( q_3 \)</span>, so no states are added.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -172,118 +199,142 @@
                             alt="Ninth slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text>After reading <span class="math-color">\(1\)</span>, <span
-                                    class="math-color">\(M_1\)</span> moves from state <span
-                                    class="math-color">\(q_3\)</span> to state <span class="math-color">\(q_2\)</span>,
-                                since this is the transition from the current state that has <span
-                                    class="math-color">\(1\)</span> as its label.</text>
+                            <text>
+                                Now, the set of current states is <span class="math-color">\( q_2 \)</span> and <span
+                                    class="math-color">\( q_3 \)</span>. The machine reads an <span
+                                    class="math-color">\(
+                                    a \)</span> from the tape.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{ url_for('static', filename='/assets/figure1-8/figure1-8-10.svg') }}"
-                            alt="Third slide">
+                            alt="Tenth slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text><span class="math-color">\(M_1\)</span> is now in state <span
-                                    class="math-color">\(q_2\)</span>. There are no more characters to read from the
-                                tape. Since <span class="math-color">\(q_2\)</span> is an accept state, <span
-                                    class="math-color">\(M_1\)</span> ACCEPTS.</text>
+                            <text>Out of the current set of states, there is a transition from <span
+                                    class="math-color">\(
+                                    q_2 \)</span> to <span class="math-color">\( q_1 \)</span> labeled with an
+                                <span class="math-color">\( a \)</span>. There is no transition from <span
+                                    class="math-color">\( q_3 \)</span> with the label <span class="math-color">\( a
+                                    \)</span>, so this execution path 'dies'. The set of current states is
+                                updated.</text>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{ url_for('static', filename='/assets/figure1-8/figure1-8-11.svg') }}"
-                            alt="Ninth slide">
+                            alt="11th slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text>After reading <span class="math-color">\(1\)</span>, <span
-                                    class="math-color">\(M_1\)</span> moves from state <span
-                                    class="math-color">\(q_3\)</span> to state <span class="math-color">\(q_2\)</span>,
-                                since this is the transition from the current state that has <span
-                                    class="math-color">\(1\)</span> as its label.</text>
+                            <text>
+                                The set of current states is <span class="math-color">\( q_1 \)</span>.
+                                We add the states that are reachable from <span class="math-color">\( q_1 \)</span>
+                                through
+                                <span class="math-color">\( \varepsilon \)</span>-transitions to the set
+                                of current states. There is an <span class="math-color">\( \varepsilon
+                                    \)</span>-transition from state <span class="math-color">\( q_1 \)</span> to <span
+                                    class="math-color">\( q_3 \)</span>, so we add state <span class="math-color">\( q_3
+                                    \)</span> to the set of current states.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{ url_for('static', filename='/assets/figure1-8/figure1-8-12.svg') }}"
-                            alt="Ninth slide">
+                            alt="12th slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text>After reading <span class="math-color">\(1\)</span>, <span
-                                    class="math-color">\(M_1\)</span> moves from state <span
-                                    class="math-color">\(q_3\)</span> to state <span class="math-color">\(q_2\)</span>,
-                                since this is the transition from the current state that has <span
-                                    class="math-color">\(1\)</span> as its label.</text>
+                            <text>
+                                Now, the set of current states is <span class="math-color">\( q_1 \)</span> and <span
+                                    class="math-color">\( q_3 \)</span>. The machine reads a <span class="math-color">\(
+                                    b \)</span> from the tape.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{ url_for('static', filename='/assets/figure1-8/figure1-8-13.svg') }}"
-                            alt="Ninth slide">
+                            alt="13th slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text>After reading <span class="math-color">\(1\)</span>, <span
-                                    class="math-color">\(M_1\)</span> moves from state <span
-                                    class="math-color">\(q_3\)</span> to state <span class="math-color">\(q_2\)</span>,
-                                since this is the transition from the current state that has <span
-                                    class="math-color">\(1\)</span> as its label.</text>
+                            <text>
+                                Out of the current set of states, there is a transition from <span class="math-color">\(
+                                    q_1 \)</span> to <span class="math-color">\( q_2 \)</span> labeled with a
+                                <span class="math-color">\( b \)</span>,
+                                and
+                                a transition from <span class="math-color">\(
+                                    q_3 \)</span> back to <span class="math-color">\( q_3 \)</span> labeled with a
+                                <span class="math-color">\( b \)</span>. The set of current states is updated.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{ url_for('static', filename='/assets/figure1-8/figure1-8-14.svg') }}"
-                            alt="Ninth slide">
+                            alt="14th slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text>After reading <span class="math-color">\(1\)</span>, <span
-                                    class="math-color">\(M_1\)</span> moves from state <span
-                                    class="math-color">\(q_3\)</span> to state <span class="math-color">\(q_2\)</span>,
-                                since this is the transition from the current state that has <span
-                                    class="math-color">\(1\)</span> as its label.</text>
+                            <text>
+                                The set of current states is <span class="math-color">\( q_2 \)</span>
+                                and <span class="math-color">\( q_3 \)</span>.
+                                We add the states that are reachable from these states
+                                through
+                                <span class="math-color">\( \varepsilon \)</span>-transitions to the set
+                                of current states. There are no <span class="math-color">\( \varepsilon
+                                    \)</span>-transitions from states <span class="math-color">\( q_2 \)</span> or <span
+                                    class="math-color">\( q_3 \)</span>, so no states are added.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{ url_for('static', filename='/assets/figure1-8/figure1-8-15.svg') }}"
-                            alt="Ninth slide">
+                            alt="15th slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text>After reading <span class="math-color">\(1\)</span>, <span
-                                    class="math-color">\(M_1\)</span> moves from state <span
-                                    class="math-color">\(q_3\)</span> to state <span class="math-color">\(q_2\)</span>,
-                                since this is the transition from the current state that has <span
-                                    class="math-color">\(1\)</span> as its label.</text>
+                            <text>
+                                Now, the set of current states is <span class="math-color">\( q_2 \)</span> and <span
+                                    class="math-color">\( q_3 \)</span>. The machine reads a <span class="math-color">\(
+                                    b \)</span> from the tape.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{ url_for('static', filename='/assets/figure1-8/figure1-8-16.svg') }}"
-                            alt="Ninth slide">
+                            alt="16th slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text>After reading <span class="math-color">\(1\)</span>, <span
-                                    class="math-color">\(M_1\)</span> moves from state <span
-                                    class="math-color">\(q_3\)</span> to state <span class="math-color">\(q_2\)</span>,
-                                since this is the transition from the current state that has <span
-                                    class="math-color">\(1\)</span> as its label.</text>
+                            <text>
+                                Out of the current set of states, there is a transition from <span class="math-color">\(
+                                    q_3 \)</span> back to <span class="math-color">\( q_3 \)</span> labeled with a
+                                <span class="math-color">\( b \)</span>. There is no transition from <span
+                                    class="math-color">\( q_2 \)</span> with the label <span class="math-color">\( b
+                                    \)</span>, so this execution path 'dies'. The set of current states is
+                                updated.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{ url_for('static', filename='/assets/figure1-8/figure1-8-17.svg') }}"
-                            alt="Ninth slide">
+                            alt="17th slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text>After reading <span class="math-color">\(1\)</span>, <span
-                                    class="math-color">\(M_1\)</span> moves from state <span
-                                    class="math-color">\(q_3\)</span> to state <span class="math-color">\(q_2\)</span>,
-                                since this is the transition from the current state that has <span
-                                    class="math-color">\(1\)</span> as its label.</text>
+                            <text>
+                                The set of current states <span class="math-color">\( q_3 \)</span>.
+                                We add the states that are reachable from this state
+                                through
+                                <span class="math-color">\( \varepsilon \)</span>-transitions to the set
+                                of current states. There are no <span class="math-color">\( \varepsilon
+                                    \)</span>-transitions from state <span class="math-color">\( q_3 \)</span>, so no
+                                states are added.
+                            </text>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{ url_for('static', filename='/assets/figure1-8/figure1-8-18.svg') }}"
-                            alt="Ninth slide">
+                            alt="18th slide">
                         <br><br>
                         <div style='width: 500px; margin:0 auto;'>
-                            <text>After reading <span class="math-color">\(1\)</span>, <span
-                                    class="math-color">\(M_1\)</span> moves from state <span
-                                    class="math-color">\(q_3\)</span> to state <span class="math-color">\(q_2\)</span>,
-                                since this is the transition from the current state that has <span
-                                    class="math-color">\(1\)</span> as its label.</text>
+                            <text>There is no more input left to read. Since the machine ends in
+                                <span class="math-color">\( q_3 \)</span>, and it is an accept state,
+                                <span class="math-color">\( N_1 \)</span> ACCEPTS.
+                            </text>
                         </div>
                     </div>
                 </div>
