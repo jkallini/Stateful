@@ -1,9 +1,9 @@
 <svg width="430" height="240" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	<ellipse stroke="black" stroke-width="2" fill='#72e982' cx="86.5" cy="114.5" rx="30" ry="30"/>
 	<text x="75.5" y="120.5" font-family="Avenir Next" font-size="20">q&#8321;</text>
-	<ellipse stroke="black" stroke-width="2" fill='#72e982' cx="239.5" cy="114.5" rx="30" ry="30"/>
+	<ellipse stroke="black" stroke-width="2" fill='#FF8484' cx="239.5" cy="114.5" rx="30" ry="30"/>
 	<text x="228.5" y="120.5" font-family="Avenir Next" font-size="20">q&#8322;</text>
-	<ellipse stroke="black" stroke-width="2" fill='#72e982' cx="391.5" cy="114.5" rx="30" ry="30"/>
+	<ellipse stroke="black" stroke-width="2" fill='#FF8484' cx="391.5" cy="114.5" rx="30" ry="30"/>
 	<text x="380.5" y="120.5" font-family="Avenir Next" font-size="20">q&#8323;</text>
 	<ellipse stroke="black" stroke-width="2" fill="none" cx="391.5" cy="114.5" rx="24" ry="24"/>
 	<polygon stroke="black" stroke-width="2" points="18.5,68.5 61.651,97.691"/>
