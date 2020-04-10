@@ -10,6 +10,7 @@
     --main-dark-blue: #056fa0;
     --main-aqua: #26C5C1;
     --main-green: #5dc981;
+    --main-dark-green: #13943e;
     --main-light-green: #72e982;
     --main-lime: #d2ff20;
     --blue: var(--main-blue);
@@ -174,13 +175,13 @@ sup {
 }
 
 a {
-    color: var(--main-blue);
+    color: var(--main-green);
     text-decoration: none;
     background-color: transparent
 }
 
 a:hover {
-    color: #0056b3;
+    color: var(--main-dark-green);
     text-decoration: underline
 }
 

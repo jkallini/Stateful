@@ -14,6 +14,12 @@ import json
 app = Flask(__name__)
 
 
+# error handling page
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
 def index():
