@@ -8,8 +8,21 @@
 
         <h1 style="color: var(--main-blue); text-align: center">Lesson 1: Introduction to Finite Automata</h1>
         <br>
-        <h2 style='color: var(--main-green); padding-bottom: 10px'>1.2<span class="tab-1"></span>
-            Deterministic Finite Automata</h2>
+        <div class='row'>
+            <div class='col'>
+                <h2 style='color: var(--main-green); padding-bottom: 10px'>1.2<span class="tab-1"></span>
+                    Deterministic Finite Automata
+                </h2>
+            </div>
+            <div class='col-sm-auto'>
+                <a style='width: 90px' type='button' type="button" href="/lesson/1.1" class="btn btn-secondary">
+                    <i class="fas fa-arrow-circle-left"></i> Prev
+                </a>
+                <a style='width: 90px' type='button' type="button" href="/lesson/1.3" class="btn btn-secondary">Next
+                    <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
         <p>
             In the last section, we gained a general intuition about a simple computational model known as a finite
             automaton. In this lesson, we will explore a specific category of finite state machine, known as the
@@ -183,47 +196,47 @@
         <br><br>
         <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h4>
             <p style='text-align: center;'>The questions below have refer to the DFA <span
-                class="math-color">\(M_1\)</span>.</p>
+                    class="math-color">\(M_1\)</span>.</p>
             <div id="quiz"></div>
             <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
             <br>
             <div class='br-lg'></div>
             <div id="results"></div>
 
-            
-    <script type='text/javascript'>
-        const myQuestions = [{
-            question: "Which of the following strings does \\(M_1\\) not accept?",
-            answers: {
-                a: "\\(01010101\\)",
-                b: "\\(0100\\)",
-                c: "\\(101000\\)",
-                d: "\\(100011\\)"
-            },
-            correctAnswer: "c"
-        },
-        {
-            question: "In what state is \\(M_1\\) when it finishes reading the string \\(11010011\\)?",
-            answers: {
-                a: "\\(q_1\\)",
-                b: "\\(q_2\\)",
-                c: "\\(q_3\\)"
-            },
-            correctAnswer: "b"
-        },
-        {
-            question: "Which of these descriptions best describes the language of \\(M_1\\)?",
-            answers: {
-                a: "All binary strings with at least one \\(1\\)",
-                b: "All binary strings with an even number of \\(0\\)'s",
-                c: "All binary strings with at least one \\(1\\) and an even number of \\(0\\)'s",
-                d: "All binary strings with at least one \\(1\\) and an even number of \\(0\\)'s after the last \\(1\\)"
-            },
-            correctAnswer: "d"
-        }
-    ];
-    </script>
-    <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script>
+
+            <script type='text/javascript'>
+                const myQuestions = [{
+                        question: "Which of the following strings does \\(M_1\\) not accept?",
+                        answers: {
+                            a: "\\(01010101\\)",
+                            b: "\\(0100\\)",
+                            c: "\\(101000\\)",
+                            d: "\\(100011\\)"
+                        },
+                        correctAnswer: "c"
+                    },
+                    {
+                        question: "In what state is \\(M_1\\) when it finishes reading the string \\(11010011\\)?",
+                        answers: {
+                            a: "\\(q_1\\)",
+                            b: "\\(q_2\\)",
+                            c: "\\(q_3\\)"
+                        },
+                        correctAnswer: "b"
+                    },
+                    {
+                        question: "Which of these descriptions best describes the language of \\(M_1\\)?",
+                        answers: {
+                            a: "All binary strings with at least one \\(1\\)",
+                            b: "All binary strings with an even number of \\(0\\)'s",
+                            c: "All binary strings with at least one \\(1\\) and an even number of \\(0\\)'s",
+                            d: "All binary strings with at least one \\(1\\) and an even number of \\(0\\)'s after the last \\(1\\)"
+                        },
+                        correctAnswer: "d"
+                    }
+                ];
+            </script>
+            <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script>
 
     </div>
     {% endblock %}
