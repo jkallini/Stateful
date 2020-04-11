@@ -1,0 +1,173 @@
+{% extends 'base.html' %} {% block head %}
+<title>Stateful | Lesson 2.1</title>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border-collapse: collapse;
+        padding: 5px;
+        padding-left: 10px;
+        white-space: nowrap;
+    }
+</style>
+{% endblock %} {% block body %}
+<!-- Page Content -->
+<div id="content">
+
+    <div class='container' style='max-width: 800px;'>
+
+        <h1 style="color: var(--main-blue); text-align: center">Lesson 2: Notation and Formal Definitions</h1>
+        <br>
+        <h2 style='color: var(--main-green); padding-bottom: 10px'>2.1<span class="tab-1"></span>
+            Formal Definition of a DFA</h2>
+        <p>
+            In the last lesson, we informally introduced the concepts of DFAs and NFAs, and we used state diagrams to
+            represent them. While informal definitions are great for gaining an intuition about how finite state
+            machines work, formal definitions are used most often in both computer science theory and applications.
+            There are several reasons why having a formal definition is important, but here are a few of them:
+        </p>
+        <ol>
+            <li>A formal definition is precise. If you were unsure about what is allowed or not allowed in a
+                DFA/NFA, the formal definition will provide all of the information you need.</li>
+            <li>A formal definition provides clear notation. You can easily express the machine you are trying to
+                build if you use good notation.</li>
+        </ol>
+        <p>
+            What would you consider to be the defining features of a DFA? In this section, we will be formally defining
+            DFAs and each of their features.
+        </p>
+        <h3 style='color:var(--main-green); padding-top:18px'>States</h3>
+        <p>
+            Let’s start with the DFA’s states. We formally define the set of states of a DFA using the symbol <span
+                class="math-color">\( Q \)</span>. Generally in mathematics, a <span class='
+                term'>set</span> is a collection of distinct objects, which we call the <span class='
+                term'>elements</span> or <span class='term'>members</span> of the set. The elements of the set <span
+                class="math-color">\( Q \)</span> are the states of a given DFA. As an example, recall the DFA <span
+                class="math-color">\( M_1 \)</span> that we studied in the last lesson.
+        </p>
+        <div style='text-align:center'>
+            <div style='width: 500px; margin:0 auto;'>
+                <text style='color: var(--main-aqua)'>Figure 1.5:</text>
+                <text>The deterministic finite automaton <span class="math-color">\( M_1 \)</span>.</text>
+                <br>
+            </div>
+            <img src="{{ url_for('static', filename='assets/figure1-5.svg') }}" alt="Figure 1.5">
+        </div>
+        <p>
+            Normally, sets are described formally by listing their elements in braces. So, we can write <span
+                class="math-color">$$ Q_1 = \{ q_1, q_2, q_3\} $$</span> to denote the set <span class="math-color">\(
+                Q_1 \)</span> containing the states of the DFA <span class="math-color">\( M_1 \)</span>.
+        </p>
+
+        <h3 style='color:var(--main-green); padding-top:18px'>Alphabet</h3>
+        <p>
+            Another inherent feature of DFAs is the set of input symbols they take in. For instance, you probably
+            noticed that <span class="math-color">\( M_1 \)</span> only has <span class="math-color">\( 1
+                \)</span>’s and <span class="math-color">\( 0 \)</span>’s as labels on transitions. You couldn’t
+            give it a string containing <span class="math-color">\( 2 \)</span>’s or <span class="math-color">\( 3
+                \)</span>’s, or English letters. That would be like giving a decimal integer or a string to a Java
+            program that takes a binary integer as a command-line argument. The part of the DFA that enforces this
+            restriction is its <span class='term'>alphabet</span>. The alphabet of <span class="math-color">\( M_1
+                \)</span> only allows <span class="math-color">\( 1 \)</span>’s and <span class="math-color">\( 0
+                \)</span>’s as input symbols. We denote the alphabet of a DFA by the set <span class="math-color">\(
+                \Sigma \)</span>, whose elements are the valid input symbols of the DFA. The alphabet of <span
+                class="math-color">\( M_1 \)</span> is <span class="math-color">\( \Sigma_1 = \{ 0, 1 \} \)</span>.
+        </p>
+        <h3 style='color:var(--main-green); padding-top:18px'>Transition Function</h3>
+        <p>
+            The <span class=“term”>transition function</span> of a DFA, often denoted by the symbol <span
+                class="math-color">\( \delta \)</span>, specifies exactly how the DFA moves from state to state. When we
+            first looked at DFAs, there were two things we considered when determining how the machine would transition
+            between states. First, we had to know the current state of the DFA. Let’s say this state is state <span
+                class="math-color">\( x \)</span>. Second, we had to know the input symbol being read. Let’s say that
+            symbol is <span class="math-color">\( 1 \)</span>. If the DFA’s state diagram had an arrow pointing from
+            state <span class="math-color">\( x \)</span> to state <span class="math-color">\( y \)</span> labeled with
+            a <span class="math-color">\( 1 \)</span>, we knew that the next state to go to was <span
+                class="math-color">\( y \)</span>. We can think of the way a DFA transitions between states as a
+            function whose first parameter is a state, or an element of <span class="math-color">\( Q \)</span>, and
+            whose second parameter is an input symbol, or an element of <span class="math-color">\( \Sigma \)</span>.
+            The output of the function is another state, or another element of <span class="math-color">\( Q \)</span>.
+            We denote this using the following function notation:
+
+            <span class="math-color">$$ \delta : Q \times \Sigma \rightarrow Q $$</span>
+
+            This notation says that <span class="math-color">\( \delta \)</span> is a function whose domain is <span
+                class="math-color">\( Q \times \Sigma \)</span>, and whose range is <span class="math-color">\( Q
+                \)</span>. Generally, <span class="math-color">\( A \times B \)</span> is known as the <span
+                class="term">Cartesian product</span> of the sets <span class="math-color">\( A \)</span>
+            and <span class="math-color">\( B \)</span>, or the set of all ordered pairs where the first element is a
+            member of <span class="math-color">\( A \)</span>
+            and the second element is a member of <span class="math-color">\( B \)</span>. In the example above, since
+            <span class="math-color">\( x \)</span> transitions to state <span class="math-color">\( y \)</span> on
+            input <span class="math-color">\( 1 \)</span>, we write <span class="math-color">\( \delta(x, 1) = y
+                \)</span>. Let’s construct the transition function for <span class="math-color">\( M_1 \)</span>, which
+            we will call <span class="math-color">\( \delta_1 \)</span>.
+        </p>
+        <p>
+            Below is the Cartesian product of <span class="math-color">\( Q_1 \)</span> and <span class="math-color">\(
+                \Sigma_1 \)</span>.
+            <span class="math-color">$$ Q_1 \times \Sigma_1 = \{(q_1, 0), (q_1, 1), (q_2, 0), (q_2, 1), (q_3, 0), (q_3,
+                1)\} $$</span>
+        </p>
+        <p>
+            The elements of the Cartesian product above specify the possible inputs to the transition function. We write
+            out the function as follows:
+
+            <span class="math-color">
+                $$\delta_1(q_1, 0) = q_1$$
+                $$\delta_1(q_1, 1) = q_2$$
+                $$\delta_1(q_2, 0) = q_3$$
+                $$\delta_1(q_2, 1) = q_2$$
+                $$\delta_1(q_3, 0) = q_2$$
+                $$\delta_1(q_3, 1) = q_2$$
+            </span>
+
+            Functions that take ordered pairs as input are often expressed using two-dimensional tables. For the
+            transition function of a DFA, each row corresponds to a state, and each column corresponds to an input
+            symbol. Below is <span class="math-color">\( \delta_1 \)</span> expressed as a table:
+            <table style="text-align:center; margin-left:auto; margin-right:auto; ">
+                <tr style="border-bottom: 1px solid black;">
+                    <td><span class="math-color">\( \delta_1 \)</span></td>
+                    <td style="border-left: 1px solid black;"><span class="math-color">\( 0 \)</span></td>
+                    <td><span class="math-color">\( 1 \)</span></td>
+                </tr>
+                <tr>
+                    <td><span class="math-color">\( q_1 \)</span></td>
+                    <td style="border-left: 1px solid black;"><span class="math-color">\( q_1 \)</span></td>
+                    <td><span class="math-color">\( q_2 \)</span></td>
+                </tr>
+                <tr>
+                    <td><span class="math-color">\( q_2 \)</span></td>
+                    <td style="border-left: 1px solid black;"><span class="math-color">\( q_3 \)</span></td>
+                    <td><span class="math-color">\( q_2 \)</span></td>
+                </tr>
+                <tr>
+                    <td><span class="math-color">\( q_3 \)</span></td>
+                    <td style="border-left: 1px solid black;"><span class="math-color">\( q_2 \)</span></td>
+                    <td><span class="math-color">\( q_2 \)</span></td>
+                </tr>
+            </table>
+        </p>
+        <br>
+        <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h4>
+            <div id=" quiz">
+            </div>
+            <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
+            <br>
+            <div class='br-lg'></div>
+            <div id="results"></div>
+
+    </div>
+    <!-- 
+    <script type=' text/javascript'> const myQuestions=[{
+                    question: "After being pressed 5 times, in what state is the FSM for the light switch?" , answers: {
+                    a: "safdfdasfsfa" , b: "asfsfsaf" }, correctAnswer: "a" }, {
+                    question: "Say that the FSM for the automatic door receives the following sequence of inputs: FRONT, BACK, NEITHER, FRONT, BOTH, NEITHER, REAR, and NEITHER. What state does the machine end up in?"
+                    , answers: { a: "CLOdfddfD" , b: "OPEddddN" , }, correctAnswer: "b" } ]; </script> <script
+                    src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script> -->
+
+</div>
+{% endblock %}

@@ -32,19 +32,21 @@ def practice():
     return render_template('practice.html')
 
 
-@app.route('/lesson/<float:lessonid>')
+@app.route('/lesson/<string:lessonid>')
 def lesson(lessonid):
-    try:
-        if lessonid == 1.1:
-            html = render_template('lessons/lesson1-1.html')
-        elif lessonid == 1.2:
-            html = render_template('lessons/lesson1-2.html')
-        elif lessonid == 1.3:
-            html = render_template('lessons/lesson1-3.html')
-        else:
-            html = render_template('index.html')
-    except:
-        # TODO: do real error handling here
+    if lessonid == '1.1':
+        html = render_template('lessons/lesson1-1.html')
+    elif lessonid == '1.2':
+        html = render_template('lessons/lesson1-2.html')
+    elif lessonid == '1.3':
+        html = render_template('lessons/lesson1-3.html')
+    elif lessonid == '1.4':
+        html = render_template('lessons/lesson1-4.html')
+    elif lessonid == '2.1':
+        html = render_template('lessons/lesson2-1.html')
+    elif lessonid == '2.2':
+        html = render_template('lessons/lesson2-2.html')
+    else:
         html = render_template('index.html')
 
     return make_response(html)
