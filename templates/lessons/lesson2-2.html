@@ -115,15 +115,24 @@
         <p>
             The elements of the Cartesian product above specify the possible inputs to the transition function. We write
             out the function as follows:
-
-            <span class="math-color">
-                $$\delta_1(q_1, 0) = q_1$$
-                $$\delta_1(q_1, 1) = q_2$$
-                $$\delta_1(q_2, 0) = q_3$$
-                $$\delta_1(q_2, 1) = q_2$$
-                $$\delta_1(q_3, 0) = q_2$$
-                $$\delta_1(q_3, 1) = q_2$$
-            </span>
+            <table style="text-align:center; margin-left:auto; margin-right:auto;">
+                <tr>
+                    <td>
+                        <span class="math-color">
+                            $$\delta_1(q_1, 0) = q_1$$
+                            $$\delta_1(q_1, 1) = q_2$$
+                            $$\delta_1(q_2, 0) = q_3$$
+                        </span>
+                    </td>
+                    <td>
+                        <span class="math-color">
+                            $$\delta_1(q_2, 1) = q_2$$
+                            $$\delta_1(q_3, 0) = q_2$$
+                            $$\delta_1(q_3, 1) = q_2$$
+                        </span>
+                    </td>
+                </tr>
+            </table>
 
             Functions that take ordered pairs as input are often expressed using two-dimensional tables. For the
             transition function of a DFA, each row corresponds to a state, and each column corresponds to an input
@@ -150,6 +159,54 @@
                     <td><span class="math-color">\( q_2 \)</span></td>
                 </tr>
             </table>
+        </p>
+        <p>
+            The transition function describes a very important property of DFAs: a DFA must have exactly one transition
+            exiting every state for each possible input symbol, since there is exactly one next state for each possible
+            combination of a state and an input symbol.
+        </p>
+        <h3 style='color:var(--main-green); padding-top:18px'>Start State and Accept States</h3>
+        <p>
+            The <span class='term’>start state</span> of a DFA is a member of its set of states. The symbol ' <span
+                class="math-color">\( \in \)</span>’ denotes membership within a set. So for the DFA <span
+                class="math-color">\( M_1 \)</span>, <span class="math-color">\( q_1 \in Q_1 \)</span> is its start
+            state.
+        </p>
+        <p>
+            Finally, a DFA has a set of <span class=“term">accept states</span>, or final states, which we denote with
+            the symbol <span class="math-color">\( F \)</span>. The set of accept states of a DFA is a <span
+                class="term">subset</span> of its set of states, written as <span class="math-color">\( F \subseteq Q
+                \)</span>. In other words, all of the elements of the set of final states must also be elements of the
+            set of states. Note that <span class="math-color">\( F \)</span> does not need to be a <em>proper</em>
+            subset of <span class="math-color">\( Q \)</span>, since <span class="math-color">\( F \)</span> may be
+            equal to <span class="math-color">\( Q \)</span>.
+        </p>
+        <p>
+            The <span class='term'>empty set</span>, the set with no elements represented by the symbol <span
+                class="math-color">\( \emptyset \)</span>, is a subset of every set. From the formal definition of the
+            set of accept states, <span class="math-color">\( F \)</span> is allowed to be the empty set. So, it is
+            perfectly valid for a DFA to have no accept states.
+        </p>
+        <h3 style='color:var(--main-green); padding-top:18px'>Putting the Pieces Together</h3>
+        <p>
+            We have learned about the five parts that make up a DFA: a set of states, an input alphabet, a transition
+            function specifying the rules for moving, a start state, and accept states. In mathematical language, a list
+            of five elements is often called a 5-tuple. We define a finite automaton to be a 5-tuple consisting of these
+            five parts.
+        </p>
+        <p style='font-size: 20px'>
+            Formally, a deterministic finite automaton is a 5-tuple <span class="math-color">\( (Q, Σ, \delta, q_0, F )
+                \)</span>,
+            where
+
+            <ol style='font-size: 20px'>
+                <li> <span class="math-color">\( Q \)</span> is a finite set called the states, </li>
+                <li> <span class="math-color">\( \Sigma \)</span> is a finite set called the alphabet, </li>
+                <li> <span class="math-color">\( \delta : Q \times \Sigma \rightarrow Q \)</span> is the transition
+                    function, </li>
+                <li> <span class="math-color">\( q_0 \in Q \)</span> is the start state, and </li>
+                <li> <span class="math-color">\( F \subseteq Q \)</span> is the set of accept states. </li>
+            </ol>
         </p>
         <br>
         <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h4>
