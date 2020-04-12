@@ -67,7 +67,13 @@
         });
 
         // show number of correct answers out of total
-        resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+        results = `${numCorrect} out of ${myQuestions.length}`;
+        if (numCorrect === myQuestions.length) {
+            results = '<span class="badge badge-pill badge-success">' + results + '</span>' + ' Great Job!';
+        } else {
+            results = '<span class="badge badge-pill badge-danger">' + results + '</span>';
+        }
+        resultsContainer.innerHTML = '<h5 style="margin-top:5px">' + results + '</h5>';
     }
 
     const quizContainer = document.getElementById('quiz');

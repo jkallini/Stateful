@@ -58,8 +58,8 @@
         </div>
         <p>
             Normally, sets are described formally by listing their elements in braces. So, we can write <span
-                class="math-color">$$ Q_1 = \{ q_1, q_2, q_3\} $$</span> to denote the set <span class="math-color">\(
-                Q_1 \)</span> containing the states of the DFA <span class="math-color">\( M_1 \)</span>.
+                class="math-color">$$ Q = \{ q_1, q_2, q_3\} $$</span> to denote the set <span class="math-color">\(
+                Q \)</span> containing the states of the DFA <span class="math-color">\( M_1 \)</span>.
         </p>
 
         <h3 style='color:var(--main-green); padding-top:18px'>Alphabet</h3>
@@ -74,7 +74,7 @@
                 \)</span> only allows <span class="math-color">\( 1 \)</span>’s and <span class="math-color">\( 0
                 \)</span>’s as input symbols. We denote the alphabet of a DFA by the set <span class="math-color">\(
                 \Sigma \)</span>, whose elements are the valid input symbols of the DFA. The alphabet of <span
-                class="math-color">\( M_1 \)</span> is <span class="math-color">\( \Sigma_1 = \{ 0, 1 \} \)</span>.
+                class="math-color">\( M_1 \)</span> is <span class="math-color">\( \Sigma = \{ 0, 1 \} \)</span>.
         </p>
         <h3 style='color:var(--main-green); padding-top:18px'>Transition Function</h3>
         <p>
@@ -104,31 +104,31 @@
             <span class="math-color">\( x \)</span> transitions to state <span class="math-color">\( y \)</span> on
             input <span class="math-color">\( 1 \)</span>, we write <span class="math-color">\( \delta(x, 1) = y
                 \)</span>. Let’s construct the transition function for <span class="math-color">\( M_1 \)</span>, which
-            we will call <span class="math-color">\( \delta_1 \)</span>.
+            we will call <span class="math-color">\( \delta \)</span>.
         </p>
         <p>
-            Below is the Cartesian product of <span class="math-color">\( Q_1 \)</span> and <span class="math-color">\(
-                \Sigma_1 \)</span>.
-            <span class="math-color">$$ Q_1 \times \Sigma_1 = \{(q_1, 0), (q_1, 1), (q_2, 0), (q_2, 1), (q_3, 0), (q_3,
+            Below is the Cartesian product of <span class="math-color">\( Q \)</span> and <span class="math-color">\(
+                \Sigma \)</span>.
+            <span class="math-color">$$ Q \times \Sigma = \{(q_1, 0), (q_1, 1), (q_2, 0), (q_2, 1), (q_3, 0), (q_3,
                 1)\} $$</span>
         </p>
         <p>
             The elements of the Cartesian product above specify the possible inputs to the transition function. We write
             out the function as follows:
-            <table style="text-align:center; margin-left:auto; margin-right:auto;">
+            <table style="text-align:center; margin-left:auto; margin-right:auto; font-size: 18px">
                 <tr>
                     <td>
                         <span class="math-color">
-                            $$\delta_1(q_1, 0) = q_1$$
-                            $$\delta_1(q_1, 1) = q_2$$
-                            $$\delta_1(q_2, 0) = q_3$$
+                            $$\delta(q_1, 0) = q_1$$
+                            $$\delta(q_1, 1) = q_2$$
+                            $$\delta(q_2, 0) = q_3$$
                         </span>
                     </td>
                     <td>
                         <span class="math-color">
-                            $$\delta_1(q_2, 1) = q_2$$
-                            $$\delta_1(q_3, 0) = q_2$$
-                            $$\delta_1(q_3, 1) = q_2$$
+                            $$\delta(q_2, 1) = q_2$$
+                            $$\delta(q_3, 0) = q_2$$
+                            $$\delta(q_3, 1) = q_2$$
                         </span>
                     </td>
                 </tr>
@@ -136,10 +136,10 @@
 
             Functions that take ordered pairs as input are often expressed using two-dimensional tables. For the
             transition function of a DFA, each row corresponds to a state, and each column corresponds to an input
-            symbol. Below is <span class="math-color">\( \delta_1 \)</span> expressed as a table:
-            <table style="text-align:center; margin-left:auto; margin-right:auto; ">
+            symbol. Below is <span class="math-color">\( \delta \)</span> expressed as a table:
+            <table style="text-align:center; margin-left:auto; margin-right:auto; font-size: 18px">
                 <tr style="border-bottom: 1px solid black;">
-                    <td><span class="math-color">\( \delta_1 \)</span></td>
+                    <td><span class="math-color">\( \delta \)</span></td>
                     <td style="border-left: 1px solid black;"><span class="math-color">\( 0 \)</span></td>
                     <td><span class="math-color">\( 1 \)</span></td>
                 </tr>
@@ -167,13 +167,13 @@
         </p>
         <h3 style='color:var(--main-green); padding-top:18px'>Start State and Accept States</h3>
         <p>
-            The <span class='term’>start state</span> of a DFA is a member of its set of states. The symbol ' <span
-                class="math-color">\( \in \)</span>’ denotes membership within a set. So for the DFA <span
-                class="math-color">\( M_1 \)</span>, <span class="math-color">\( q_1 \in Q_1 \)</span> is its start
+            The <span class='term'>start state</span> of a DFA is a member of its set of states. The symbol '<span
+                class="math-color">\( \in \)</span>' denotes membership within a set. So for the DFA <span
+                class="math-color">\( M_1 \)</span>, <span class="math-color">\( q_1 \in Q \)</span> is its start
             state.
         </p>
         <p>
-            Finally, a DFA has a set of <span class=“term">accept states</span>, or final states, which we denote with
+            Finally, a DFA has a set of <span class="term">accept states</span>, or final states, which we denote with
             the symbol <span class="math-color">\( F \)</span>. The set of accept states of a DFA is a <span
                 class="term">subset</span> of its set of states, written as <span class="math-color">\( F \subseteq Q
                 \)</span>. In other words, all of the elements of the set of final states must also be elements of the
@@ -185,20 +185,20 @@
             The <span class='term'>empty set</span>, the set with no elements represented by the symbol <span
                 class="math-color">\( \emptyset \)</span>, is a subset of every set. From the formal definition of the
             set of accept states, <span class="math-color">\( F \)</span> is allowed to be the empty set. So, it is
-            perfectly valid for a DFA to have no accept states.
+            perfectly valid for a DFA to have no accept states. For the DFA <span class="math-color">\( M_1, \)</span>
+            <span class="math-color">\( F = \{ q_2 \} \)</span>.
         </p>
         <h3 style='color:var(--main-green); padding-top:18px'>Putting the Pieces Together</h3>
         <p>
             We have learned about the five parts that make up a DFA: a set of states, an input alphabet, a transition
-            function specifying the rules for moving, a start state, and accept states. In mathematical language, a list
-            of five elements is often called a 5-tuple. We define a finite automaton to be a 5-tuple consisting of these
-            five parts.
+            function specifying the rules for moving, a start state, and accept states. In mathematical language, an
+            ordered list of five elements is often called a 5-tuple. We define a finite automaton to be a 5-tuple
+            consisting of these five parts.
         </p>
         <p style='font-size: 20px'>
             Formally, a deterministic finite automaton is a 5-tuple <span class="math-color">\( (Q, Σ, \delta, q_0, F )
                 \)</span>,
             where
-
             <ol style='font-size: 20px'>
                 <li> <span class="math-color">\( Q \)</span> is a finite set called the states, </li>
                 <li> <span class="math-color">\( \Sigma \)</span> is a finite set called the alphabet, </li>
@@ -208,23 +208,77 @@
                 <li> <span class="math-color">\( F \subseteq Q \)</span> is the set of accept states. </li>
             </ol>
         </p>
+        <p>
+            We can describe <span class="math-color">\( M_1 \)</span> formally by writing <span class="math-color">\(
+                M_1 = (Q, \Sigma, \delta, q_1, F) \)</span>, where
+            <ol style='font-size: 18px'>
+                <li> <span class="math-color">\( Q = \{ q_1, q_2, q_3 \} \)</span>, </li>
+                <li> <span class="math-color">\( \Sigma = \{ 0, 1 \} \)</span>, </li>
+                <li> <span class="math-color">\( \delta \)</span> is described as </li>
+                <table style="text-align:center; margin-left:auto; margin-right:auto; ">
+                    <tr style="border-bottom: 1px solid black;">
+                        <td><span class="math-color">\( \delta \)</span></td>
+                        <td style="border-left: 1px solid black;"><span class="math-color">\( 0 \)</span></td>
+                        <td><span class="math-color">\( 1 \)</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-color">\( q_1 \)</span></td>
+                        <td style="border-left: 1px solid black;"><span class="math-color">\( q_1 \)</span></td>
+                        <td><span class="math-color">\( q_2 \)</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-color">\( q_2 \)</span></td>
+                        <td style="border-left: 1px solid black;"><span class="math-color">\( q_3 \)</span></td>
+                        <td><span class="math-color">\( q_2 \)</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-color">\( q_3 \)</span></td>
+                        <td style="border-left: 1px solid black;"><span class="math-color">\( q_2 \)</span></td>
+                        <td><span class="math-color">\( q_2 \)</span></td>
+                    </tr>
+                </table>
+                <li> <span class="math-color">\( q_1 \)</span> is the start state, and </li>
+                <li> <span class="math-color">\( F = \{ q_2 \} \)</span>. </li>
+            </ol>
+        </p>
         <br>
         <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h4>
-            <div id=" quiz">
+            <div id="quiz"></div>
+            <div class='row'>
+                <div class='col'>
+                    <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
+                </div>
+                <div class='col-sm-auto'>
+                    <a style='width: 90px' type='button' type="button" href="/lesson/1.2" class="btn btn-secondary">Next
+                        <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
             </div>
-            <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
-            <br>
             <div class='br-lg'></div>
             <div id="results"></div>
 
     </div>
-    <!-- 
-    <script type=' text/javascript'> const myQuestions=[{
-                    question: "After being pressed 5 times, in what state is the FSM for the light switch?" , answers: {
-                    a: "safdfdasfsfa" , b: "asfsfsaf" }, correctAnswer: "a" }, {
-                    question: "Say that the FSM for the automatic door receives the following sequence of inputs: FRONT, BACK, NEITHER, FRONT, BOTH, NEITHER, REAR, and NEITHER. What state does the machine end up in?"
-                    , answers: { a: "CLOdfddfD" , b: "OPEddddN" , }, correctAnswer: "b" } ]; </script> <script
-                    src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script> -->
+
+    <script type='text/javascript'>
+        const myQuestions = [{
+                question: "After being pressed 5 times, in what state is the FSM for the light switch?",
+                answers: {
+                    a: "<img src='{{ url_for('static', filename='assets/figure1-5.svg') }}' alt='Figure 1.5'>",
+                    b: "ON"
+                },
+                correctAnswer: "b"
+            },
+            {
+                question: "Say that the FSM for the automatic door receives the following sequence of inputs: FRONT, BACK, NEITHER, FRONT, BOTH, NEITHER, REAR, and NEITHER. What state does the machine end up in?",
+                answers: {
+                    a: "CLOSED",
+                    b: "OPEN",
+                },
+                correctAnswer: "a"
+            }
+        ];
+    </script>
+    <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script>
 
 </div>
 {% endblock %}
