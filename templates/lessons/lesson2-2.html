@@ -1,0 +1,288 @@
+{% extends 'base.html' %} {% block head %}
+<title>Stateful | Lesson 2.2</title>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border-collapse: collapse;
+        padding: 5px;
+        padding-left: 10px;
+        white-space: nowrap;
+    }
+</style>
+{% endblock %} {% block body %}
+<!-- Page Content -->
+<div id="content">
+
+    <div class='container' style='max-width: 800px;'>
+
+        <h1 style="color: var(--main-blue); text-align: center">Lesson 2: Notation and Formal Definitions</h1>
+        <br>
+        <div class='row'>
+            <div class='col-sm-auto'>
+                <h2 style='color: var(--main-green); padding-bottom: 10px'>2.2</h2>
+            </div>
+            <div class='col'>
+                <h2 style='color: var(--main-green); padding-bottom: 10px'>
+                    Formal Definition of an NFA
+                </h2>
+            </div>
+            <div class='col-sm-auto'>
+                <a style='width: 90px' type='button' type="button" href="/lesson/2.1" class="btn btn-secondary">
+                    <i class="fas fa-arrow-circle-left"></i> Prev
+                </a>
+                <a style='width: 90px' type='button' type="button" href="/lesson/2.3"
+                    class="btn btn-secondary disabled">Next
+                    <i class="fas fa-arrow-circle-right"></i>
+                </a>
+                <br><br>
+            </div>
+        </div>
+        <p>
+            In the last section, we formally defined the concept of a DFA. We saw that DFAs are expressed using a
+            5-tuple: <span class="math-color">\( (Q, \Sigma, \delta, q_0, F ) \)</span>, where <span
+                class="math-color">\( Q
+                \)</span> is the set of states, <span class="math-color">\( \Sigma \)</span> is the alphabet, <span
+                class="math-color">\( \delta : Q \times \Sigma \rightarrow Q \)</span> is the transition function,
+            <span class="math-color">\( q_0 \in Q \)</span> is the start state, and <span class="math-color">\( F
+                \subseteq Q \)</span> is the set of accept states. In this section, we will formally define NFAs.
+            Providing a formal definition for an NFA will be much simpler, since we have already formally defined DFAs.
+            Throughout this lesson, we will be using the NFA <span class="math-color">\( N_1 \)</span> from the last
+            section as an example.
+        </p>
+        <div style='text-align:center'>
+            <div style='width: 500px; margin:0 auto;'>
+                <text style='color: var(--main-aqua)'>Figure 1.7:</text>
+                <text>The nondeterministic finite automaton <span class="math-color">\( N_1 \)</span>.</text>
+                <br>
+            </div>
+            <img src="{{ url_for('static', filename='assets/figure1-7.svg') }}" alt="Figure 1.7">
+        </div>
+        <h3 style='color:var(--main-green); padding-top:18px'>Similarities Between NFAs and DFAs</h3>
+        <p>
+            The formal definition of an NFA is similar to that of a DFA. Both have states, an input alphabet, a
+            transition function, a start state, and a set of accept states. In fact, the definitions of <span
+                class="math-color">\(Q\)</span>, <span class="math-color">\( \Sigma \)</span>, <span
+                class="math-color">\( q_0 \)</span>, and <span class="math-color">\( F \)</span> are defined for NFAs in
+            exactly the same way as they are defined for DFAs.
+        </p>
+        <p>
+            For <span class="math-color">\( N_1 \)</span>, the set of states is <span class="math-color">\( Q = \{ q_1,
+                q_2, q_3 \} \)</span>, the alphabet is <span class="math-color">\( \Sigma = \{ a, b \} \)</span>, the
+            start state is <span class="math-color">\( q_1 \)</span>, and the set of accept states is <span
+                class="math-color">\( F = \{ q_3 \} \)</span>. (Did you notice that <span class="math-color">\( N_1
+                \)</span> has a transition labeled with <span class="math-color">\( \varepsilon \)</span>, but we didn't
+            include it as a symbol of the alphabet? We will see that <span class="math-color">\( \varepsilon \)</span>
+            is a special symbol that is not a part of the alphabet, but the transition function.)
+        </p>
+        <p>
+            Also, we defined <span class="math-color">\( \Sigma \)</span> to be <span class="math-color">\( \{ a, b\}
+                \)</span>. But, the alphabet could have been defined as
+            <span class="math-color">\( \Sigma = \{ a, b, c\} \)</span>, and that would be equally valid. Recall that we
+            said that an NFA may have zero, one, or many transitions coming out of a state for a given input symbol. It
+            may be the case that <span class="math-color">\( c \)</span> is part of <span class="math-color">\( N_1
+                \)</span>’s alphabet, but the machine lacks transitions with the label <span class="math-color">\(
+                c\)</span>. It might be easier to think of yourself designing an NFA that recognizes some words over the
+            English alphabet. You would probably naturally define the alphabet to be <span class="math-color">\( \Sigma
+                = \{ a, b, \dots , z \} \)</span>. Coincidentally, none of the words you want to recognize contain an
+            <span class="math-color">\( x \)</span>. It would not be intuitive to remove <span class="math-color">\( x
+                \)</span> from the alphabet though, just in case you want to add a word later, and find that it contains
+            <span class="math-color">\( x \)</span>. (In machine translation, this is actually how dictionaries are
+            maintained. Millions of words can be processed to be recognized by a large NFA.)
+        </p>
+        <p>
+            The specification of the alphabet of an NFA is a good example of how the formal definition can provide more
+            information than the state diagram alone.
+        </p>
+        <h3 style='color:var(--main-green); padding-top:18px'>The Transition Function of NFAs</h3>
+        <p>
+            The one difference between NFAs and DFAs is the type of transition function. We saw that the transition
+            function of a DFA takes the current state and an input symbol as arguments, and produces the next state. The
+            transition function of an NFA, on the other hand, takes the current state and an input symbol or <em>the
+                empty string</em> <span class="math-color">\( \varepsilon \)</span> as arguments, and produces <em>the
+                set of possible next states</em>. In other words, the output of the transition function is a subset of
+            <span class="math-color">\( Q \)</span>.
+        </p>
+        <p>
+            The transition function for an NFA still takes just two arguments. The first argument is an element of <span
+                class="math-color">\( Q \)</span>, which is no different than the first argument for a DFA’s transition
+            function.
+            In order to express that the second argument may be an input symbol or <span class="math-color">\(
+                \varepsilon \)</span>, we express the second argument as <span class="math-color">\( \Sigma \cup \{
+                \varepsilon \} \)</span>. The symbol '<span class="math-color">\( \cup \)</span>' is the <span
+                class='term'>union</span> operator for sets. For example, if <span class="math-color">\( A = \{ 1, 2,
+                3\} \)</span> and <span class="math-color">\( B = \{ 3, 4 \} \)</span>, <span class="math-color">\( A
+                \cup B \)</span> is the set of elements that are in <span class="math-color">\( A \)</span>, <span
+                class="math-color">\( B \)</span>, or both <span class="math-color">\( A \)</span> and <span
+                class="math-color">\( B \)</span>. So <span class="math-color">\( A \cup B = \{ 1,2,3,4 \} \)</span>.
+            For any alphabet <span class="math-color">\( \Sigma \)</span>, we typically write <span
+                class="math-color">\( \Sigma_{\varepsilon} = \Sigma \cup \{ \varepsilon \} \)</span>.
+        </p>
+        <p>
+            We also need a way to express the output of the transition function. The range of possible outputs is all
+            the possible subsets of the states of the NFA. Mathematically, the <span class='term'>power set</span> of a
+            set <span class="math-color">\( S \)</span>, denoted by <span class="math-color">\( \mathcal{P}(S)
+                \)</span>, is the set of all subsets of <span class="math-color">\( S \)</span>. We had previously seen
+            sets whose elements are states, symbols, ordered pairs, or numbers, but the elements of a set can even be
+            other sets. Take as an example, the set <span class="math-color">\( S = \{ 1, 2, 3\} \)</span>. What is the
+            powerset of <span class="math-color">\( S \)</span>? Well, think of all the possible combinations of the
+            numbers within the set. We have a set with no numbers, a set only containing <span class="math-color">\( 1
+                \)</span>, a set containing <span class="math-color">\( 1 \)</span> and <span class="math-color">\( 2
+                \)</span> together, and so on. Thus, the powerset of <span class="math-color">\( S \)</span> is <span
+                class="math-color">$$ \mathcal{P}(S) = \{ \emptyset, \{ 1 \}, \{ 2 \}, \{ 3 \},
+                \{ 1, 2 \}, \{ 1, 3 \}, \{ 2, 3 \}, \{ 1, 2, 3 \}\} $$</span> Notice that the emptyset and <span
+                class="math-color">\( S \)</span> are within <span class="math-color">\(
+                \mathcal{P}(S) \)</span>. Sometimes, the power set of a set <span class="math-color">\( S \)</span> is
+            also represented as <span class="math-color">\( 2^S \)</span>.
+        </p>
+        <p>
+            For <span class="math-color">\( N_1 \)</span> the range of its transition function is
+            <span class="math-color">$$ \mathcal{P}(Q) = \{ \emptyset, \{ q_1 \}, \{ q_2 \}, \{ q_3 \}, \{ q_1, q_2 \},
+                \{ q_1, q_3 \}, \{ q_2, q_3 \}, \{ q_1, q_2, q_3 \}\} $$</span> Now we can write the formal description
+            of the type of transition function of an NFA as <span class="math-color">$$ \delta : Q \times
+                \Sigma_{\varepsilon} \rightarrow \mathcal{P}(Q) $$</span>
+        </p>
+        <p>
+            Below is <span class="math-color">\( \delta \)</span> for <span class="math-color">\( N_1 \)</span>
+            expressed as a table:
+            <table style="text-align:center; margin-left:auto; margin-right:auto; font-size: 18px">
+                <tr style="border-bottom: 1px solid black;">
+                    <td><span class="math-color">\( \delta \)</span></td>
+                    <td style="border-left: 1px solid black;"><span class="math-color">\( a \)</span></td>
+                    <td><span class="math-color">\( b \)</span></td>
+                    <td><span class="math-color">\( \varepsilon \)</span></td>
+                </tr>
+                <tr>
+                    <td><span class="math-color">\( q_1 \)</span></td>
+                    <td style="border-left: 1px solid black;"><span class="math-color">\( \{ q_1 \} \)</span></td>
+                    <td><span class="math-color">\( \{ q_2 \} \)</span></td>
+                    <td><span class="math-color">\( \{ q_3 \} \)</span></td>
+                </tr>
+                <tr>
+                    <td><span class="math-color">\( q_2 \)</span></td>
+                    <td style="border-left: 1px solid black;"><span class="math-color">\( \{ q_1 \} \)</span></td>
+                    <td><span class="math-color">\( \emptyset \)</span></td>
+                    <td><span class="math-color">\( \emptyset \)</span></td>
+                </tr>
+                <tr>
+                    <td><span class="math-color">\( q_3 \)</span></td>
+                    <td style="border-left: 1px solid black;"><span class="math-color">\( \emptyset \)</span></td>
+                    <td><span class="math-color">\( \{ q_3 \} \)</span></td>
+                    <td><span class="math-color">\( \emptyset \)</span></td>
+                </tr>
+            </table>
+        </p>
+        <h3 style='color:var(--main-green); padding-top:18px'>Putting the Pieces Together</h3>
+        <p>
+            We have learned about the five parts that make up an NFA, and so we have a full formal definition:
+        </p>
+        <p style='font-size: 20px'>
+            Formally, a nondeterministic finite automaton is a 5-tuple <span class="math-color">\( (Q, Σ, \delta,
+                q_0, F )
+                \)</span>,
+            where
+            <ol style='font-size: 20px'>
+                <li> <span class="math-color">\( Q \)</span> is a finite set called the states, </li>
+                <li> <span class="math-color">\( \Sigma \)</span> is a finite set called the alphabet, </li>
+                <li> <span class="math-color">\( \delta : Q \times \Sigma_{\varepsilon} \rightarrow \mathcal{P}(Q)
+                        \)</span> is the transition function, </li>
+                <li> <span class="math-color">\( q_0 \in Q \)</span> is the start state, and </li>
+                <li> <span class="math-color">\( F \subseteq Q \)</span> is the set of accept states. </li>
+            </ol>
+        </p>
+        <p>
+            We can describe <span class="math-color">\( N_1 \)</span> formally by writing <span class="math-color">\(
+                N_1 = (Q, \Sigma, \delta, q_1, F) \)</span>, where
+            <ol style='font-size: 18px'>
+                <li> <span class="math-color">\( Q = \{ q_1, q_2, q_3 \} \)</span>, </li>
+                <li> <span class="math-color">\( \Sigma = \{ a, b \} \)</span>, </li>
+                <li> <span class="math-color">\( \delta \)</span> is described as </li>
+                <table style="text-align:center; margin-left:auto; margin-right:auto; font-size: 18px">
+                    <tr style="border-bottom: 1px solid black;">
+                        <td><span class="math-color">\( \delta \)</span></td>
+                        <td style="border-left: 1px solid black;"><span class="math-color">\( a \)</span></td>
+                        <td><span class="math-color">\( b \)</span></td>
+                        <td><span class="math-color">\( \varepsilon \)</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-color">\( q_1 \)</span></td>
+                        <td style="border-left: 1px solid black;"><span class="math-color">\( \{ q_1 \} \)</span></td>
+                        <td><span class="math-color">\( \{ q_2 \} \)</span></td>
+                        <td><span class="math-color">\( \{ q_3 \} \)</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-color">\( q_2 \)</span></td>
+                        <td style="border-left: 1px solid black;"><span class="math-color">\( \{ q_1 \} \)</span></td>
+                        <td><span class="math-color">\( \emptyset \)</span></td>
+                        <td><span class="math-color">\( \emptyset \)</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-color">\( q_3 \)</span></td>
+                        <td style="border-left: 1px solid black;"><span class="math-color">\( \emptyset \)</span></td>
+                        <td><span class="math-color">\( \{ q_3 \} \)</span></td>
+                        <td><span class="math-color">\( \emptyset \)</span></td>
+                    </tr>
+                </table>
+                <li> <span class="math-color">\( q_1 \)</span> is the start state, and </li>
+                <li> <span class="math-color">\( F = \{ q_3 \} \)</span>. </li>
+            </ol>
+        </p>
+        <br>
+        <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h4>
+            <p style='text-align: center;'>The questions below refer to the NFA
+                <span class="math-color">\( N_2 \)</span>.
+            </p>
+            <div style='text-align:center'>
+                <div style='width: 500px; margin:0 auto;'>
+                    <text style='color: var(--main-aqua)'>Figure 2.1:</text>
+                    <text>The nondeterministic finite automaton <span class="math-color">\( N_2 \)</span>.</text>
+                    <br>
+                </div>
+                <img src="{{ url_for('static', filename='assets/figure2-2.svg') }}" alt="Figure 2.2">
+            </div>
+            <div id="quiz"></div>
+            <div class='row'>
+                <div class='col'>
+                    <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
+                </div>
+                <div class='col-sm-auto'>
+                    <a style='width: 90px' type='button' type="button" href="/lesson/2.1" class="btn btn-secondary">
+                        <i class="fas fa-arrow-circle-left"></i> Prev
+                    </a>
+                    <a style='width: 90px' type='button' type="button" href="/lesson/2.3"
+                        class="btn btn-secondary disabled">Next
+                        <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class='br-lg'></div>
+            <div id="results"></div>
+
+            <script type='text/javascript'>
+                const myQuestions = [{
+                    question: "Which of the following is NOT true about \\( N_2 \\)?",
+                    answers: {
+                        a: "\\( \\delta (1,b) = \\{ 1, 2 \\} \\)",
+                        b: "\\( \\delta (2, b) = \\emptyset \\)",
+                        c: "\\( \\delta (4,a) = \\{ 4 \\} \\)",
+                        d: "\\( \\delta (1,a) = 1 \\)"
+                    },
+                    correctAnswer: "d"
+                }, {
+                    question: "If you compute \\( \\mathcal{P}(Q) \\) for \\( N_2\\), you might notice that not every element of the specified range is used by the transition function \\( \\delta \\). Which of the following elements is actually used by the function?",
+                    answers: {
+                        a: "\\( \\{ 1, 3 \\} \\)",
+                        b: "\\( \\{ 3 \\} \\)",
+                        c: "\\( \\{ 1, 2, 3\\} \\)",
+                        d: "\\( \\{ 2, 3 \\} \\)"
+                    },
+                    correctAnswer: "b"
+                }];
+            </script>
+            <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script>
+
+    </div>
+    {% endblock %}

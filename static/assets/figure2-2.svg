@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="580" height="180" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="2" fill="#72e982" cx="96.5" cy="102.5" rx="30" ry="30"/>
+	<text x="90.5" y="108.5" font-family="Avenir Next" font-size="20">1</text>
+	<ellipse stroke="black" stroke-width="2" fill="#72e982" cx="232.5" cy="102.5" rx="30" ry="30"/>
+	<text x="226.5" y="108.5" font-family="Avenir Next" font-size="20">2</text>
+	<ellipse stroke="black" stroke-width="2" fill="#72e982" cx="367.5" cy="102.5" rx="30" ry="30"/>
+	<text x="361.5" y="108.5" font-family="Avenir Next" font-size="20">3</text>
+	<ellipse stroke="black" stroke-width="2" fill="#72e982" cx="501.5" cy="102.5" rx="30" ry="30"/>
+	<text x="495.5" y="108.5" font-family="Avenir Next" font-size="20">4</text>
+	<ellipse stroke="black" stroke-width="2" fill="none" cx="501.5" cy="102.5" rx="24" ry="24"/>
+	<polygon stroke="black" stroke-width="2" points="15.5,102.5 66.5,102.5"/>
+	<polygon fill="black" stroke-width="2" points="66.5,102.5 58.5,97.5 58.5,107.5"/>
+	<polygon stroke="black" stroke-width="2" points="126.5,102.5 202.5,102.5"/>
+	<polygon fill="black" stroke-width="2" points="202.5,102.5 194.5,97.5 194.5,107.5"/>
+	<text x="158.5" y="93.5" font-family="Avenir Next" font-size="20">b</text>
+	<polygon stroke="black" stroke-width="2" points="262.5,102.5 337.5,102.5"/>
+	<polygon fill="black" stroke-width="2" points="337.5,102.5 329.5,97.5 329.5,107.5"/>
+	<text x="284.5" y="93.5" font-family="Avenir Next" font-size="20">a, &#949;</text>
+	<polygon stroke="black" stroke-width="2" points="397.5,102.5 471.5,102.5"/>
+	<polygon fill="black" stroke-width="2" points="471.5,102.5 463.5,97.5 463.5,107.5"/>
+	<text x="428.5" y="93.5" font-family="Avenir Next" font-size="20">b</text>
+	<path stroke="black" stroke-width="2" fill="none" d="M 488.275,75.703 A 22.5,22.5 0 1 1 514.725,75.703"/>
+	<text x="487.5" y="26.5" font-family="Avenir Next" font-size="20">a,b</text>
+	<polygon fill="black" stroke-width="2" points="514.725,75.703 523.473,72.17 515.382,66.292"/>
+	<path stroke="black" stroke-width="2" fill="none" d="M 83.275,75.703 A 22.5,22.5 0 1 1 109.725,75.703"/>
+	<text x="82.5" y="26.5" font-family="Avenir Next" font-size="20">a,b</text>
+	<polygon fill="black" stroke-width="2" points="109.725,75.703 118.473,72.17 110.382,66.292"/>
+</svg>

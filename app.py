@@ -40,8 +40,6 @@ def lesson(lessonid):
         html = render_template('lessons/lesson1-2.html')
     elif lessonid == '1.3':
         html = render_template('lessons/lesson1-3.html')
-    elif lessonid == '1.4':
-        html = render_template('lessons/lesson1-4.html')
     elif lessonid == '2.1':
         html = render_template('lessons/lesson2-1.html')
     elif lessonid == '2.2':
