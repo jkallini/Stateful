@@ -1,0 +1,142 @@
+{% extends 'base.html' %} {% block head %}
+<title>Stateful | Lesson 2.3</title>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border-collapse: collapse;
+        padding: 5px;
+        padding-left: 10px;
+        white-space: nowrap;
+    }
+</style>
+{% endblock %} {% block body %}
+<!-- Page Content -->
+<div id="content">
+
+    <div class='container' style='max-width: 800px;'>
+
+        <h1 style="color: var(--main-blue); text-align: center">Lesson 2: Notation and Formal Definitions</h1>
+        <br>
+        <div class='row'>
+            <div class='col-sm-auto'>
+                <h2 style='color: var(--main-green); padding-bottom: 10px'>2.3</h2>
+            </div>
+            <div class='col'>
+                <h2 style='color: var(--main-green); padding-bottom: 10px'>
+                    Strings and Languages
+                </h2>
+            </div>
+            <div class='col-sm-auto'>
+                <a style='width: 90px' type='button' type="button" href="/lesson/2.2" class="btn btn-secondary">
+                    <i class="fas fa-arrow-circle-left"></i> Prev
+                </a>
+                <a style='width: 90px' type='button' type="button" href="#" class="btn btn-secondary disabled">Next
+                    <i class="fas fa-arrow-circle-right"></i>
+                </a>
+                <br><br>
+            </div>
+        </div>
+        <p>
+            If you have been studying computer science for even a short amount of time, you probably know that strings
+            of characters are a fundamental datatype in every programming language. When we discussed finite automata,
+            we described them as taking in strings of characters and producing an output that is either ‘ACCEPT’ or
+            ‘REJECT.’ Any string that is accepted by a given machine is in the language of the machine. In this lesson,
+            we will be learning about how strings and languages are defined formally.
+        </p>
+        <h3 style='color:var(--main-green); padding-top:18px'>Strings (Formally)</h3>
+        <p>
+            Strings may seem to be really simple objects, but the formal definition used in mathematics and theoretical
+            computer science may be less intuitive than the typical way we think about them when programming. Formally,
+            strings are defined in terms of their alphabet. We have already seen examples of alphabets, such as <span
+                class="math-color">\( \{ 0, 1 \} \)</span> or <span class="math-color">\( \{ a, b \} \)</span>. An
+            alphabet is any nonempty finite set, and its members are called symbols of the alphabet. In the alphabets we
+            previously have seen, each symbol was only one character. But, symbols of an alphabet can technically be
+            many characters long. For instance, the very first automaton we saw was the automaton for a light switch.
+            Its alphabet was simply one symbol: <span class="math-color">\( \{ \text{PRESS} \} \)</span>.
+        </p>
+        <p>
+            We often abbreviate long alphabets using ellipses (<span class="math-color">\( \dots \)</span>):
+            <span class="math-color">$$ \Sigma_1 = \{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9\} = \{ 0, 1, \dots , 9 \}$$</span>
+            <span class="math-color">$$ \Sigma_2 = \{ \text{a}, \text{b}, \text{c}, \text{d}, \text{e}, \text{f},
+                \text{g}, \text{h}, \text{i}, \text{j}, \text{k}, \text{l}, \text{m}, \text{n}, \text{o}, \text{p},
+                \text{q}, \text{r}, \text{s}, \text{t}, \text{u}, \text{v}, \text{w}, \text{x}, \text{y}, \text{z} \} =
+                \{ \text{a}, \text{b}, \dots , \text{z} \}$$</span>
+        </p>
+        <p>
+            A string over an alphabet is a finite sequence of symbols from that alphabet, usually written next to one
+            another and not separated by commas. For example, some strings over <span class="math-color">\( \Sigma_1
+                \)</span> are <span class="math-color">\( 30154\)</span>, <span class="math-color">\( 0093588 \)</span>,
+            and <span class="math-color">\( 7737784412 \)</span>. <span class="math-color">\( \Sigma_2 \)</span> is the
+            alphabet used by all English strings.
+        </p>
+        <p>
+            If w is a string over <span class="math-color">\( \Sigma_1 \)</span>, the length of <span class="
+                math-color">\( w \)</span>, written <span class="math-color">\( w\)</span>, is the number of symbols
+            that it contains. The string <span class="
+                math-color">\( w = \text{abracadabra}\)</span> over the alphabet <span class="math-color">\( \Sigma_2
+                \)</span> has length <span class=" math-color">\( |w| = 11\)</span>. We introduced <span
+                class="math-color">\( \varepsilon \)</span>, the empty string, briefly in other lessons. But now we have
+            a better definition for it: it is the string of length <span class="math-color">\( 0 \)</span> over any
+            alphabet. If <span class="math-color">\( w \)</span> over the alphabet <span class="math-color">\( \Sigma
+                \)</span> has length <span class="math-color">\( n \)</span>, we can write <span class="math-color">$$ w
+                = w_1w_2 \dots w_n $$</span> where each <span class="math-color">\( w_i \in \Sigma \)</span>. Don't let
+                the notation fool you, though. If <span class="math-color">\( n \)</span> is one or zero, then the string
+                only has one symbol or zero symbols!
+        </p>
+        <p>
+            If we have string a <span class="math-color">\( x = x_1 x_2 \dots x_n \)</span> of length <span
+                class="math-color">\( n \)</span> and string <span class="math-color">\( y = y_1 y_2 \dots x_m \)</span>
+            of length <span class="math-color">\( n \)</span>, the concatenation of <span class="math-color">\( x
+                \)</span> and <span class="math-color">\( y \)</span>, written <span class="math-color">\( xy \)</span>,
+            is the string obtained by appending <span class="math-color">\( y
+                \)</span> to the end of <span class="math-color">\( x \)</span>, as in <span class="math-color">\( x_1
+                x_2 \dots x_n y_1 y_2 \dots y_m\)</span>.
+        </p>
+        <br>
+        <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h4>
+            <div id="quiz"></div>
+            <div class='row'>
+                <div class='col'>
+                    <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
+                </div>
+                <div class='col-sm-auto'>
+                    <a style='width: 90px' type='button' type="button" href="/lesson/2.2" class="btn btn-secondary">
+                        <i class="fas fa-arrow-circle-left"></i> Prev
+                    </a>
+                    <a style='width: 90px' type='button' type="button" href="#" class="btn btn-secondary disabled">Next
+                        <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class='br-lg'></div>
+            <div id="results"></div>
+
+            <script type='text/javascript'>
+                const myQuestions = [{
+                    question: "Which of the following is NOT true about \\( N_2 \\)?",
+                    answers: {
+                        a: "\\( \\delta (1,b) = \\{ 1, 2 \\} \\)",
+                        b: "\\( \\delta (2, b) = \\emptyset \\)",
+                        c: "\\( \\delta (4,a) = \\{ 4 \\} \\)",
+                        d: "\\( \\delta (1,a) = 1 \\)"
+                    },
+                    correctAnswer: "d"
+                }, {
+                    question: "If you compute \\( \\mathcal{P}(Q) \\) for \\( N_2\\), you might notice that not every element of the specified range is used by the transition function \\( \\delta \\). Which of the following elements is actually used by the function?",
+                    answers: {
+                        a: "\\( \\{ 1, 3 \\} \\)",
+                        b: "\\( \\{ 3 \\} \\)",
+                        c: "\\( \\{ 1, 2, 3\\} \\)",
+                        d: "\\( \\{ 2, 3 \\} \\)"
+                    },
+                    correctAnswer: "b"
+                }];
+            </script>
+            <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script>
+
+    </div>
+    {% endblock %}

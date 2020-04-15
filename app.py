@@ -44,6 +44,8 @@ def lesson(lessonid):
         html = render_template('lessons/lesson2-1.html')
     elif lessonid == '2.2':
         html = render_template('lessons/lesson2-2.html')
+    elif lessonid == '2.3':
+        html = render_template('lessons/lesson2-3.html')
     else:
         html = render_template('index.html')
 
