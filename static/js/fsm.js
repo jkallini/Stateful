@@ -270,7 +270,7 @@ window.onload = function() {
 
     document.getElementById("clearCanvas").onclick =
         function() {
-            localStorage['fsm'] = ''
+            sessionStorage['fsm'] = ''
             location.reload()
         };
 

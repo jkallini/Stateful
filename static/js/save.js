@@ -4,12 +4,12 @@
  */
 
 function restoreBackup() {
-    if (!localStorage || !JSON) {
+    if (!sessionStorage || !JSON) {
         return;
     }
 
     try {
-        var backup = JSON.parse(localStorage['fsm']);
+        var backup = JSON.parse(sessionStorage['fsm']);
 
         for (var i = 0; i < backup.nodes.length; i++) {
             var backupNode = backup.nodes[i];
@@ -42,12 +42,12 @@ function restoreBackup() {
             }
         }
     } catch (e) {
-        localStorage['fsm'] = '';
+        sessionStorage['fsm'] = '';
     }
 }
 
 function saveBackup() {
-    if (!localStorage || !JSON) {
+    if (!sessionStorage || !JSON) {
         return;
     }
 
@@ -99,5 +99,5 @@ function saveBackup() {
         }
     }
 
-    localStorage['fsm'] = JSON.stringify(backup);
+    sessionStorage['fsm'] = JSON.stringify(backup);
 }
