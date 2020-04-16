@@ -14,12 +14,13 @@ class Problem:
     MEDI = 1
     HARD = 2
 
-    def __init__(self, probid, description, fsm, difficulty):
+    def __init__(self, probid, description, fsm, difficulty, exact):
         self._id = probid
         self._description = description
         self._fsm = fsm
         self._deterministic = (type(fsm) == DFA)
         self._difficulty = difficulty
+        self._exact = exact
 
     def __str__(self):
         return str(self._description)
@@ -35,6 +36,9 @@ class Problem:
 
     def is_deterministic(self):
         return self._deterministic
+
+    def is_exact(self):
+        return self._exact
 
     def get_difficulty(self):
         return self._difficulty

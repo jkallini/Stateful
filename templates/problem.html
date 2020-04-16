@@ -3,6 +3,19 @@
 
 <!-- Styles -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/editor.css') }}">
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border-collapse: collapse;
+        padding: 5px;
+        padding-left: 10px;
+        white-space: nowrap;
+    }
+</style>
 
 <!-- JS files for FSM editor -->
 <script src="{{ url_for('static', filename='js/fsm.js') }}"></script>

@@ -91,9 +91,10 @@ def submit():
 
     # retrieve solution
     solution = problem.get_fsm()
+    exact = problem.is_exact()
 
     # check student's answer against solution
-    if not FSM.equal(solution, fsm_or_exception):
+    if not FSM.equal(solution, fsm_or_exception, exact):
         response = {'title': "Incorrect",
                     'message': "That's not quite right. Give it another try!"}
     else:

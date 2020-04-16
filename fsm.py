@@ -205,6 +205,14 @@ def get_NFA_transitions(fsm, states, node_map, alphabet):
     return initial_state, transitions
 
 
+def equal(fsm1, fsm2, exact):
+
+    if exact:
+        return fsm1 == fsm2
+    else:
+        return equal_language(fsm1, fsm2)
+
+
 # Check if state q_i and q_j are equivalent. Returns True if
 # q_i and q_j are both final states or both intermediate states,
 # and false otherwise.
@@ -214,7 +222,7 @@ def equal_states(qi, qj, dfa1, dfa2):
 
 # Check whether fsm1 and fsm2 recognize the same language.
 # If so, return true, else return false.
-def equal(fsm1, fsm2):
+def equal_language(fsm1, fsm2):
 
     # first check alphabet equivalence
     alpha1 = fsm1.input_symbols
