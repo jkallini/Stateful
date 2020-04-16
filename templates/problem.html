@@ -129,7 +129,8 @@
                     url: "/submit",
                     data: {
                         fsm_json: fsm,
-                        probid: '{{ problem.get_id() }}'
+                        probid: '{{ problem.get_id() }}',
+                        deterministic: '{{ problem.is_deterministic() }}'
                     },
                     success: callbackFunc
                 })

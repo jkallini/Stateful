@@ -24,12 +24,8 @@ def page_not_found(e):
 @app.route('/index', methods=['GET'])
 def index():
     html = render_template('index.html')
-    return make_response(html)
-
-
-@app.route('/practice')
-def practice():
-    return render_template('practice.html')
+    response = make_response(html)
+    return response
 
 
 @app.route('/lesson/<string:lessonid>')
@@ -52,6 +48,16 @@ def lesson(lessonid):
     return make_response(html)
 
 
+@app.route('/practice')
+def practice():
+    DFA_probs = TL.get_DFA_problems()
+    NFA_probs = TL.get_NFA_problems()
+    html = render_template(
+        'practice.html', DFA_probs=DFA_probs, NFA_probs=NFA_probs)
+    response = make_response(html)
+    return response
+
+    
 @app.route('/problem/<int:probid>')
 def problem(probid):
 
@@ -65,12 +71,39 @@ def problem(probid):
     return response
 
 
+@app.route('/DFAproblem/<int:probid>')
+def DFA_problem(probid):
+
+    if not TL.DFA_probid_exists(probid):
+        # TODO: do real error handling here
+        return render_template('index.html')
+
+    problem = TL.get_DFA_problem(probid)
+    html = render_template('problem.html', problem=problem)
+    response = make_response(html)
+    return response
+
+
+@app.route('/NFAproblem/<int:probid>')
+def NFA_problem(probid):
+
+    if not TL.NFA_probid_exists(probid):
+        # TODO: do real error handling here
+        return render_template('index.html')
+
+    problem = TL.get_NFA_problem(probid)
+    html = render_template('problem.html', problem=problem)
+    response = make_response(html)
+    return response
+
+
 @app.route('/submit', methods=['POST'])
 def submit():
 
     # get JS variables
     fsm_json = request.form['fsm_json']
     probid = int(request.form['probid'])
+    det = (request.form['deterministic'] == 'True')
 
     # verify that this problem exists (it should)
     if not TL.probid_exists(probid):
@@ -79,8 +112,10 @@ def submit():
         return response
 
     # get the problem and parse it into JSON
-    problem = TL.get_problem(probid)
-    det = problem.is_deterministic()
+    if det:
+        problem = TL.get_DFA_problem(probid)
+    else:
+        problem = TL.get_NFA_problem(probid)
     error, fsm_or_exception = FSM.parse_json(fsm_json, det)
 
     # check if the input is valid
