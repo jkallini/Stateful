@@ -3,6 +3,7 @@
 */
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
 .sidebar-p {
     font-size: 1.3em;
     font-weight: 400;
@@ -58,13 +59,14 @@
 }
 
 #sidebar {
-    width: 250px;
+    width: 280px;
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
     z-index: 999;
-    background: url(https://66.media.tumblr.com/tumblr_mcwwciboN31rhztfto1_1280.jpg);
+    background: rgb(7, 132, 192);
+    background: linear-gradient(119deg, rgba(7, 132, 192, 1) 6%, rgba(38, 197, 193, 1) 53%, rgba(114, 233, 130, 1) 88%);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -74,7 +76,7 @@
 }
 
 #sidebar.active {
-    margin-left: -250px;
+    margin-left: -280px;
 }
 
 #sidebar .sidebar-header {
@@ -155,7 +157,7 @@ a.article:hover {
 ----------------------------------------------------- */
 
 #content {
-    width: calc(100% - 250px);
+    width: calc(100% - 280px);
     padding: 40px;
     min-height: 100vh;
     transition: all 0.3s;
@@ -175,17 +177,21 @@ a.article:hover {
 
 @media (max-width: 768px) {
     #sidebar {
-        margin-left: -250px;
+        margin-left: -280px;
     }
+
     #sidebar.active {
         margin-left: 0;
     }
+
     #content {
         width: 100%;
     }
+
     #content.active {
-        width: calc(100% - 250px);
+        width: calc(100% - 280px);
     }
+
     #sidebarCollapse span {
         display: none;
     }
