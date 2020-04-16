@@ -44,6 +44,20 @@ DFA_problem_bank = [
             difficulty=Problem.EASY,
             exact=False),
     Problem(probid=4,
+            description="The formal description of a DFA \(\color{#056fa0}{M}\) is \(\color{#056fa0}{(\{s_0, s_1, s_2\}, \{0,1\}, \delta, s_0, \{s_0\})}\), where \(\color{#056fa0}{\delta}\) is given by the following table."
+            "<table style='text-align:center; margin-left:auto; margin-right:auto; font-size: 18px'>" +
+            "<tr style='border-bottom: 1px solid black;'><td><span class='math-color'>\( \delta \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( 0 \)</span></td><td><span class='math-color'>\( 1 \)</span></td></tr><tr><td><span class='math-color'>\( s_0 \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( s_0 \)</span></td><td><span class='math-color'>\( s_1 \)</span></td></tr><tr><td><span class='math-color'>\( s_1 \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( s_0 \)</span></td><td><span class='math-color'>\( s_2 \)</span></td></tr><tr><td><span class='math-color'>\( s_2 \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( s_2 \)</span></td><td><span class='math-color'>\( s_1 \)</span></td></tr></table>" +
+            "<br> Give the state diagram of this machine. (To give states labels with numberical subscripts, type 'q_0' etc.)",
+            fsm=DFA(states={'s_0', 's_1', 's_2'},
+                    input_symbols={'0', '1'},
+                    transitions={'s_0': {'0': 's_0', '1': 's_1'},
+                                 's_1': {'0': 's_0', '1': 's_2'},
+                                 's_2': {'0': 's_2', '1': 's_1'}},
+                    initial_state='s_0',
+                    final_states={'s_0'}),
+            difficulty=Problem.MEDI,
+            exact=True),
+    Problem(probid=5,
             description="Design a DFA over the alphabet \(\color{#056fa0}{\Sigma = \{a,b,c\}}\) that accepts any string with \(\color{#056fa0}{aab}\) as a substring.",
             fsm=DFA(states={'1', '2', '3', '4'},
                     input_symbols={'a', 'b', 'c'},
@@ -55,7 +69,7 @@ DFA_problem_bank = [
                     final_states={'4'}),
             difficulty=Problem.MEDI,
             exact=False),
-    Problem(probid=5,
+    Problem(probid=6,
             description="Design a DFA that recognizes the language \( \color{#056fa0}{ L = \{ w \in \{0\}^* : |w| \\text{ is not divisible by } 3 \} } \).",
             fsm=DFA(states={'1', '2', '3'},
                     input_symbols={'0'},
@@ -66,10 +80,11 @@ DFA_problem_bank = [
                     final_states={'2', '3'}),
             difficulty=Problem.MEDI,
             exact=False),
-    Problem(probid=6,
-            description="The formal description of a DFA \(\color{#056fa0}{M}\) is \(\color{#056fa0}{(\{q_1, q_2, q_3, q_4, q_5\}, \{u,d\}, \delta, q_3, \{q_3\})}\), where \(\color{#056fa0}{\delta}\) is given by the following table. Give the state diagram of this machine." +
+    Problem(probid=7,
+            description="The formal description of a DFA \(\color{#056fa0}{M}\) is \(\color{#056fa0}{(\{q_1, q_2, q_3, q_4, q_5\}, \{u,d\}, \delta, q_3, \{q_3\})}\), where \(\color{#056fa0}{\delta}\) is given by the following table." +
             "<table style='text-align:center; margin-left:auto; margin-right:auto; font-size: 18px'>" +
-            "<tr style='border-bottom: 1px solid black;'><td><span class='math-color'>\( \delta \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( \\text{u} \)</span></td><td><span class='math-color'>\( \\text{d} \)</span></td></tr><tr><td><span class='math-color'>\( q_1 \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( q_1 \)</span></td><td><span class='math-color'>\( q_2 \)</span></td></tr><tr><td><span class='math-color'>\( q_2 \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( q_1 \)</span></td><td><span class='math-color'>\( q_3 \)</span></td></tr><tr><td><span class='math-color'>\( q_3 \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( q_2 \)</span></td><td><span class='math-color'>\( q_4 \)</span></td></tr><tr><td><span class='math-color'>\( q_4 \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( q_3 \)</span></td><td><span class='math-color'>\( q_5 \)</span></td></tr><tr><td><span class='math-color'>\( q_5 \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( q_5 \)</span></td><td><span class='math-color'>\( q_5 \)</span></td></tr></table>",
+            "<tr style='border-bottom: 1px solid black;'><td><span class='math-color'>\( \delta \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( \\text{u} \)</span></td><td><span class='math-color'>\( \\text{d} \)</span></td></tr><tr><td><span class='math-color'>\( q_1 \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( q_1 \)</span></td><td><span class='math-color'>\( q_2 \)</span></td></tr><tr><td><span class='math-color'>\( q_2 \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( q_1 \)</span></td><td><span class='math-color'>\( q_3 \)</span></td></tr><tr><td><span class='math-color'>\( q_3 \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( q_2 \)</span></td><td><span class='math-color'>\( q_4 \)</span></td></tr><tr><td><span class='math-color'>\( q_4 \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( q_3 \)</span></td><td><span class='math-color'>\( q_5 \)</span></td></tr><tr><td><span class='math-color'>\( q_5 \)</span></td><td style='border-left: 1px solid black;'><span class='math-color'>\( q_5 \)</span></td><td><span class='math-color'>\( q_5 \)</span></td></tr></table>" +
+            "Give the state diagram of this machine. (To give states labels with numberical subscripts, type 'q_0' etc.)",
             fsm=DFA(states={'q_1', 'q_2', 'q_3', 'q_4', 'q_5'},
                     input_symbols={'u', 'd'},
                     transitions={'q_1': {'u': 'q_1', 'd': 'q_2'},
@@ -79,7 +94,7 @@ DFA_problem_bank = [
                                  'q_5': {'u': 'q_5', 'd': 'q_5'}},
                     initial_state='q_3',
                     final_states={'q_3'}),
-            difficulty=Problem.MEDI,
+            difficulty=Problem.HARD,
             exact=True)
 ]
 
@@ -101,7 +116,7 @@ NFA_problem_bank = [
     Problem(probid=2,
             description="Design an NFA over the alphabet \(\color{#056fa0}{\Sigma = \{a,b,c\}}\) that accepts any string with \(\color{#056fa0}{aab}\) as a substring.",
             fsm=NFA(states={'1', '2', '3', '4'},
-                    input_symbols={'a', 'b', 'c'},
+                    input_symbols={'a', 'b', 'c', ''},
                     transitions={'1': {'a': {'1', '2'}, 'b': {'1'}, 'c': {'1'}},
                                  '2': {'a': {'3'}, 'b': {'1'}, 'c': {'1'}},
                                  '3': {'a': {'3'}, 'b': {'4'}, 'c': {'1'}},
@@ -113,7 +128,7 @@ NFA_problem_bank = [
     Problem(probid=3,
             description="Design an NFA over the alphabet \(\color{#056fa0}{\Sigma = \{a,b,c\}}\) that accepts any string with \(\color{#056fa0}{ba}\) or \(\color{#056fa0}{cab}\) as a substring.",
             fsm=NFA(states={'1', '2', '3', '4', '5', '6', '7', '8'},
-                    input_symbols={'a', 'b', 'c'},
+                    input_symbols={'a', 'b', 'c', ''},
                     transitions={'1': {'': {'2', '6'}},
                                  '2': {'c': {'3'}},
                                  '3': {'a': {'4'}},
@@ -124,7 +139,20 @@ NFA_problem_bank = [
                                  '8': {}},
                     initial_state='1',
                     final_states={'5', '8'}),
-            difficulty=Problem.EASY,
+            difficulty=Problem.MEDI,
+            exact=False),
+    Problem(probid=4,
+            description="Design an NFA that recognizes the language \(\color{#056fa0}{L = \{ w \in \{0,1\}^* : w = x0101y \\text{ for some } x,y \in \{ 1\}^* \}. }\)",
+            fsm=NFA(states={'q1', 'q2', 'q3', 'q4', 'q5'},
+                    input_symbols={'0', '1', ''},
+                    transitions={'q1': {'0': {'q2'}, '1': {'q1'}},
+                                 'q2': {'1': {'q3'}},
+                                 'q3': {'0': {'q4'}},
+                                 'q4': {'1': {'q5'}},
+                                 'q5': {'1': {'q5'}}},
+                    initial_state='q1',
+                    final_states={'q5'}),
+            difficulty=Problem.MEDI,
             exact=False)
 ]
 
