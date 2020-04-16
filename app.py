@@ -57,7 +57,7 @@ def practice():
     response = make_response(html)
     return response
 
-    
+
 @app.route('/problem/<int:probid>')
 def problem(probid):
 
@@ -105,16 +105,21 @@ def submit():
     probid = int(request.form['probid'])
     det = (request.form['deterministic'] == 'True')
 
-    # verify that this problem exists (it should)
-    if not TL.probid_exists(probid):
-        response = {'title': "An Error Occurred",
-                    'message': "Sorry for the inconvenience!"}
-        return response
-
     # get the problem and parse it into JSON
     if det:
+        # verify that this problem exists (it should)
+        if not TL.DFA_probid_exists(probid):
+            response = {'title': "An Error Occurred",
+                'message': "Sorry for the inconvenience!"}
+            return response
+
         problem = TL.get_DFA_problem(probid)
     else:
+        # verify that this problem exists (it should)
+        if not TL.NFA_probid_exists(probid):
+            response = {'title': "An Error Occurred",
+                'message': "Sorry for the inconvenience!"}
+            return response
         problem = TL.get_NFA_problem(probid)
     error, fsm_or_exception = FSM.parse_json(fsm_json, det)
 
