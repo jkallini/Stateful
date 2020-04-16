@@ -86,7 +86,8 @@
                 \)</span> has length <span class=" math-color">\( |w| = 11\)</span>. We introduced <span
                 class="math-color">\( \varepsilon \)</span>, the empty string, briefly in other lessons. But now we have
             a better definition for it: it is the string of length <span class="math-color">\( 0 \)</span> over any
-            alphabet. If <span class="math-color">\( w \)</span> over the alphabet <span class="math-color">\( \Sigma
+            alphabet.
+            If <span class="math-color">\( w \)</span> over the alphabet <span class="math-color">\( \Sigma
                 \)</span> has length <span class="math-color">\( n \)</span>, we can write <span class="math-color">$$ w
                 = w_1w_2 \dots w_n $$</span> where each <span class="math-color">\( w_i \in \Sigma \)</span>. Don't let
             the notation fool you, though. If <span class="math-color">\( n \)</span> is one or zero, then the string
@@ -95,7 +96,7 @@
         <p>
             If we have string a <span class="math-color">\( x = x_1 x_2 \dots x_n \)</span> of length <span
                 class="math-color">\( n \)</span> and string <span class="math-color">\( y = y_1 y_2 \dots x_m \)</span>
-            of length <span class="math-color">\( n \)</span>, the concatenation of <span class="math-color">\( x
+            of length <span class="math-color">\( m \)</span>, the concatenation of <span class="math-color">\( x
                 \)</span> and <span class="math-color">\( y \)</span>, written <span class="math-color">\( xy \)</span>,
             is the string obtained by appending <span class="math-color">\( y
                 \)</span> to the end of <span class="math-color">\( x \)</span>, as in <span class="math-color">\( x_1
@@ -108,9 +109,8 @@
                 class="math-color">\( \text{abc} \)</span> and <span class="math-color">\( \text{cab} \)</span>.
             Defining sets using <span class='term'>set-builder</span>
 
-            form will come in handing when defining languages.
-
-            form. In set-builder form, a set is described by a property that each of its members must satisfy.
+            form will come in handing when defining languages. In set-builder form, a set is described by a property
+            that each of its members must satisfy.
             for instance, writing
             <span class="math-color">$$ S_1 = \{x : x \text{ is a positive number less than 6} \}$$</span>
             has the same meaning as
@@ -152,6 +152,13 @@
                 \)</span>, we can say <span class="math-color">\( w \in L^* \)</span>. This means that <span class="
                 math-color">\( w \)</span> is a string of zero or more symbols from the language <span
                 class="math-color">\( L \)</span>.
+        </p>
+        <p>
+            The language <span class="math-color">\( \emptyset \)</span> is the empty language.
+        
+            Note that this is very different from <span class="math-color">\( \varepsilon \)</span>, the empty string.
+            <span class="math-color">\( \emptyset \)</span> is a language that contains no words/strings, and
+            is not itself a string.
         </p>
         <br>
         <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h3>
