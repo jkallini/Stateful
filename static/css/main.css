@@ -11,6 +11,18 @@ p {
     font-size: 18px;
 }
 
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-collapse: collapse;
+  padding: 5px;
+  padding-left: 10px;
+  white-space: nowrap;
+}
+
 .bullet {
   color: var(--main-aqua)
 }

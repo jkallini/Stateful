@@ -3,19 +3,6 @@
 
 <!-- Styles -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/editor.css') }}">
-<style>
-    table {
-        border-collapse: collapse;
-    }
-
-    th,
-    td {
-        border-collapse: collapse;
-        padding: 5px;
-        padding-left: 10px;
-        white-space: nowrap;
-    }
-</style>
 
 <!-- JS files for FSM editor -->
 <script src="{{ url_for('static', filename='js/fsm.js') }}"></script>
@@ -64,7 +51,13 @@
 
     <div class='container'>
 
-        <h2 style="color: var(--main-green)">Problem {{ problem.get_id() }}</h2>
+        <h2 style="color: var(--main-green)">
+            {% if problem.is_deterministic() %}
+            DFA
+            {% else %}
+            NFA
+            {% endif %}
+            Problem {{ problem.get_id() }}</h2>
 
         <h5 style="padding-bottom: 5px">
             {% if problem.get_difficulty() == 0 %}

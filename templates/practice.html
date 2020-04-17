@@ -2,17 +2,22 @@
 <title>Stateful | Practice Questions</title>
 {% endblock %} {% block body %}
 <!-- Page Content -->
-<div id="content" style="text-align: center">
+<div id="content">
 
-    <h1>Practice Questions</h1>
-    <h3 style="color:var(--main-aqua)">DFA Questions</h3>
+    <h1 style="text-align: center">Practice Questions</h1>
+    <h5 style="text-align: center">The following problems are finite state machine design problems. Each one will ask
+        you to draw the state diagram that correpsonds to a given language or formal description of a machine. Click on
+        a problem below to view the finite state machine editor and answer the question.</h5>
+    <br>
+    <h3 style="text-align: center; color:var(--main-aqua)">DFA Questions</h3>
     {% for probid,description in DFA_probs %}
-    <h5><a href="/DFAproblem/{{probid}}">Problem {{ probid }}</a></h5>
+    <p><a href="/DFAproblem/{{probid}}" style='font-weight: bold'>Problem {{ probid }}</a>: {{ description|safe }}</p>
     {% endfor %}
 
-    <h3 style="color:var(--main-aqua)">NFA Questions</h3>
+    <br>
+    <h3 style="text-align: center; color:var(--main-aqua)">NFA Questions</h3>
     {% for probid,description in NFA_probs %}
-    <h5><a href="/NFAproblem/{{probid}}">Problem {{ probid }}</a></h5>
+    <p><a href="/DFAproblem/{{probid}}" style='font-weight: bold'>Problem {{ probid }}</a>: {{ description|safe }}</p>
     {% endfor %}
 
 </div>

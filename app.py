@@ -58,19 +58,6 @@ def practice():
     return response
 
 
-@app.route('/problem/<int:probid>')
-def problem(probid):
-
-    if not TL.probid_exists(probid):
-        # TODO: do real error handling here
-        return render_template('index.html')
-
-    problem = TL.get_problem(probid)
-    html = render_template('problem.html', problem=problem)
-    response = make_response(html)
-    return response
-
-
 @app.route('/DFAproblem/<int:probid>')
 def DFA_problem(probid):
 
