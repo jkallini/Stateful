@@ -167,7 +167,7 @@ function snapNode(node) {
 
 window.onload = function() {
     canvas = document.getElementById('canvas');
-    restoreBackup();
+    // restoreBackup();
     draw();
 
     canvas.onmousedown = function(e) {
@@ -270,7 +270,7 @@ window.onload = function() {
 
     document.getElementById("clearCanvas").onclick =
         function() {
-            sessionStorage['fsm'] = ''
+            sessionStorage.clear()
             location.reload()
         };
 
