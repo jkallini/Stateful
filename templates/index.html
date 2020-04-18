@@ -2,9 +2,13 @@
 <title>Stateful | Home</title>
 {% endblock %} {% block body %}
 <!-- Page Content -->
-<div id="content" style="text-align: center">
+<div id="content" style="text-align: center; padding: 0px">
 
-	<h1 class="display-3" style="font-weight: 500">Stateful</h1>
+	<div style='background: var(--main-blue); padding: 30px'>
+	<h1 class="display-2" style="font-weight: 500; color: white">
+		Stateful<img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="Figure 1.1">
+	</h1>
+	</div>
 	An online tutor for learning about finite state machines and regular languages.
 	<br>
 

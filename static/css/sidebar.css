@@ -81,7 +81,7 @@
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: rgba(71, 255, 246, 0.48);
+    /* background: rgba(71, 255, 246, 0.48); */
 }
 
 #sidebar ul.components {
