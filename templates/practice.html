@@ -11,11 +11,13 @@
         {% else %}
         <h1 style="text-align: center">NFA Practice Problems</h1>
         {% endif %}
-        <h5 style="text-align: center">The following problems are finite state machine design exercises. Each one will
-            ask
-            you to draw the state diagram that correpsonds to a given language or formal description of a machine. Click
-            on
-            a problem below to view the finite state machine editor and answer the problem.</h5>
+        <p style="text-align: center">
+            The following problems are finite state machine design exercises. Each one will ask you to draw the state
+            diagram that correpsonds to a given language or formal description of a machine.
+        </p>
+        <h5 style="text-align: center;">
+            <span style='color: var(--main-aqua); font-weight: bold'>Click on a problem below</span> to view the finite
+            state machine editor and enter an answer.</h5>
         <br>
         {% for id,desc,diff in probs %}
         <p>{% if det %}<a href="/DFAproblem/{{ id }}" style='font-weight: bold'>
