@@ -47,10 +47,10 @@ def fsm_str(fsm):
 
     final_string = print_set(fsm.final_states)
 
-    string = "\(\color{#056fa0}{ Q = " + state_string + "}\) <br/>" + \
+    string = "\(\color{#056fa0}{ M = (Q, \Sigma, \delta," + fsm.initial_state + ", F) }\), where <br/>" + \
+        "\(\color{#056fa0}{ Q = " + state_string + "}\) <br/>" + \
         "\(\color{#056fa0}{ \Sigma = " + alpha_string + "}\) <br/>" + \
-        trans_string + "\(\color{#056fa0}{ q_0 = " + fsm.initial_state + "}\) <br/>" \
-        + "\(\color{#056fa0}{ F = " + final_string + "}\) <br/>"
+        trans_string + "\(\color{#056fa0}{ F = " + final_string + "}\) <br/>"
     return string
 
 
