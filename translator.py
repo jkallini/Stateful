@@ -176,12 +176,12 @@ def get_NFA_problem(probid):
 
 
 def get_DFA_problems():
-    DFA_problems = [(prob.get_id(), prob.get_description())
+    DFA_problems = [(prob.get_id(), prob.get_description(), prob.get_difficulty())
                     for prob in DFA_problem_bank]
     return DFA_problems
 
 
 def get_NFA_problems():
-    NFA_problems = [(prob.get_id(), prob.get_description())
+    NFA_problems = [(prob.get_id(), prob.get_description(), prob.get_difficulty())
                     for prob in NFA_problem_bank]
     return NFA_problems

@@ -10,14 +10,27 @@
         a problem below to view the finite state machine editor and answer the question.</h5>
     <br>
     <h3 style="text-align: center; color:var(--main-aqua)">DFA Questions</h3>
-    {% for probid,description in DFA_probs %}
-    <p><a href="/DFAproblem/{{probid}}" style='font-weight: bold'>Problem {{ probid }}</a>: {{ description|safe }}</p>
+    {% for id,desc,diff in DFA_probs %}
+    <p><a href="/DFAproblem/{{ id }}" style='font-weight: bold'>Problem {{ id }}
+            {% if diff == 0 %}
+            <span class="badge badge-pill badge-success">Easy</span>{% endif %} {% if diff == 1 %}
+            <span class="badge badge-pill" style='background: #ffbf00;color: white'>Medium</span> {% endif %}
+            {% if diff == 2 %}
+            <span class="badge badge-pill badge-danger">Hard</span> {% endif %}
+        </a>: {{ desc|safe }}</p>
+
     {% endfor %}
 
     <br>
     <h3 style="text-align: center; color:var(--main-aqua)">NFA Questions</h3>
-    {% for probid,description in NFA_probs %}
-    <p><a href="/DFAproblem/{{probid}}" style='font-weight: bold'>Problem {{ probid }}</a>: {{ description|safe }}</p>
+    {% for id,desc,diff in NFA_probs %}
+    <p><a href="/NFAproblem/{{ id }}" style='font-weight: bold'>Problem {{ id }}
+            {% if diff == 0 %}
+            <span class="badge badge-pill badge-success">Easy</span>{% endif %} {% if diff == 1 %}
+            <span class="badge badge-pill" style='background: #ffbf00;color: white'>Medium</span> {% endif %}
+            {% if diff == 2 %}
+            <span class="badge badge-pill badge-danger">Hard</span> {% endif %}
+        </a>: {{ desc|safe }}</p>
     {% endfor %}
 
 </div>
