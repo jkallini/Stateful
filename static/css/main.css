@@ -27,6 +27,18 @@ td {
   color: var(--main-aqua)
 }
 
+.logo-header {
+  padding: 40px;
+  background: rgb(7, 132, 192);
+  background: linear-gradient(119deg, rgba(7, 132, 192, 1) 6%, rgba(38, 197, 193, 1) 53%, rgba(114, 233, 130, 1) 88%);
+}
+
+.title-card {
+  background: var(--main-blue);
+  border: none;
+  border-radius: 24px;
+}
+
 .br-lg {
   display: block;
   margin-bottom: 1em;

@@ -2,83 +2,61 @@
 <title>Stateful | Home</title>
 {% endblock %} {% block body %}
 <!-- Page Content -->
-<div id="content" style="text-align: center; padding: 0px">
+<div style="text-align: center; padding: 0px">
 
-	<div style='background: var(--main-blue); padding: 30px'>
-	<h1 class="display-2" style="font-weight: 500; color: white">
-		Stateful<img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="Figure 1.1">
-	</h1>
+	<div class='logo-header'>
+		<h1 class="display-2" style="font-weight: 500; color: white">
+			Stateful<img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="Figure 1.1">
+		</h1>
 	</div>
-	An online tutor for learning about finite state machines and regular languages.
+	<h5 style='padding-top: 20px; font-weight: 500'>
+		An online tutor for learning about finite state machines and regular languages.
+	</h5>
 	<br>
+	<div class='container' style='max-width: 800px;'>
+		<div class='row'>
+			<div class='col'>
+				<div class='card title-card'>
+					<div class='card-body'>
+						<h4 class='card-title' style='color:white'>Lesson 1: Introduction to Finite Automata</h4>
+						<a class='btn btn-light' type='button' href='/lesson/1.1' style='margin-bottom: 10px'>
+							<span style='color: var(--main-green); font-weight: 600; font-size: 16px'>1.1 Some Practical
+								Examples</span>
+						</a><br>
+						<a class='btn btn-light' type='button' href='/lesson/1.2' style=' margin-bottom: 10px'>
+							<span style='color: var(--main-green); font-weight: 600; font-size: 16px'>1.2 Deterministic
+								Finite
+								Automata</span>
+						</a><br>
+						<a class='btn btn-light' type='button' href='/lesson/1.3' style='margin-bottom: 10px'>
+							<span style='color: var(--main-green); font-weight: 600; font-size: 16px'>1.3
+								Nondeterministic
+								Finite Automata</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class='col'>
+				<div class='card title-card'>
+					<div class='card-body'>
+						<h4 class='card-title' style='color:white'>Lesson 2: Notation and Formal Definitions</h4>
+						<a class='btn btn-light' type='button' href='/lesson/1.1' style='margin-bottom: 10px'>
+							<span style='color: var(--main-green); font-weight: 600; font-size: 16px'>2.1
+								Formal Definition of a DFA</span>
+						</a><br>
+						<a class='btn btn-light' type='button' href='/lesson/1.2' style=' margin-bottom: 10px'>
+							<span style='color: var(--main-green); font-weight: 600; font-size: 16px'>2.2
+								Formal Definition of an NFA</span>
+						</a><br>
+						<a class='btn btn-light' type='button' href='/lesson/1.3' style='margin-bottom: 10px'>
+							<span style='color: var(--main-green); font-weight: 600; font-size: 16px'>2.3
+								Strings and Languages</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 
-	<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-
-		<ellipse class="fsm-state" stroke="black" stroke-width="2" cx="1081.5" cy="1208.5" rx="30" ry="30" />
-
-		<g class="fsm-container">
-			<ellipse class="fsm-state" stroke="black" stroke-width="2" cx="81.5" cy="98.5" rx="30" ry="30" />
-			<text class='noselect' x="75.5" y="104.5" font-family="Sans-serif" font-size="20">1</text>
-		</g>
-		<g class='fsm-container'>
-			<ellipse class="fsm-state" stroke="black" stroke-width="2" fill="none" cx="227.5" cy="98.5" rx="30"
-				ry="30" />
-			<ellipse class="fsm-state" stroke="black" stroke-width="2" fill="none" cx="227.5" cy="98.5" rx="30"
-				ry="30" />
-			<text class='noselect' x="221.5" y="104.5" font-family="Sans-serif" font-size="20">2</text>
-			<ellipse stroke="black" stroke-width="2" fill="none" cx="227.5" cy="98.5" rx="24" ry="24" />
-		</g>
-		<polygon stroke="black" stroke-width="2" points="111.5,98.5 197.5,98.5" />
-		<polygon fill="black" stroke-width="2" points="197.5,98.5 189.5,93.5 189.5,103.5" />
-		<text class='noselect' x="148.5" y="119.5" font-family="Sans-serif" font-size="20">b</text>
-		<polygon stroke="black" stroke-width="2" points="12.5,98.5 51.5,98.5" />
-		<polygon fill="black" stroke-width="2" points="51.5,98.5 43.5,93.5 43.5,103.5" />
-		<path stroke="black" stroke-width="2" fill="none" d="M 68.275,71.703 A 22.5,22.5 0 1 1 94.725,71.703" />
-		<text class='noselect' x="75.5" y="22.5" font-family="Sans-serif" font-size="20">a</text>
-		<polygon fill="black" stroke-width="2" points="94.725,71.703 103.473,68.17 95.382,62.292" />
-		<path stroke="black" stroke-width="2" fill="none" d="M 214.275,71.703 A 22.5,22.5 0 1 1 240.725,71.703" />
-		<text class='noselect' x="210.5" y="21.5" font-family="Sans-serif" font-size="20">a, b</text>
-		<polygon fill="black" stroke-width="2" points="240.725,71.703 249.473,68.17 241.382,62.292" />
-	</svg>
-
-	<br>
-
-	<svg width="300" height="300" version="1.1" xmlns="http://www.w3.org/2000/svg">
-		<ellipse class="fsm-state" stroke="black" stroke-width="2" fill="none" cx="1081.5" cy="1208.5" rx="30"
-			ry="30" />
-		<ellipse class="fsm-state" stroke="black" stroke-width="2" fill="none" cx="81.5" cy="98.5" rx="30" ry="30" />
-		<text class='noselect' x="75.5" y="104.5" font-family="Sans-serif" font-size="20">1</text>
-		<ellipse stroke="black" stroke-width="2" fill="none" cx="81.5" cy="98.5" rx="24" ry="24" />
-		<ellipse class="fsm-state" stroke="black" stroke-width="2" fill="none" cx="227.5" cy="98.5" rx="30" ry="30" />
-		<text x="221.5" y="104.5" font-family="Sans-serif" font-size="20">3</text>
-		<ellipse class="fsm-state" stroke="black" stroke-width="2" fill="none" cx="154.5" cy="199.5" rx="30" ry="30" />
-		<text x="148.5" y="205.5" font-family="Sans-serif" font-size="20">2</text>
-		<polygon stroke="black" stroke-width="2" points="12.5,98.5 51.5,98.5" />
-		<polygon fill="black" stroke-width="2" points="51.5,98.5 43.5,93.5 43.5,103.5" />
-		<polygon stroke="black" stroke-width="2" points="99.074,122.814 136.926,175.186" />
-		<polygon fill="black" stroke-width="2" points="136.926,175.186 136.293,165.773 128.188,171.631" />
-		<text x="101.5" y="168.5" font-family="Sans-serif" font-size="20">a</text>
-		<polygon stroke="black" stroke-width="2" points="172.074,175.186 209.926,122.814" />
-		<polygon fill="black" stroke-width="2" points="209.926,122.814 201.188,126.369 209.293,132.227" />
-		<text x="196.5" y="168.5" font-family="Sans-serif" font-size="20">a</text>
-		<polygon stroke="black" stroke-width="2" points="197.5,98.5 111.5,98.5" />
-		<polygon fill="black" stroke-width="2" points="111.5,98.5 119.5,103.5 119.5,93.5" />
-		<text x="148.5" y="89.5" font-family="Sans-serif" font-size="20">a</text>
-		<path stroke="black" stroke-width="2" fill="none" d="M 68.275,71.703 A 22.5,22.5 0 1 1 94.725,71.703" />
-		<text x="75.5" y="22.5" font-family="Sans-serif" font-size="20">b</text>
-		<polygon fill="black" stroke-width="2" points="94.725,71.703 103.473,68.17 95.382,62.292" />
-		<path stroke="black" stroke-width="2" fill="none" d="M 214.275,71.703 A 22.5,22.5 0 1 1 240.725,71.703" />
-		<text x="221.5" y="22.5" font-family="Sans-serif" font-size="20">b</text>
-		<polygon fill="black" stroke-width="2" points="240.725,71.703 249.473,68.17 241.382,62.292" />
-		<path stroke="black" stroke-width="2" fill="none" d="M 167.725,226.297 A 22.5,22.5 0 1 1 141.275,226.297" />
-		<text x="148.5" y="288.5" font-family="Sans-serif" font-size="20">b</text>
-		<polygon fill="black" stroke-width="2" points="141.275,226.297 132.527,229.83 140.618,235.708" />
-	</svg>
-
-	<br>
-
-	<a href="/practice">View some practice questions</a>
-
-	</svg>
-</div>
-{% endblock %}
+		</svg>
+	</div>
+	{% endblock %}

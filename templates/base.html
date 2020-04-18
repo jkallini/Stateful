@@ -55,7 +55,9 @@
 </head>
 
 <body>
+    {% if self._TemplateReference__context.name != 'index.html' %}
     {% include 'sidebar.html' %}
+    {% endif %}
 
     <!-- Jquery with AJAX CDN -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
