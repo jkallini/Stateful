@@ -4,7 +4,7 @@
 <!-- Page Content -->
 <div id="content">
 
-    <div class='container' style='max-width: 800px;'>
+    <div class='container'>
 
         <h1 style="color: var(--main-blue); text-align: center">Lesson 1: Introduction to Finite Automata</h1>
         <br>
@@ -367,58 +367,59 @@
         </div>
         <br><br>
         <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h3>
-            <p style='text-align: center;'>The questions below refer to the NFA <span class="math-color">\(N_1\)</span>.
-            </p>
-            <div id="quiz"></div>
-            <div class='row'>
-                <div class='col'>
-                    <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
-                </div>
-                <div class='col-sm-auto'>
-                    <a style='width: 90px' type='button' type="button" href="/lesson/1.2" class="btn btn-secondary">
-                        <i class="fas fa-arrow-circle-left"></i> Prev
-                    </a>
-                    <a style='width: 90px' type='button' type="button" href='/lesson/2.1' class="btn btn-secondary">Next
-                        <i class="fas fa-arrow-circle-right"></i>
-                    </a>
-                </div>
+        <p style='text-align: center;'>The questions below refer to the NFA <span class="math-color">\(N_1\)</span>.
+        </p>
+        <div id="quiz"></div>
+        <div class='row'>
+            <div class='col'>
+                <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
             </div>
-            <div class='br-lg'></div>
-            <div id="results"></div>
+            <div class='col-sm-auto'>
+                <a style='width: 90px' type='button' type="button" href="/lesson/1.2" class="btn btn-secondary">
+                    <i class="fas fa-arrow-circle-left"></i> Prev
+                </a>
+                <a style='width: 90px' type='button' type="button" href='/lesson/2.1' class="btn btn-secondary">Next
+                    <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class='br-lg'></div>
+        <div id="results"></div>
 
 
-            <script type='text/javascript'>
-                const myQuestions = [{
-                        question: "Which of the following strings does \\(N_1\\) not accept?",
-                        answers: {
-                            a: "\\(baba\\)",
-                            b: "\\(aabb\\)",
-                            c: "\\(bbab\\)",
-                            d: "\\(aaab\\)"
-                        },
-                        correctAnswer: "c"
+        <script type='text/javascript'>
+            const myQuestions = [{
+                    question: "Which of the following strings does \\(N_1\\) not accept?",
+                    answers: {
+                        a: "\\(baba\\)",
+                        b: "\\(aabb\\)",
+                        c: "\\(bbab\\)",
+                        d: "\\(aaab\\)"
                     },
-                    {
-                        question: "In what state(s) is \\(N_1\\) when it finishes reading the string \\(aab\\)?",
-                        answers: {
-                            a: "\\(q_1\\)",
-                            b: "\\(q_2\\) and \\(q_3\\)",
-                            c: "\\(q_3\\)"
-                        },
-                        correctAnswer: "b"
+                    correctAnswer: "c"
+                },
+                {
+                    question: "In what state(s) is \\(N_1\\) when it finishes reading the string \\(aab\\)?",
+                    answers: {
+                        a: "\\(q_1\\)",
+                        b: "\\(q_2\\) and \\(q_3\\)",
+                        c: "\\(q_3\\)"
                     },
-                    {
-                        question: "Which of these descriptions best describes the language of \\(N_1\\)?",
-                        answers: {
-                            a: "All strings with at least as many \\(a\\)'s as there are \\(b\\)'s",
-                            b: "Any string with no occurrence of \\(bba\\)",
-                            c: "Any string ending in a \\(b\\)"
-                        },
-                        correctAnswer: "b"
-                    }
-                ];
-            </script>
-            <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script>
+                    correctAnswer: "b"
+                },
+                {
+                    question: "Which of these descriptions best describes the language of \\(N_1\\)?",
+                    answers: {
+                        a: "All strings with at least as many \\(a\\)'s as there are \\(b\\)'s",
+                        b: "Any string with no occurrence of \\(bba\\)",
+                        c: "Any string ending in a \\(b\\)"
+                    },
+                    correctAnswer: "b"
+                }
+            ];
+        </script>
+        <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script>
 
     </div>
-    {% endblock %}
+</div>
+{% endblock %}

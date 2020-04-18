@@ -4,7 +4,7 @@
 <!-- Page Content -->
 <div id="content">
 
-    <div class='container' style='max-width: 800px;'>
+    <div class='container'>
 
         <h1 style="color: var(--main-blue); text-align: center">Lesson 2: Notation and Formal Definitions</h1>
         <br>
@@ -249,65 +249,66 @@
         </p>
         <br>
         <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h3>
-            <p style='text-align: center;'>The questions below refer to the DFA
-                <span class="math-color">\( M_2 \)</span>.
-            </p>
-            <div style='text-align:center'>
-                <div style='width: 500px; margin:0 auto;'>
-                    <text style='color: var(--main-aqua)'>Figure 2.1:</text>
-                    <text>The deterministic finite automaton <span class="math-color">\( M_2 \)</span>.</text>
-                    <br>
-                </div>
-                <img src="{{ url_for('static', filename='assets/figure2-1.svg') }}" alt="Figure 2.1">
-            </div>
-            <p style='text-align: center;'>Below are some set-theory terms with examples that will appear in the quiz:
+        <p style='text-align: center;'>The questions below refer to the DFA
+            <span class="math-color">\( M_2 \)</span>.
+        </p>
+        <div style='text-align:center'>
+            <div style='width: 500px; margin:0 auto;'>
+                <text style='color: var(--main-aqua)'>Figure 2.1:</text>
+                <text>The deterministic finite automaton <span class="math-color">\( M_2 \)</span>.</text>
                 <br>
-                The symbol '<span class="math-color">\( \setminus \)</span>' means 'set difference'. If <span
-                    class="math-color">\( A = \{1,2,3\} \)</span> and <span class="math-color">\( B = \{1,3\} \)</span>,
-                then <span class="math-color">\( A \setminus B = \{ 2 \} \)</span>. <br>
-                The symbol '<span class="math-color">\( \forall \)</span>' means 'for all'. <span class="math-color">\(
-                    \forall x \in \{1, 2, 3\}, x > 0 \)</span> is a true statement.
-            </p>
-            <div id="quiz"></div>
-            <div class='row'>
-                <div class='col'>
-                    <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
-                </div>
-                <div class='col-sm-auto'>
-                    <a style='width: 90px' type='button' type="button" href="/lesson/1.3" class="btn btn-secondary">
-                        <i class="fas fa-arrow-circle-left"></i> Prev
-                    </a>
-                    <a style='width: 90px' type='button' type="button" href="/lesson/2.2" class="btn btn-secondary">Next
-                        <i class="fas fa-arrow-circle-right"></i>
-                    </a>
-                </div>
             </div>
-            <div class='br-lg'></div>
-            <div id="results"></div>
+            <img src="{{ url_for('static', filename='assets/figure2-1.svg') }}" alt="Figure 2.1">
+        </div>
+        <p style='text-align: center;'>Below are some set-theory terms with examples that will appear in the quiz:
+            <br>
+            The symbol '<span class="math-color">\( \setminus \)</span>' means 'set difference'. If <span
+                class="math-color">\( A = \{1,2,3\} \)</span> and <span class="math-color">\( B = \{1,3\} \)</span>,
+            then <span class="math-color">\( A \setminus B = \{ 2 \} \)</span>. <br>
+            The symbol '<span class="math-color">\( \forall \)</span>' means 'for all'. <span class="math-color">\(
+                \forall x \in \{1, 2, 3\}, x > 0 \)</span> is a true statement.
+        </p>
+        <div id="quiz"></div>
+        <div class='row'>
+            <div class='col'>
+                <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
+            </div>
+            <div class='col-sm-auto'>
+                <a style='width: 90px' type='button' type="button" href="/lesson/1.3" class="btn btn-secondary">
+                    <i class="fas fa-arrow-circle-left"></i> Prev
+                </a>
+                <a style='width: 90px' type='button' type="button" href="/lesson/2.2" class="btn btn-secondary">Next
+                    <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class='br-lg'></div>
+        <div id="results"></div>
 
-            <script type='text/javascript'>
-                const myQuestions = [{
-                    question: "Which of the following is NOT true about \\( M_2 \\)?",
-                    answers: {
-                        a: "\\( \\delta (s,a) = q_1 \\)",
-                        b: "\\( \\delta (q_2, b) = q_2 \\)",
-                        c: "\\( \\delta (q_1,a) = s \\)",
-                        d: "\\( r_2 \\notin F \\)",
-                        e: "\\( \\delta (r_1, a) = \\delta(r_2, a) \\)"
-                    },
-                    correctAnswer: "c"
-                }, {
-                    question: "Which of the following is true about \\( M_2 \\)?",
-                    answers: {
-                        a: "\\( s \\in F \\)",
-                        b: "\\( \\forall x \\in \\Sigma, \\delta (r_1, x) = r_2 \\)",
-                        c: "\\( r_1 \\notin F \\)",
-                        d: "\\( F = Q \\setminus \\{ s, q_2, r_2\\} \\)"
-                    },
-                    correctAnswer: "d"
-                }];
-            </script>
-            <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script>
+        <script type='text/javascript'>
+            const myQuestions = [{
+                question: "Which of the following is NOT true about \\( M_2 \\)?",
+                answers: {
+                    a: "\\( \\delta (s,a) = q_1 \\)",
+                    b: "\\( \\delta (q_2, b) = q_2 \\)",
+                    c: "\\( \\delta (q_1,a) = s \\)",
+                    d: "\\( r_2 \\notin F \\)",
+                    e: "\\( \\delta (r_1, a) = \\delta(r_2, a) \\)"
+                },
+                correctAnswer: "c"
+            }, {
+                question: "Which of the following is true about \\( M_2 \\)?",
+                answers: {
+                    a: "\\( s \\in F \\)",
+                    b: "\\( \\forall x \\in \\Sigma, \\delta (r_1, x) = r_2 \\)",
+                    c: "\\( r_1 \\notin F \\)",
+                    d: "\\( F = Q \\setminus \\{ s, q_2, r_2\\} \\)"
+                },
+                correctAnswer: "d"
+            }];
+        </script>
+        <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script>
 
     </div>
-    {% endblock %}
+</div>
+{% endblock %}

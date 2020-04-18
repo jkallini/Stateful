@@ -4,7 +4,7 @@
 <!-- Page Content -->
 <div id="content">
 
-    <div class='container' style='max-width: 800px;'>
+    <div class='container'>
 
         <h1 style="color: var(--main-blue); text-align: center">Lesson 1: Introduction to Finite Automata</h1>
         <br>
@@ -45,31 +45,39 @@
             <img src="{{ url_for('static', filename='assets/figure1-5.svg') }}" alt="Figure 1.5">
         </div>
         <p>
-            A DFA, unlike the general finite automata that we looked at in the last section, solves a pattern matching
-            problem. We can think of the input to a DFA as a string of characters on a piece of tape. The DFA reads each
-            character from the tape exactly once, moving from left to right. Once the DFA has read all of the characters
+            A DFA, unlike the general finite automata that we looked at in the last section, solves a pattern
+            matching
+            problem. We can think of the input to a DFA as a string of characters on a piece of tape. The DFA reads
+            each
+            character from the tape exactly once, moving from left to right. Once the DFA has read all of the
+            characters
             and reaches the end of the string, it responds 'YES' if it accepts the string, and 'NO' if it does not
             accept
-            the string. All strings that are accepted by the DFA are in the <span class='term'>language</span> of the
+            the string. All strings that are accepted by the DFA are in the <span class='term'>language</span> of
+            the
             DFA.
             The DFA is said to <span class='term'>recognize</span> the strings in its language.
         </p>
         <p>
-            To decide whether it will accept or reject a string, a DFA will observe the state it is in when it reaches
+            To decide whether it will accept or reject a string, a DFA will observe the state it is in when it
+            reaches
             the end of input string. If this state is an <span class='term'>accept state</span>, it will accept the
-            string. If not, it will reject the string. We indicate accept states on diagrams using a double circle. In
+            string. If not, it will reject the string. We indicate accept states on diagrams using a double circle.
+            In
             the machine <span class="math-color">\(M_1\)</span> above, <span class="math-color">\(q_2\)</span> is an
             accept state.
         </p>
         <p>
-            To help you understand how a DFA processes an input string to produce an output, step through the example
+            To help you understand how a DFA processes an input string to produce an output, step through the
+            example
             below.
         </p>
         <br>
         <div style='text-align: center;'>
             <div style='width: 500px; margin:0 auto;'>
                 <text style='color: var(--main-aqua)'>Figure 1.6:</text>
-                <text>A visualization of the concept of a DFA. The transition diagram is part of the internal mechanism
+                <text>A visualization of the concept of a DFA. The transition diagram is part of the internal
+                    mechanism
                     of a machine <span class="math-color">\(M_1\)</span>, and that machine reads strings
                     character-by-character from an input tape. </text>
                 <br><br>
@@ -199,59 +207,60 @@
         </div>
         <br><br>
         <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h3>
-            <p style='text-align: center;'>The questions below refer to the DFA <span class="math-color">\(M_1\)</span>.
-            </p>
-            <div id="quiz"></div>
-            <div class='row'>
-                <div class='col'>
-                    <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
-                </div>
-                <div class='col-sm-auto'>
-                    <a style='width: 90px' type='button' type="button" href="/lesson/1.1" class="btn btn-secondary">
-                        <i class="fas fa-arrow-circle-left"></i> Prev
-                    </a>
-                    <a style='width: 90px' type='button' type="button" href="/lesson/1.3" class="btn btn-secondary">Next
-                        <i class="fas fa-arrow-circle-right"></i>
-                    </a>
-                </div>
+        <p style='text-align: center;'>The questions below refer to the DFA <span class="math-color">\(M_1\)</span>.
+        </p>
+        <div id="quiz"></div>
+        <div class='row'>
+            <div class='col'>
+                <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
             </div>
-            <div class='br-lg'></div>
-            <div id="results"></div>
+            <div class='col-sm-auto'>
+                <a style='width: 90px' type='button' type="button" href="/lesson/1.1" class="btn btn-secondary">
+                    <i class="fas fa-arrow-circle-left"></i> Prev
+                </a>
+                <a style='width: 90px' type='button' type="button" href="/lesson/1.3" class="btn btn-secondary">Next
+                    <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class='br-lg'></div>
+        <div id="results"></div>
 
 
-            <script type='text/javascript'>
-                const myQuestions = [{
-                        question: "Which of the following strings does \\(M_1\\) not accept?",
-                        answers: {
-                            a: "\\(01010101\\)",
-                            b: "\\(0100\\)",
-                            c: "\\(101000\\)",
-                            d: "\\(100011\\)"
-                        },
-                        correctAnswer: "c"
+        <script type='text/javascript'>
+            const myQuestions = [{
+                    question: "Which of the following strings does \\(M_1\\) not accept?",
+                    answers: {
+                        a: "\\(01010101\\)",
+                        b: "\\(0100\\)",
+                        c: "\\(101000\\)",
+                        d: "\\(100011\\)"
                     },
-                    {
-                        question: "In what state is \\(M_1\\) when it finishes reading the string \\(11010011\\)?",
-                        answers: {
-                            a: "\\(q_1\\)",
-                            b: "\\(q_2\\)",
-                            c: "\\(q_3\\)"
-                        },
-                        correctAnswer: "b"
+                    correctAnswer: "c"
+                },
+                {
+                    question: "In what state is \\(M_1\\) when it finishes reading the string \\(11010011\\)?",
+                    answers: {
+                        a: "\\(q_1\\)",
+                        b: "\\(q_2\\)",
+                        c: "\\(q_3\\)"
                     },
-                    {
-                        question: "Which of these descriptions best describes the language of \\(M_1\\)?",
-                        answers: {
-                            a: "All binary strings with at least one \\(1\\)",
-                            b: "All binary strings with an even number of \\(0\\)'s",
-                            c: "All binary strings with at least one \\(1\\) and an even number of \\(0\\)'s",
-                            d: "All binary strings with at least one \\(1\\) and an even number of \\(0\\)'s after the last \\(1\\)"
-                        },
-                        correctAnswer: "d"
-                    }
-                ];
-            </script>
-            <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script>
+                    correctAnswer: "b"
+                },
+                {
+                    question: "Which of these descriptions best describes the language of \\(M_1\\)?",
+                    answers: {
+                        a: "All binary strings with at least one \\(1\\)",
+                        b: "All binary strings with an even number of \\(0\\)'s",
+                        c: "All binary strings with at least one \\(1\\) and an even number of \\(0\\)'s",
+                        d: "All binary strings with at least one \\(1\\) and an even number of \\(0\\)'s after the last \\(1\\)"
+                    },
+                    correctAnswer: "d"
+                }
+            ];
+        </script>
+        <script src="{{ url_for('static', filename='js/mini-quiz.js') }}"></script>
 
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
