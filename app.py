@@ -48,15 +48,21 @@ def lesson(lessonid):
     return make_response(html)
 
 
-@app.route('/practice')
-def practice():
+@app.route('/DFApractice')
+def DFApractice():
     DFA_probs = TL.get_DFA_problems()
-    NFA_probs = TL.get_NFA_problems()
     html = render_template(
-        'practice.html', DFA_probs=DFA_probs, NFA_probs=NFA_probs)
+        'practice.html', probs=DFA_probs, det=True)
     response = make_response(html)
     return response
 
+@app.route('/NFApractice')
+def NFApractice():
+    NFA_probs = TL.get_NFA_problems()
+    html = render_template(
+        'practice.html', probs=NFA_probs, det=False)
+    response = make_response(html)
+    return response
 
 @app.route('/DFAproblem/<int:probid>')
 def DFA_problem(probid):

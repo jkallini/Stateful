@@ -5,14 +5,18 @@
 <div style="text-align: center; padding: 0px">
 
 	<div class='logo-header'>
-		<h1 class="display-2" style="font-weight: 500; color: white">
+		<h1 class="display-2" style="font-weight: 800; color: white">
 			Stateful<img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="Figure 1.1">
 		</h1>
+		<h4 style="font-weight: 500; color: white">
+			An online tutor for learning about finite state machines and regular languages.
+		</h4>
 	</div>
-	<h5 style='padding-top: 20px; font-weight: 500'>
-		An online tutor for learning about finite state machines and regular languages.
+	<h5 style='padding: 20px; font-weight: 200'>
+		Take Lesson 1 to learn about the basics of DFAs and NFAs.<br>
+		Take Lesson 2 to learn advanced notation and formal definitions.<br>
+		Test your knowledge with some DFA and NFA design problems.
 	</h5>
-	<br>
 	<div class='container'>
 		<div class='row'>
 			<div class='col'>
@@ -58,26 +62,21 @@
 			<div class='col'>
 				<div class='card title-card'>
 					<div class='card-body'>
-						<h4 class='card-title' style='color:white'>Lesson 1: Introduction to Finite Automata</h4>
-						<a class='btn btn-light' type='button' href='/lesson/1.1' style='margin-bottom: 10px'>
-							<span style='color: var(--main-green); font-weight: 600; font-size: 16px'>1.1 Some Practical
-								Examples</span>
+						<h4 class='card-title' style='color:white'>NFA and DFA Practice Problems</h4>
+						<a class='btn btn-light' type='button' href='/DFApractice' style='margin-bottom: 10px'>
+							<span style='color: var(--main-green); font-weight: 600; font-size: 16px'>DFA Practice
+								Problems</span>
 						</a><br>
-						<a class='btn btn-light' type='button' href='/lesson/1.2' style=' margin-bottom: 10px'>
-							<span style='color: var(--main-green); font-weight: 600; font-size: 16px'>1.2 Deterministic
-								Finite
-								Automata</span>
+						<a class='btn btn-light' type='button' href='/NFApractice' style=' margin-bottom: 10px'>
+							<span style='color: var(--main-green); font-weight: 600; font-size: 16px'>NFA Practice
+								Problems</span>
 						</a><br>
-						<a class='btn btn-light' type='button' href='/lesson/1.3' style='margin-bottom: 10px'>
-							<span style='color: var(--main-green); font-weight: 600; font-size: 16px'>1.3
-								Nondeterministic
-								Finite Automata</span>
-						</a>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		</svg>
+		<br>
+		<a type='button' class='btn btn-secondary' href='https://github.com/jkallini/Stateful'>View Stateful on Github <i
+					class="fas fa-code-branch"></i></a>
 	</div>
 	{% endblock %}
