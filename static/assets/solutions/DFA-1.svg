@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="150" height="135" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="2" fill='#72e982' cx="87.5" cy="99.5" rx="30" ry="30"/>
+	<text x="76.5" y="105.5" font-family="Avenir Next" font-size="20">q&#8321;</text>
+	<ellipse stroke="black" stroke-width="2" fill="none" cx="87.5" cy="99.5" rx="24" ry="24"/>
+	<polygon stroke="black" stroke-width="2" points="12.5,121.5 58.713,107.944"/>
+	<polygon fill="black" stroke-width="2" points="58.713,107.944 49.629,105.398 52.444,114.994"/>
+	<path stroke="black" stroke-width="2" fill="none" d="M 74.275,72.703 A 22.5,22.5 0 1 1 100.725,72.703"/>
+	<text x="73.5" y="23.5" font-family="Avenir Next" font-size="20">a,b</text>
+	<polygon fill="black" stroke-width="2" points="100.725,72.703 109.473,69.17 101.382,63.292"/>
+</svg>

@@ -78,8 +78,7 @@
                 /DFAproblem/{{ problem.get_id() - 1}}
                 {% else %}
                 /NFAproblem/{{ problem.get_id() - 1}}
-                {% endif %}" 
-                class="btn btn-secondary {% if problem.get_id() == 1 %}
+                {% endif %}" class="btn btn-secondary {% if problem.get_id() == 1 %}
                 disabled {% endif %}">
                     <i class="fas fa-arrow-circle-left"></i> Prev
                 </a>
@@ -110,15 +109,23 @@
                             Submit <i class="fas fa-check" aria-hidden="true"></i>
                         </button>
                     </span> {% include 'editor-response.html' %}
+
+                    <!-- Submit FSM -->
+                    <span data-toggle="modal" data-target="#solutionModal">
+                        <button type="button" class="btn btn-danger" data-toggle="tooltip" rel="tooltip" id='view-sol'
+                            style='display: none' data-placement="top" title="View Solution"
+                            style="margin-right: 5px; margin-left: 5px">
+                            View Solution <i class="fas fa-question"></i>
+                        </button>
+                    </span> {% include 'editor-solution.html' %}
                 </div>
             </div>
             <div class='col-sm-auto' style='padding-right:62px'>
-                    <a style='width: 90px' type='button' type="button" href="{% if problem.is_deterministic() %}
+                <a style='width: 90px' type='button' type="button" href="{% if problem.is_deterministic() %}
                     /DFAproblem/{{ problem.get_id() + 1}}
                     {% else %}
                     /NFAproblem/{{ problem.get_id() + 1}}
-                    {% endif %}" 
-                    class="btn btn-secondary {% if problem.get_id() == 10 %}
+                    {% endif %}" class="btn btn-secondary {% if problem.get_id() == 10 %}
                     disabled {% endif %}">
                     Next
                     <i class="fas fa-arrow-circle-right"></i>
@@ -136,9 +143,20 @@
 
 <script>
     initQuestionHandler = function () {
+
+        var clicks = 0;
+
         // function to convert JSON into OpenFST representation
         document.getElementById("printFSM").onclick =
             function () {
+
+                // if button has been clicked more than 5 times,
+                // reveal solution
+                clicks += 1;
+                if (clicks == 5) {
+                    document.getElementById('view-sol').style.display = 'inline';
+                }
+
                 // Store JSON data in a JS variable
                 var fsm = sessionStorage['fsm'];
                 //var json = JSON.parse(fsm);

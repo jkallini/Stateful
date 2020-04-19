@@ -1,0 +1,27 @@
+<div class="modal fade" id="solutionModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="solutionModalLabel">Solution</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Here is a possible state-diagram that answers the problem:</p>
+                <div style='text-align: center'>
+                    {% if problem.is_deterministic() %}
+                    <img src='{{ url_for("static", filename="assets/solutions/DFA-" ~ problem.get_id() ~ ".svg") }}'
+                        alt="DFA Solution {{ problem.get_id() }}">
+                    {% else %}
+                    <img src='{{ url_for("static", filename="assets/solutions/NFA-" ~ problem.get_id() ~ ".svg") }}'
+                        alt="NFA Solution {{ problem.get_id() }}">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
