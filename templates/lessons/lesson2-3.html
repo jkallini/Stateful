@@ -91,7 +91,8 @@
         </p>
         <h3 style='color:var(--main-green); padding-top:18px'>Languages (Formally)</h3>
         <p>
-            Formally, a language is a set of strings. If we say that <span class="math-color">\( L = \{ \text{abc},
+            Formally, a <span class="term">language</span> is a (possibly infinite) set of strings.
+            If we say that <span class="math-color">\( L = \{ \text{abc},
                 \text{cab} \} \)</span> is a language, then it is the language containing the strings <span
                 class="math-color">\( \text{abc} \)</span> and <span class="math-color">\( \text{cab} \)</span>.
             Defining sets using <span class='term'>set-builder</span>
@@ -133,12 +134,13 @@
                 L \)</span>:
             <span class="math-color">$$ L^* = \{ x_1x_2 \dots x_k : k \geq 0 \text{ and } x_i \in L \} $$</span>
             The star operator is particularly useful when concisely notating that some string is over a particular
-            language. For example, to give a simpler way to express that <span class="math-color">\( w \)</span> is a
-            string over the language
-            <span class=" math-color">\( L
-                \)</span>, we can say <span class="math-color">\( w \in L^* \)</span>. This means that <span class="
-                math-color">\( w \)</span> is a string of zero or more symbols from the language <span
-                class="math-color">\( L \)</span>.
+            alphabet, since it can also be applied to alphabets.
+            For example, to give a simpler way to express that <span class="math-color">\( w \)</span> is a
+            string over the alphabet
+            <span class=" math-color">\( \Sigma
+                \)</span>, we can say <span class="math-color">\( w \in \Sigma^* \)</span>. This means that <span class="
+                math-color">\( w \)</span> is a string of zero or more symbols from the alphabet <span
+                class="math-color">\( \Sigma \)</span>.
         </p>
         <p>
             The language <span class="math-color">\( \emptyset \)</span> is the empty language.
