@@ -6,12 +6,6 @@ canvas {
     margin: 10px auto;
 }
 
-.info-div {
-    margin: 30px auto;
-    text-align: left;
-    max-width: 800px;
-}
-
 .error {
     display: block;
     color: red;
