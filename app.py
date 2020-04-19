@@ -14,10 +14,29 @@ import json
 app = Flask(__name__)
 
 
-# error handling page
+# 404 error message
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+    return render_template('message.html',
+                           title='Oops!',
+                           message='The page you are looking for ' +
+                           'does not exist.<br> ' +
+                           'Click <a href="/">here</a> to ' +
+                           'return to the home page.'), 404
+
+
+@app.errorhandler(500)
+def server_error(e):
+    return render_template('message.html',
+                           title='A server error occurred.',
+                           message="Please try again later."), 500
+
+
+@app.errorhandler(405)
+def bad_method(e):
+    return render_template('message.html',
+                           title='Bad method',
+                           message="This request method has been disabled."), 405
 
 
 @app.route('/', methods=['GET'])
@@ -56,6 +75,7 @@ def DFApractice():
     response = make_response(html)
     return response
 
+
 @app.route('/NFApractice')
 def NFApractice():
     NFA_probs = TL.get_NFA_problems()
@@ -64,12 +84,17 @@ def NFApractice():
     response = make_response(html)
     return response
 
+
 @app.route('/DFAproblem/<int:probid>')
 def DFA_problem(probid):
 
     if not TL.DFA_probid_exists(probid):
-        # TODO: do real error handling here
-        return render_template('index.html')
+        return render_template('message.html',
+                           title='Oops!',
+                           message='The DFA problem you are looking for ' +
+                           'does not exist.<br> ' +
+                           'Click <a href="/DFApractice">here</a> to ' +
+                           'view other DFA problems.'), 404
 
     problem = TL.get_DFA_problem(probid)
     html = render_template('problem.html', problem=problem)
@@ -81,8 +106,12 @@ def DFA_problem(probid):
 def NFA_problem(probid):
 
     if not TL.NFA_probid_exists(probid):
-        # TODO: do real error handling here
-        return render_template('index.html')
+        return render_template('message.html',
+                           title='Oops!',
+                           message='The NFA problem you are looking for ' +
+                           'does not exist.<br> ' +
+                           'Click <a href="/NFApractice">here</a> to ' +
+                           'view other NFA problems.'), 404
 
     problem = TL.get_NFA_problem(probid)
     html = render_template('problem.html', problem=problem)
@@ -103,7 +132,7 @@ def submit():
         # verify that this problem exists (it should)
         if not TL.DFA_probid_exists(probid):
             response = {'title': "An Error Occurred",
-                'message': "Sorry for the inconvenience!"}
+                        'message': "Sorry for the inconvenience!"}
             return response
 
         problem = TL.get_DFA_problem(probid)
@@ -111,7 +140,7 @@ def submit():
         # verify that this problem exists (it should)
         if not TL.NFA_probid_exists(probid):
             response = {'title': "An Error Occurred",
-                'message': "Sorry for the inconvenience!"}
+                        'message': "Sorry for the inconvenience!"}
             return response
         problem = TL.get_NFA_problem(probid)
     error, fsm_or_exception = FSM.parse_json(fsm_json, det)

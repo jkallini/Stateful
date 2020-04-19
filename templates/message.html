@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block head %}
+<title>Stateful | Home</title>
+{% endblock %} {% block body %}
+<!-- Page Content -->
+<div id="content" style="text-align: center">
+
+    <h1 class="display-3" style="font-weight: 500">{{ title }}</h1>
+
+    <p>
+        {{ message|safe }}
+    </p>
+
+
+</div>
+{% endblock %}
