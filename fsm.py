@@ -101,7 +101,7 @@ def get_alphabet(fsm, det):
                         raise Exception(
                             "A DFA should not have epsilon transitions!")
                     else:
-                        label = ''
+                        continue
                 input_symbols.add(label.strip())
     return input_symbols
 
