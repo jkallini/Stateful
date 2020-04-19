@@ -1,6 +1,6 @@
 body {
   font-family: 'Avenir';
-  background: #f7ffeb;
+  background: var(--main-background);
 }
 
 h1 {
