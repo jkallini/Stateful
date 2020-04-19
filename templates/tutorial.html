@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block head %}
+<title>Stateful | Practice Questions</title>
+{% endblock %} {% block body %}
+<!-- Page Content -->
+<div id="content">
+
+    <div class='container'>
+
+        <h1 style="text-align: center">Finite State Machine Editor Tutorial</h1>
+
+        <p>
+            This page is an in-depth tutorial about how to use the Finite State Machine Editor, which you use to answer
+            <a href='/DFApractice'>DFA practice problems</a> and <a href='/NFApractice'>NFA practice problems</a>. Each
+            section below describes a different functionality of the FSM Editor, along with short demonstrations.
+        </p>
+        <h3 style='color:var(--main-green); padding-top:18px'>What is the FSM Editor?</h3>
+        <div style='text-align: center'>
+                <img style='max-width: 80%;
+                max-height: 100vh;
+                margin: auto;' src="{{ url_for('static', filename='assets/tutorial/tutorial-1.png') }}" alt="FSM Editor">
+            </div>
+        <h3 style='color:var(--main-green); padding-top:18px'>Adding a State</h3>
+        <p>
+            To add a state, <span class='term'>double click</span> anywhere on the editor. You will see a green state
+            appear, with a blinking cursor in its center. Make sure to give your state a <span
+                class='term'>label</span>.
+        </p>
+        <br>
+    </div>
+</div>
+{% endblock %}

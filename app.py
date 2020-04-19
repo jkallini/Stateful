@@ -67,6 +67,13 @@ def lesson(lessonid):
     return make_response(html)
 
 
+@app.route('/tutorial')
+def tutorial():
+    html = render_template('tutorial.html')
+    response = make_response(html)
+    return response
+
+
 @app.route('/DFApractice')
 def DFApractice():
     DFA_probs = TL.get_DFA_problems()

@@ -173,7 +173,3 @@ a:focus {
   border-radius: 50%;
   background: white;
 }
-
-#canvas {
-  border: 3px solid var(--main-aqua)
-}
