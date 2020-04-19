@@ -244,6 +244,22 @@ NFA_problem_bank = [
                     final_states={'q_2', 'q_4', 'q_5'}),
             difficulty=Problem.HARD,
             exact=True),
+    Problem(probid=10,
+            description="Let \(\color{#056fa0}{A}\) and \(\color{#056fa0}{B}\) be two languages, " +
+            "defined as \(\color{#056fa0}{A = \{a\}}\) and \(\color{#056fa0}{B = \{ b \}}\)." +
+            " For any two languages \(\color{#056fa0}{A}\) and \(\color{#056fa0}{B}\), " +
+            "the <span class='term'>concatenation</span> operation is defined as " +
+            "\(\color{#056fa0}{A \circ B = \{ xy : x \in A \\text{ and } x \in B\}}\). " +
+            "Let \(\color{#056fa0}{ L = A \circ B}\). Design an NFA over the alphabet " +
+            "\(\color{#056fa0}{ \{a,b\} }\) that recognizes \(\color{#056fa0}{L^*}\).",
+            fsm=NFA(states={'q_0', 'q_1'},
+                    input_symbols={'a', 'b'},
+                    transitions={'q_0': {'a': {'q_1'}},
+                                 'q_1': {'b': {'q_0'}}},
+                    initial_state='q_0',
+                    final_states={'q_0'}),
+            difficulty=Problem.HARD,
+            exact=False),
 ]
 
 
