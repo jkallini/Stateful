@@ -72,29 +72,58 @@
         <canvas id="canvas">
             <span class="error">Your browser does not support<br>the HTML5 &lt;canvas&gt; element</span>
         </canvas>
+        <div class='row'>
+            <div class='col-sm-auto' style='padding-left:62px'>
+                <a style='width: 90px' type='button' type="button" href="{% if problem.is_deterministic() %}
+                /DFAproblem/{{ problem.get_id() - 1}}
+                {% else %}
+                /NFAproblem/{{ problem.get_id() - 1}}
+                {% endif %}" 
+                class="btn btn-secondary {% if problem.get_id() == 1 %}
+                disabled {% endif %}">
+                    <i class="fas fa-arrow-circle-left"></i> Prev
+                </a>
+            </div>
+            <div class='col'>
+                <div class="center">
+                    <!-- Clear canvas button -->
+                    <button data-toggle="tooltip" rel="tooltip" data-placement="top" title="Clear my Canvas"
+                        id="clearCanvas" type="button" class="btn btn-primary"
+                        style="margin-right: 5px; margin-left: 5px">
+                        Clear
+                        <i class="fas fa-trash" aria-hidden="true"
+                            style="margin-right: 5px; margin-left: 5px"></i></button>
 
-        <div class="center">
-            <!-- Clear canvas button -->
-            <button data-toggle="tooltip" rel="tooltip" data-placement="top" title="Clear my Canvas" id="clearCanvas"
-                type="button" class="btn btn-primary" style="margin-right: 5px; margin-left: 5px">
-                Clear
-                <i class="fas fa-trash" aria-hidden="true" style="margin-right: 5px; margin-left: 5px"></i></button>
+                    <!-- Button trigger modal -->
+                    <span data-toggle="modal" data-target="#infoModal">
+                        <button type="button" class="btn btn-primary" data-toggle="tooltip" rel="tooltip"
+                            data-placement="top" title="How to use the Canvas"
+                            style="margin-right: 5px; margin-left: 5px">
+                            Info <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        </button>
+                    </span> {% include 'editor-info.html' %}
 
-            <!-- Button trigger modal -->
-            <span data-toggle="modal" data-target="#infoModal">
-                <button type="button" class="btn btn-primary" data-toggle="tooltip" rel="tooltip" data-placement="top"
-                    title="How to use the Canvas" style="margin-right: 5px; margin-left: 5px">
-                    Info <i class="fas fa-info-circle" aria-hidden="true"></i>
-                </button>
-            </span> {% include 'editor-info.html' %}
-
-            <!-- Submit FSM -->
-            <span data-toggle="modal" data-target="#submitModal">
-                <button id="printFSM" type="button" class="btn btn-primary" data-toggle="tooltip" rel="tooltip"
-                    data-placement="top" title="Submit my Answer" style="margin-right: 5px; margin-left: 5px">
-                    Submit <i class="fas fa-check" aria-hidden="true"></i>
-                </button>
-            </span> {% include 'editor-response.html' %}
+                    <!-- Submit FSM -->
+                    <span data-toggle="modal" data-target="#submitModal">
+                        <button id="printFSM" type="button" class="btn btn-primary" data-toggle="tooltip" rel="tooltip"
+                            data-placement="top" title="Submit my Answer" style="margin-right: 5px; margin-left: 5px">
+                            Submit <i class="fas fa-check" aria-hidden="true"></i>
+                        </button>
+                    </span> {% include 'editor-response.html' %}
+                </div>
+            </div>
+            <div class='col-sm-auto' style='padding-right:62px'>
+                    <a style='width: 90px' type='button' type="button" href="{% if problem.is_deterministic() %}
+                    /DFAproblem/{{ problem.get_id() + 1}}
+                    {% else %}
+                    /NFAproblem/{{ problem.get_id() + 1}}
+                    {% endif %}" 
+                    class="btn btn-secondary {% if problem.get_id() == 10 %}
+                    disabled {% endif %}">
+                    Next
+                    <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
         </div>
     </div>
 </div>
