@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="280" height="220" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="2" fill='#72e982' cx="80.5" cy="44.5" rx="30" ry="30"/>
+	<text x="69.5" y="50.5" font-family="Avenir Next" font-size="20">q&#8321;</text>
+	<ellipse stroke="black" stroke-width="2" fill="none" cx="80.5" cy="44.5" rx="24" ry="24"/>
+	<ellipse stroke="black" stroke-width="2" fill='#72e982' cx="215.5" cy="44.5" rx="30" ry="30"/>
+	<text x="204.5" y="50.5" font-family="Avenir Next" font-size="20">q&#8322;</text>
+	<ellipse stroke="black" stroke-width="2" fill="none" cx="215.5" cy="44.5" rx="24" ry="24"/>
+	<ellipse stroke="black" stroke-width="2" fill='#72e982' cx="215.5" cy="176.5" rx="30" ry="30"/>
+	<text x="204.5" y="182.5" font-family="Avenir Next" font-size="20">q&#8323;</text>
+	<polygon stroke="black" stroke-width="2" points="6.5,73.5 52.568,55.446"/>
+	<polygon fill="black" stroke-width="2" points="52.568,55.446 43.295,53.71 46.944,63.02"/>
+	<polygon stroke="black" stroke-width="2" points="110.5,44.5 185.5,44.5"/>
+	<polygon fill="black" stroke-width="2" points="185.5,44.5 177.5,39.5 177.5,49.5"/>
+	<text x="142.5" y="35.5" font-family="Avenir Next" font-size="20">0</text>
+	<polygon stroke="black" stroke-width="2" points="215.5,74.5 215.5,146.5"/>
+	<polygon fill="black" stroke-width="2" points="215.5,146.5 220.5,138.5 210.5,138.5"/>
+	<text x="220.5" y="116.5" font-family="Avenir Next" font-size="20">0</text>
+	<path stroke="black" stroke-width="2" fill="none" d="M 188.703,189.725 A 22.5,22.5 0 1 1 188.703,163.275"/>
+	<text x="131.5" y="182.5" font-family="Avenir Next" font-size="20">0</text>
+	<polygon fill="black" stroke-width="2" points="188.703,163.275 185.17,154.527 179.292,162.618"/>
+</svg>

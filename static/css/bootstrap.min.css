@@ -6231,10 +6231,15 @@ a.close.disabled {
 }
 
 .modal-dialog {
-    position: relative;
     width: auto;
     margin: .5rem;
     pointer-events: none;
+    position: relative;
+    display: table; /* This is important */ 
+    overflow-y: auto;    
+    overflow-x: auto;
+    width: auto;
+    min-width: 500px; 
 }
 
 .modal.fade .modal-dialog {

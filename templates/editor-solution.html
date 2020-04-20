@@ -9,7 +9,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Here is a possible state-diagram that answers the problem:</p>
+                {% if problem.is_exact() %}
+                <p>Here is the state diagram corresponding to the formal description:</p>
+                {% else %}
+                <p>Here is a possible state diagram that answers the problem (there may be more than one solution):</p>
+                {% endif %}
                 <div style='text-align: center'>
                     {% if problem.is_deterministic() %}
                     <img src='{{ url_for("static", filename="assets/solutions/DFA-" ~ problem.get_id() ~ ".svg") }}'
