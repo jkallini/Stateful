@@ -1,0 +1,58 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="450" height="480" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="2" fill='#72e982' cx="90.5" cy="174.5" rx="30" ry="30"/>
+	<text x="79.5" y="180.5" font-family="Avenir Next" font-size="20">q&#8320;</text>
+	<ellipse stroke="black" stroke-width="2" fill='#72e982' cx="214.5" cy="103.5" rx="30" ry="30"/>
+	<text x="203.5" y="109.5" font-family="Avenir Next" font-size="20">q&#8321;</text>
+	<ellipse stroke="black" stroke-width="2" fill='#72e982' cx="214.5" cy="244.5" rx="30" ry="30"/>
+	<text x="203.5" y="250.5" font-family="Avenir Next" font-size="20">q&#8323;</text>
+	<ellipse stroke="black" stroke-width="2" fill='#72e982' cx="385.5" cy="103.5" rx="30" ry="30"/>
+	<text x="374.5" y="109.5" font-family="Avenir Next" font-size="20">q&#8322;</text>
+	<ellipse stroke="black" stroke-width="2" fill="none" cx="385.5" cy="103.5" rx="24" ry="24"/>
+	<ellipse stroke="black" stroke-width="2" fill='#72e982' cx="385.5" cy="244.5" rx="30" ry="30"/>
+	<text x="374.5" y="250.5" font-family="Avenir Next" font-size="20">q&#8324;</text>
+	<ellipse stroke="black" stroke-width="2" fill="none" cx="385.5" cy="244.5" rx="24" ry="24"/>
+	<ellipse stroke="black" stroke-width="2" fill='#72e982' cx="301.5" cy="360.5" rx="30" ry="30"/>
+	<text x="290.5" y="366.5" font-family="Avenir Next" font-size="20">q&#8325;</text>
+	<ellipse stroke="black" stroke-width="2" fill="none" cx="301.5" cy="360.5" rx="24" ry="24"/>
+	<polygon stroke="black" stroke-width="2" points="15.5,200.5 62.155,184.326"/>
+	<polygon fill="black" stroke-width="2" points="62.155,184.326 52.959,182.222 56.234,191.671"/>
+	<polygon stroke="black" stroke-width="2" points="116.534,159.593 188.466,118.407"/>
+	<polygon fill="black" stroke-width="2" points="188.466,118.407 179.039,118.043 184.008,126.721"/>
+	<text x="137.5" y="129.5" font-family="Avenir Next" font-size="20">&#949;</text>
+	<polygon stroke="black" stroke-width="2" points="116.625,189.248 188.375,229.752"/>
+	<polygon fill="black" stroke-width="2" points="188.375,229.752 183.867,221.465 178.951,230.174"/>
+	<text x="137.5" y="230.5" font-family="Avenir Next" font-size="20">&#949;</text>
+	<path stroke="black" stroke-width="2" fill="none" d="M 238.422,85.519 A 123.302,123.302 0 0 1 361.578,85.519"/>
+	<polygon fill="black" stroke-width="2" points="361.578,85.519 357.144,77.192 352.15,85.855"/>
+	<text x="294.5" y="60.5" font-family="Avenir Next" font-size="20">0</text>
+	<path stroke="black" stroke-width="2" fill="none" d="M 362.481,122.61 A 116.798,116.798 0 0 1 237.519,122.61"/>
+	<polygon fill="black" stroke-width="2" points="237.519,122.61 241.603,131.114 246.953,122.665"/>
+	<text x="294.5" y="161.5" font-family="Avenir Next" font-size="20">0</text>
+	<polygon stroke="black" stroke-width="2" points="244.5,244.5 355.5,244.5"/>
+	<polygon fill="black" stroke-width="2" points="355.5,244.5 347.5,239.5 347.5,249.5"/>
+	<text x="294.5" y="235.5" font-family="Avenir Next" font-size="20">1</text>
+	<polygon stroke="black" stroke-width="2" points="367.905,268.798 319.095,336.202"/>
+	<polygon fill="black" stroke-width="2" points="319.095,336.202 327.837,332.655 319.738,326.79"/>
+	<text x="349.5" y="322.5" font-family="Avenir Next" font-size="20">1</text>
+	<polygon stroke="black" stroke-width="2" points="283.5,336.5 232.5,268.5"/>
+	<polygon fill="black" stroke-width="2" points="232.5,268.5 233.3,277.9 241.3,271.9"/>
+	<text x="240.5" y="322.5" font-family="Avenir Next" font-size="20">1</text>
+	<path stroke="black" stroke-width="2" fill="none" d="M 201.275,76.703 A 22.5,22.5 0 1 1 227.725,76.703"/>
+	<text x="208.5" y="27.5" font-family="Avenir Next" font-size="20">1</text>
+	<polygon fill="black" stroke-width="2" points="227.725,76.703 236.473,73.17 228.382,67.292"/>
+	<path stroke="black" stroke-width="2" fill="none" d="M 372.275,76.703 A 22.5,22.5 0 1 1 398.725,76.703"/>
+	<text x="379.5" y="27.5" font-family="Avenir Next" font-size="20">1</text>
+	<polygon fill="black" stroke-width="2" points="398.725,76.703 407.473,73.17 399.382,67.292"/>
+	<path stroke="black" stroke-width="2" fill="none" d="M 201.275,217.703 A 22.5,22.5 0 1 1 227.725,217.703"/>
+	<text x="208.5" y="168.5" font-family="Avenir Next" font-size="20">0</text>
+	<polygon fill="black" stroke-width="2" points="227.725,217.703 236.473,214.17 228.382,208.292"/>
+	<path stroke="black" stroke-width="2" fill="none" d="M 372.275,217.703 A 22.5,22.5 0 1 1 398.725,217.703"/>
+	<text x="379.5" y="168.5" font-family="Avenir Next" font-size="20">0</text>
+	<polygon fill="black" stroke-width="2" points="398.725,217.703 407.473,214.17 399.382,208.292"/>
+	<path stroke="black" stroke-width="2" fill="none" d="M 314.725,387.297 A 22.5,22.5 0 1 1 288.275,387.297"/>
+	<text x="295.5" y="449.5" font-family="Avenir Next" font-size="20">0</text>
+	<polygon fill="black" stroke-width="2" points="288.275,387.297 279.527,390.83 287.618,396.708"/>
+</svg>
