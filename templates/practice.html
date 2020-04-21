@@ -26,7 +26,7 @@
                     Problem {{ id }}
                     {% if diff == 0 %}
                     <span class="badge badge-pill badge-success">Easy</span>{% endif %} {% if diff == 1 %}
-                    <span class="badge badge-pill" style='background: #ffbf00;color: white'>Medium</span> {% endif %}
+                    <span class="badge badge-pill badge-warning">Medium</span> {% endif %}
                     {% if diff == 2 %}
                     <span class="badge badge-pill badge-danger">Hard</span> {% endif %}
                 </a>: {{ desc|safe }}</p>

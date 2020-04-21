@@ -62,7 +62,7 @@
         <h5 style="padding-bottom: 5px">
             {% if problem.get_difficulty() == 0 %}
             <span class="badge badge-pill badge-success">Easy</span>{% endif %} {% if problem.get_difficulty() == 1 %}
-            <span class="badge badge-pill" style='background: #ffbf00;color: white'>Medium</span> {% endif %}
+            <span class="badge badge-pill badge-warning">Medium</span> {% endif %}
             {% if problem.get_difficulty() == 2 %}
             <span class="badge badge-pill badge-danger">Hard</span> {% endif %}
         </h5>
@@ -93,15 +93,6 @@
                         <i class="fas fa-trash" aria-hidden="true"
                             style="margin-right: 5px; margin-left: 5px"></i></button>
 
-                    <!-- Button trigger modal -->
-                    <span data-toggle="modal" data-target="#infoModal">
-                        <button type="button" class="btn btn-primary" data-toggle="tooltip" rel="tooltip"
-                            data-placement="top" title="How to use the Editor"
-                            style="margin-right: 5px; margin-left: 5px">
-                            Info <i class="fas fa-info-circle" aria-hidden="true"></i>
-                        </button>
-                    </span> {% include 'editor-info.html' %}
-
                     <!-- Submit FSM -->
                     <span data-toggle="modal" data-target="#submitModal">
                         <button id="printFSM" type="button" class="btn btn-primary" data-toggle="tooltip" rel="tooltip"
@@ -110,10 +101,20 @@
                         </button>
                     </span> {% include 'editor-response.html' %}
 
-                    <!-- Submit FSM -->
+                    <!-- Info -->
+                    <span data-toggle="modal" data-target="#infoModal">
+                        <button type="button" class="btn btn-warning" data-toggle="tooltip" rel="tooltip"
+                            data-placement="top" title="How to use the Editor"
+                            style="margin-right: 5px; margin-left: 5px">
+                            Info <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        </button>
+                    </span> {% include 'editor-info.html' %}
+
+                    <!-- View Solution -->
                     <span data-toggle="modal" data-target="#solutionModal">
                         <button type="button" class="btn btn-danger" data-toggle="tooltip" rel="tooltip" id='view-sol'
-                            data-placement="top" title="View Solution" style="display: none; margin-right: 5px; margin-left: 5px">
+                            data-placement="top" title="View Solution"
+                            style="display: none; margin-right: 5px; margin-left: 5px">
                             View Solution <i class="fas fa-question"></i>
                         </button>
                     </span> {% include 'editor-solution.html' %}
