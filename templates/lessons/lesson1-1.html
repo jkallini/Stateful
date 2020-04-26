@@ -18,12 +18,13 @@
                 </h2>
             </div>
             <div class='col-sm-auto'>
-                <a style='width: 90px' type='button' type="button" href='#' class="btn btn-secondary disabled">
+                <button style='width: 90px' type='button' type="button" href='#' class="btn btn-secondary disabled">
                     <i class="fas fa-arrow-circle-left"></i> Prev
-                </a>
-                <a style='width: 90px' type='button' type="button" href="/lesson/1.2" class="btn btn-secondary">Next
+                </button>
+                <button style='width: 90px' type='button' type="button" onclick="window.location.href='/lesson/1.2'"
+                    class="btn btn-secondary">Next
                     <i class="fas fa-arrow-circle-right"></i>
-                </a>
+                </button>
                 <br><br>
             </div>
         </div>
@@ -125,22 +126,23 @@
         </p>
         <br>
         <h3 style='text-align: center; color: var(--main-aqua)'>Mini Quiz</h3>
-            <div id="quiz"></div>
-            <div class='row'>
-                <div class='col'>
-                    <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
-                </div>
-                <div class='col-sm-auto'>
-                    <a style='width: 90px' type='button' type="button" href='#' class="btn btn-secondary disabled">
-                        <i class="fas fa-arrow-circle-left"></i> Prev
-                    </a>
-                    <a style='width: 90px' type='button' type="button" href="/lesson/1.2" class="btn btn-secondary">Next
-                        <i class="fas fa-arrow-circle-right"></i>
-                    </a>
-                </div>
+        <div id="quiz"></div>
+        <div class='row'>
+            <div class='col'>
+                <button type='button' type="button" class="btn btn-primary" id="submit">Submit Quiz</button>
             </div>
-            <div class='br-lg'></div>
-            <div id="results"></div>
+            <div class='col-sm-auto'>
+                <button style='width: 90px' type='button' type="button" href='#' class="btn btn-secondary disabled">
+                    <i class="fas fa-arrow-circle-left"></i> Prev
+                </button>
+                <button style='width: 90px' type='button' type="button" onclick="window.location.href='/lesson/1.2'"
+                    class="btn btn-secondary">Next
+                    <i class="fas fa-arrow-circle-right"></i>
+                </button>
+            </div>
+        </div>
+        <div class='br-lg'></div>
+        <div id="results"></div>
 
     </div>
 

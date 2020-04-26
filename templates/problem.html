@@ -74,14 +74,13 @@
         </canvas>
         <div class='row'>
             <div class='col-sm-auto' style='padding-left:62px'>
-                <a style='width: 90px' type='button' type="button" href="{% if problem.is_deterministic() %}
-                /DFAproblem/{{ problem.get_id() - 1}}
-                {% else %}
-                /NFAproblem/{{ problem.get_id() - 1}}
-                {% endif %}" class="btn btn-secondary {% if problem.get_id() == 1 %}
-                disabled {% endif %}">
+                <button {% if problem.get_id() == 1 %} disabled {% endif %} style='width: 90px' type='button'
+                    type="button" {% if problem.is_deterministic() %}
+                    onclick="window.location.href='/DFAproblem/{{ problem.get_id() - 1}}'" {% else %}
+                    onclick="window.location.href='/NFAproblem/{{ problem.get_id() - 1}}'" {% endif %}
+                    class="btn btn-secondary">
                     <i class="fas fa-arrow-circle-left"></i> Prev
-                </a>
+                </button>
             </div>
             <div class='col'>
                 <div class="center">
@@ -121,15 +120,13 @@
                 </div>
             </div>
             <div class='col-sm-auto' style='padding-right:62px'>
-                <a style='width: 90px' type='button' type="button" href="{% if problem.is_deterministic() %}
-                    /DFAproblem/{{ problem.get_id() + 1}}
-                    {% else %}
-                    /NFAproblem/{{ problem.get_id() + 1}}
-                    {% endif %}" class="btn btn-secondary {% if problem.get_id() == 10 %}
-                    disabled {% endif %}">
-                    Next
-                    <i class="fas fa-arrow-circle-right"></i>
-                </a>
+                <button {% if problem.get_id() == 10 %} disabled {% endif %} style='width: 90px' type='button'
+                    type="button" {% if problem.is_deterministic() %}
+                    onclick="window.location.href='/DFAproblem/{{ problem.get_id() + 1}}'" {% else %}
+                    onclick="window.location.href='/NFAproblem/{{ problem.get_id() + 1}}'" {% endif %}
+                    class="btn btn-secondary">
+                    Next <i class="fas fa-arrow-circle-right"></i>
+                </button>
             </div>
         </div>
     </div>
