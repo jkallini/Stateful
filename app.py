@@ -167,7 +167,7 @@ def submit():
         response = {'title': "Incorrect",
                     'message': "That's not quite right. Give it another try!"}
     else:
-        response = {'title': "Good Job!",
+        response = {'title': "Great Job!",
                     'message': 'Here is the 5-tuple for your FSM: <br>'
                     + FSM.fsm_str(fsm_or_exception)}
     return json.dumps(response)

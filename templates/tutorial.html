@@ -153,10 +153,28 @@
             <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
                 src=" {{ url_for('static', filename='assets/tutorial/tutorial-9.gif') }}" alt="Greek Letters">
         </div>
-        <p><span class='text-danger' style='font-weight: bold'>Knowing how to type Greek letters is very important
+        <p>
+            <span class='text-danger' style='font-weight: bold'>Knowing how to type Greek letters is very important
                 for drawing NFAs!</span> NFAs may include epsilon transitions. The only way to write the <span
                 class='math-color'>\(\varepsilon\)</span> character is by typing <code>\epsilon</code>. Otherwise, the
-            Editor will think you are typing an invalid character.</p>
+            Editor will think you are typing an invalid character.
+        </p>
+        <h3 style='color:var(--main-green); padding-top:18px'>Submitting an Answer</h3>
+        <p>
+            When you've drawn a DFA or an NFA and you're ready to submit your answer, click on the
+            <span class="badge badge-pill badge-primary">Submit <i class="fas fa-check" aria-hidden="true"></i></span>
+            button below the FSM Editor. A dialog box will appear. If you have not submitted a valid DFA or NFA, the
+            dialog box will say '<span class='term'>Oops! Your FSM is invalid</span>', and a brief message will
+            describe your error.
+            If your submission is a valid DFA or NFA, then the dialog box will either say '<span class='term'>Great
+                Job!</span>' or '<span class='term'>Incorrect</span>' based on the correctness of your answer.
+        </p>
+        <p>
+            To clear the Editor and start over, you may press the clear <span
+                class="badge badge-pill badge-primary">Clear <i class="fas fa-trash" aria-hidden="true"></i></span>
+            button. <span class='text-danger' style='font-weight: bold'>This cannot be undone</span>, so use it with
+            caution!
+        </p>
         <br>
     </div>
 </div>

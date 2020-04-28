@@ -3043,14 +3043,14 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-primary {
-    color: #var(--main-blue);
-    border-color: #var(--main-blue)
+    color: var(--main-blue);
+    border-color: var(--main-blue)
 }
 
 .btn-outline-primary:hover {
     color: #fff;
-    background-color: #var(--main-blue);
-    border-color: #var(--main-blue)
+    background-color: var(--main-blue);
+    border-color: var(--main-blue)
 }
 
 .btn-outline-primary.focus,
@@ -3060,7 +3060,7 @@ fieldset:disabled a.btn {
 
 .btn-outline-primary.disabled,
 .btn-outline-primary:disabled {
-    color: #var(--main-blue);
+    color: var(--main-blue);
     background-color: transparent
 }
 
@@ -3068,8 +3068,8 @@ fieldset:disabled a.btn {
 .btn-outline-primary:not(:disabled):not(.disabled):active,
 .show>.btn-outline-primary.dropdown-toggle {
     color: #fff;
-    background-color: #var(--main-blue);
-    border-color: #var(--main-blue)
+    background-color: var(--main-blue);
+    border-color: var(--main-blue)
 }
 
 .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
@@ -3644,7 +3644,7 @@ input[type=submit].btn-block {
 .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #var(--main-blue)
+    background-color: var(--main-blue)
 }
 
 .dropdown-item.disabled,
@@ -4020,8 +4020,8 @@ input[type=submit].btn-block {
 
 .custom-control-input:checked~.custom-control-label::before {
     color: #fff;
-    border-color: #var(--main-blue);
-    background-color: #var(--main-blue)
+    border-color: var(--main-blue);
+    background-color: var(--main-blue)
 }
 
 .custom-control-input:focus~.custom-control-label::before {
@@ -4085,8 +4085,8 @@ input[type=submit].btn-block {
 }
 
 .custom-checkbox .custom-control-input:indeterminate~.custom-control-label::before {
-    border-color: #var(--main-blue);
-    background-color: #var(--main-blue)
+    border-color: var(--main-blue);
+    background-color: var(--main-blue)
 }
 
 .custom-checkbox .custom-control-input:indeterminate~.custom-control-label::after {
@@ -4315,7 +4315,7 @@ input[type=submit].btn-block {
     width: 1rem;
     height: 1rem;
     margin-top: -.25rem;
-    background-color: #var(--main-blue);
+    background-color: var(--main-blue);
     border: 0;
     border-radius: 1rem;
     transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
@@ -4346,7 +4346,7 @@ input[type=submit].btn-block {
 .custom-range::-moz-range-thumb {
     width: 1rem;
     height: 1rem;
-    background-color: #var(--main-blue);
+    background-color: var(--main-blue);
     border: 0;
     border-radius: 1rem;
     transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
@@ -4380,7 +4380,7 @@ input[type=submit].btn-block {
     margin-top: 0;
     margin-right: .2rem;
     margin-left: .2rem;
-    background-color: #var(--main-blue);
+    background-color: var(--main-blue);
     border: 0;
     border-radius: 1rem;
     transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
@@ -4524,7 +4524,7 @@ input[type=submit].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
-    background-color: #var(--main-blue)
+    background-color: var(--main-blue)
 }
 
 .nav-fill .nav-item {
@@ -5299,7 +5299,7 @@ input[type=submit].btn-block {
     padding: .5rem .75rem;
     margin-left: -1px;
     line-height: 1.25;
-    color: #var(--main-blue);
+    color: var(--main-blue);
     background-color: #fff;
     border: 1px solid #dee2e6
 }
@@ -5332,8 +5332,8 @@ input[type=submit].btn-block {
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #var(--main-blue);
-    border-color: #var(--main-blue)
+    background-color: var(--main-blue);
+    border-color: var(--main-blue)
 }
 
 .page-item.disabled .page-link {
@@ -5417,7 +5417,7 @@ a.badge:hover {
 
 .badge-primary {
     color: #fff;
-    background-color: #var(--main-blue)
+    background-color: var(--main-blue)
 }
 
 a.badge-primary:focus,
@@ -5750,7 +5750,7 @@ a.badge-dark:focus {
     color: #fff;
     text-align: center;
     white-space: nowrap;
-    background-color: #var(--main-blue);
+    background-color: var(--main-blue);
     transition: width .6s ease
 }
 
@@ -5847,8 +5847,8 @@ a.badge-dark:focus {
 .list-group-item.active {
     z-index: 2;
     color: #fff;
-    background-color: #var(--main-blue);
-    border-color: #var(--main-blue)
+    background-color: var(--main-blue);
+    border-color: var(--main-blue)
 }
 
 .list-group-horizontal {
@@ -7050,7 +7050,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-    background-color: #var(--main-blue) !important
+    background-color: var(--main-blue) !important
 }
 
 a.bg-primary:focus,
@@ -7186,7 +7186,7 @@ button.bg-dark:hover {
 }
 
 .border-primary {
-    border-color: #var(--main-blue) !important
+    border-color: var(--main-blue) !important
 }
 
 .border-secondary {
