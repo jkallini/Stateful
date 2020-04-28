@@ -4,7 +4,7 @@
 <!-- Page Content -->
 <div id="content">
 
-    <div class='container'>
+    <div class='container' style='max-width: 900px;'>
 
         <h1 style="color: var(--main-blue); text-align: center">Lesson 1: Introduction to Finite Automata</h1>
         <br>
@@ -39,7 +39,7 @@
             gain an understanding of the different components that make up a DFA in this section.
         </p>
         <div style='text-align:center'>
-            <div style='width: 500px; margin:0 auto;'>
+            <div style='max-width: 500px; margin:0 auto;'>
                 <text style='color: var(--main-aqua)'>Figure 1.5:</text>
                 <text>The deterministic finite automaton <span class="math-color">\( M_1 \)</span>.</text>
                 <br>
@@ -76,7 +76,7 @@
         </p>
         <br>
         <div style='text-align: center;'>
-            <div style='width: 500px; margin:0 auto;'>
+            <div style='max-width: 500px; margin:0 auto;'>
                 <text style='color: var(--main-aqua)'>Figure 1.6:</text>
                 <text>A visualization of the concept of a DFA. The transition diagram is part of the internal
                     mechanism
@@ -91,7 +91,7 @@
                         <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-1.svg') }}"
                             alt="First Slide">
                         <br><br>
-                        <div style='width: 500px; margin:0 auto;'>
+                        <div style='max-width: 500px; margin:0 auto;'>
                             <text>The input string in this case is <span class="math-color">\(1101\)</span>. The
                                 machine's tape scanner starts at the first character, which is a <span
                                     class="math-color">\(1\)</span>.</text>
@@ -101,7 +101,7 @@
                         <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-2.svg') }}"
                             alt="Second slide">
                         <br><br>
-                        <div style='width: 500px; margin:0 auto;'>
+                        <div style='max-width: 500px; margin:0 auto;'>
                             <text>The process begins in <span class="math-color">\(M_1\)</span>'s start state, <span
                                     class="math-color">\(q_1\)</span>. The machine reads a <span
                                     class="math-color">\(1\)</span> character from the tape.</text>
@@ -111,7 +111,7 @@
                         <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-3.svg') }}"
                             alt="Third slide">
                         <br><br>
-                        <div style='width: 500px; margin:0 auto;'>
+                        <div style='max-width: 500px; margin:0 auto;'>
                             <text>After reading <span class="math-color">\(1\)</span>, <span
                                     class="math-color">\(M_1\)</span> moves from state <span
                                     class="math-color">\(q_1\)</span> to state <span class="math-color">\(q_2\)</span>,
@@ -123,7 +123,7 @@
                         <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-4.svg') }}"
                             alt="Fourth slide">
                         <br><br>
-                        <div style='width: 500px; margin:0 auto;'>
+                        <div style='max-width: 500px; margin:0 auto;'>
                             <text><span class="math-color">\(M_1\)</span> is now in state <span
                                     class="math-color">\(q_2\)</span>. The machine reads a <span
                                     class="math-color">\(1\)</span> character from the tape.</text>
@@ -133,7 +133,7 @@
                         <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-5.svg') }}"
                             alt="Fifth slide">
                         <br><br>
-                        <div style='width: 500px; margin:0 auto;'>
+                        <div style='max-width: 500px; margin:0 auto;'>
                             <text>After reading <span class="math-color">\(1\)</span>, <span
                                     class="math-color">\(M_1\)</span> moves from state <span
                                     class="math-color">\(q_2\)</span> back to state <span
@@ -145,7 +145,7 @@
                         <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-6.svg') }}"
                             alt="Sixth slide">
                         <br><br>
-                        <div style='width: 500px; margin:0 auto;'>
+                        <div style='max-width: 500px; margin:0 auto;'>
                             <text><span class="math-color">\(M_1\)</span> is now in state <span
                                     class="math-color">\(q_2\)</span>. The machine reads a <span
                                     class="math-color">\(0\)</span> character from the tape.</text>
@@ -155,7 +155,7 @@
                         <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-7.svg') }}"
                             alt="Seventh slide">
                         <br><br>
-                        <div style='width: 500px; margin:0 auto;'>
+                        <div style='max-width: 500px; margin:0 auto;'>
                             <text>After reading <span class="math-color">\(0\)</span>, <span
                                     class="math-color">\(M_1\)</span> moves from state <span
                                     class="math-color">\(q_2\)</span> to state <span class="math-color">\(q_3\)</span>,
@@ -167,7 +167,7 @@
                         <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-8.svg') }}"
                             alt="Eighth slide">
                         <br><br>
-                        <div style='width: 500px; margin:0 auto;'>
+                        <div style='max-width: 500px; margin:0 auto;'>
                             <text><span class="math-color">\(M_1\)</span> is now in state <span
                                     class="math-color">\(q_3\)</span>. The machine reads a <span
                                     class="math-color">\(1\)</span> character from the tape.</text>
@@ -177,7 +177,7 @@
                         <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-9.svg') }}"
                             alt="Ninth slide">
                         <br><br>
-                        <div style='width: 500px; margin:0 auto;'>
+                        <div style='max-width: 500px; margin:0 auto;'>
                             <text>After reading <span class="math-color">\(1\)</span>, <span
                                     class="math-color">\(M_1\)</span> moves from state <span
                                     class="math-color">\(q_3\)</span> to state <span class="math-color">\(q_2\)</span>,
@@ -189,7 +189,7 @@
                         <img src="{{ url_for('static', filename='/assets/figure1-6/figure1-6-10.svg') }}"
                             alt="Tenth slide">
                         <br><br>
-                        <div style='width: 500px; margin:0 auto;'>
+                        <div style='max-width: 500px; margin:0 auto;'>
                             <text><span class="math-color">\(M_1\)</span> is now in state <span
                                     class="math-color">\(q_2\)</span>. There are no more characters to read from the
                                 tape. Since <span class="math-color">\(q_2\)</span> is an accept state, <span
