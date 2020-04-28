@@ -181,12 +181,9 @@
         message = res.message
 
         if (res.hasOwnProperty('hint')) {
-            console.log('here')
+            console.log(res.hint)
             hint = '<br><span class="term">Hint:</span> ' + res.hint
             message = message + hint
-        }
-        else {
-            console.log('ewww')
         }
         // do something with the response
         output(title, message);

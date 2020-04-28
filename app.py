@@ -168,7 +168,7 @@ def submit():
         hint = ''
         if FSM.equal_alphabets(solution, fsm_or_exception):
             difference = FSM.fsm_difference(solution, fsm_or_exception)
-            hint = FSM.fsm_str(difference)
+            hint = FSM.noam_fsm(difference)
         else:
             hint = 'Check the alphabet of your FSM. Is it missing any symbols?' + \
                 'Does it have extraneous symbols? Did you mistype a transition label?'
