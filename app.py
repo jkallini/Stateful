@@ -67,11 +67,11 @@ def lesson(lessonid):
     return make_response(html)
 
 
-# @app.route('/tutorial')
-# def tutorial():
-#     html = render_template('tutorial.html')
-#     response = make_response(html)
-#     return response
+@app.route('/tutorial')
+def tutorial():
+    html = render_template('tutorial.html')
+    response = make_response(html)
+    return response
 
 
 @app.route('/DFApractice')

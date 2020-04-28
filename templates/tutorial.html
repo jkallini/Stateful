@@ -14,18 +14,149 @@
             section below describes a different functionality of the FSM Editor, along with short demonstrations.
         </p>
         <h3 style='color:var(--main-green); padding-top:18px'>What is the FSM Editor?</h3>
-        <p>The FSM Editor is the </p>
-        <div style='text-align: center'>
-                <img style='max-width: 80%;
+        <p>
+            The FSM Editor is the big white box displayed on every problem page. Each problem asks you to design a DFA
+            or
+            an NFA. In order to submit a solution, you must use the FSM Editor in order to draw the state diagram of
+            your solution machine.
+        </p>
+        <div style='text-align: center; margin:10px'>
+            <img style='max-width: 80%;
                 max-height: 100vh;
-                margin: auto;' src="{{ url_for('static', filename='assets/tutorial/tutorial-1.png') }}" alt="FSM Editor">
-            </div>
+                margin: auto;' src=" {{ url_for('static', filename='assets/tutorial/tutorial-1.png') }}"
+                alt="FSM Editor">
+        </div>
+        <p>
+            The sections below highlight the key functionalities of the Editor in detail, so that you can get started on
+            some practice problems! If you would rather view a more concise description of how to use the Editor, you
+            may refer to the <span class="badge badge-pill badge-warning">Info <i class="fas fa-info-circle"
+                    aria-hidden="true"></i></span> button at the bottom of each problem page.
+        </p>
         <h3 style='color:var(--main-green); padding-top:18px'>Adding a State</h3>
         <p>
-            To add a state, <span class='term'>double click</span> anywhere on the editor. You will see a green state
-            appear, with a blinking cursor in its center. Make sure to give your state a <span
-                class='term'>label</span>.
+            To add a state, <span class='term'>double-click</span> anywhere on the editor. You will see a green state
+            appear, with a blinking cursor in its center. Make sure to give your state a <span class='term'>label</span>
+            by typing while the cursor is blinking. If you want to submit a valid machine, each state should have a
+            unique label.
         </p>
+        <p>
+            You can move the state by <span class='term'>clicking and dragging</span> it around the Editor.
+        </p>
+        <div style='text-align: center; margin:10px'>
+            <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
+                src=" {{ url_for('static', filename='assets/tutorial/tutorial-2.gif') }}" alt="State Tutorial">
+        </div>
+        <h3 style='color:var(--main-green); padding-top:18px'>Adding a Transition</h3>
+        <p>
+            To add a transition between two <em>distinct</em> states, hold down <kbd>shift</kbd>, and <span
+                class='term'>click and drag</span> your pointer from one state to the other. This will create a green
+            transition arrow from the first state to the second state, with a blinking cursor next to it. Make sure to
+            give your transition a label by typing while the cursor is blinking.
+        </p>
+        <p>
+            You can adjust the position of the transition by clicking and dragging it.
+        </p>
+        <div style='text-align: center; margin:10px'>
+            <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
+                src=" {{ url_for('static', filename='assets/tutorial/tutorial-3.gif') }}" alt="Transition Tutorial">
+        </div>
+        <h3 style='color:var(--main-green); padding-top:18px'>Adding a Self-Transition</h3>
+        <p>
+            To add a transition from a state back to the same state, hold down <kbd>shift</kbd>, and <span
+                class='term'>click</span> on the state that you want to add the self-transition to. This will create a
+            green transition arrow from the state back to itself. You can also add a label to a self-transition, and
+            reposition it by clicking and dragging on the Editor.
+        </p>
+        <div style='text-align: center; margin:10px'>
+            <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
+                src=" {{ url_for('static', filename='assets/tutorial/tutorial-4.gif') }}" alt="Self-Transition">
+        </div>
+        <h3 style='color:var(--main-green); padding-top:18px'>Tip: Shorthand for Parallel Transitions</h3>
+        <p>
+            Sometimes, you may have two transitions with different labels that have the same start and end states. A
+            short-hand way of representing these 'parallel transitions' is by using commas to separate the distinct
+            input symbols that may cause the machine to transition from the current state to the next state. In the two
+            figures below, the two transitions on the left are equivalent to the single transition on the right.
+        </p>
+        <div class='row'>
+            <div class='col'>
+                <div style='text-align: center; margin:10px'>
+                    <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
+                        src=" {{ url_for('static', filename='assets/tutorial/tutorial-10.png') }}"
+                        alt="Self-Transition">
+                </div>
+            </div>
+            <div class='col'>
+                <div style='text-align: center; margin:10px'>
+                    <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
+                        src=" {{ url_for('static', filename='assets/tutorial/tutorial-11.png') }}"
+                        alt="Self-Transition">
+                </div>
+            </div>
+        </div>
+
+        <h3 style='color:var(--main-green); padding-top:18px'>Deleting States and Transitions</h3>
+        <p>
+            To delete a state or transition, click on it and press the <kbd>delete</kbd> key (<span class='text-danger'
+                style='font-weight: bold'>NOT the backspace key!</span>).
+            On Mac, this this is <kbd>fn + delete</kbd>. If you delete a state, all transitions to or from it will also
+            be removed.
+        </p>
+        <div style='text-align: center; margin:10px'>
+            <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
+                src=" {{ url_for('static', filename='assets/tutorial/tutorial-5.gif') }}" alt="Deleting">
+        </div>
+
+
+        <h3 style='color:var(--main-green); padding-top:18px'>Adding a Start State</h3>
+        <p>
+            To indicate that some state is a start state, hold down <kbd>shift</kbd>, and <span class='term'>click and
+                drag</span> your pointer from nowhere toward the state. This will create a green
+            arrow pointing toward the start state. You may give it a label, like 'start' if you wish, but you may also
+            leave it blank. By clicking and dragging, you can reposition the arrow.
+        </p>
+        <div style='text-align: center; margin:10px'>
+            <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
+                src=" {{ url_for('static', filename='assets/tutorial/tutorial-6.gif') }}" alt="Start State">
+        </div>
+        <h3 style='color:var(--main-green); padding-top:18px'>Adding an Accept State</h3>
+        <p>
+            To make an existing state an accept state, <span class='term'>double-click</span> on the state. You may
+            change it back to a non-accept state by double-clicking it again.
+        </p>
+        <div style='text-align: center; margin:10px'>
+            <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
+                src=" {{ url_for('static', filename='assets/tutorial/tutorial-7.gif') }}" alt="Accept State">
+        </div>
+        <h3 style='color:var(--main-green); padding-top:18px'>Typing Numeric Subscripts and Greek Letters</h3>
+        <p>
+            You may label states or transitions with numeric subscripts or Greek Letters.
+        </p>
+        <p>
+            To give a label a numeric subscript, <span class='term'>type an underscore</span> before the number. The
+            range of possible
+            subcripts is <span class='math-color'>\(0\)</span> to <span class='math-color'>\(9\)</span>, inclusive. For
+            example, to label a state as <span class='math-color'>\(q_0\)</span>, type <code>q_0</code>.
+        </p>
+        <div style='text-align: center; margin:10px'>
+            <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
+                src=" {{ url_for('static', filename='assets/tutorial/tutorial-8.gif') }}" alt="Subscript">
+        </div>
+        <p>
+            To make a label a Greek letter, <span class='term'>type a backslash</span> before the name of the Greek
+            letter. To type the capital form of the Greek letter, simply capitalize the first character of the
+            letter's name. For example, to label a state as <span class='math-color'>\(\Sigma\)</span>, type
+            <code>\Sigma</code>, or to label a transition with <span class='math-color'>\(\varepsilon\)</span>, type
+            <code>\epsilon</code>.
+        </p>
+        <div style='text-align: center; margin:10px'>
+            <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
+                src=" {{ url_for('static', filename='assets/tutorial/tutorial-9.gif') }}" alt="Greek Letters">
+        </div>
+        <p><span class='text-danger' style='font-weight: bold'>Knowing how to type Greek letters is very important
+                for drawing NFAs!</span> NFAs may include epsilon transitions. The only way to write the <span
+                class='math-color'>\(\varepsilon\)</span> character is by typing <code>\epsilon</code>. Otherwise, the
+            Editor will think you are typing an invalid character.</p>
         <br>
     </div>
 </div>
