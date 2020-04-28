@@ -205,6 +205,26 @@ def get_NFA_transitions(fsm, states, node_map, alphabet):
     return initial_state, transitions
 
 
+def determinize(fsm):
+    if type(fsm) is NFA:
+        return DFA.from_nfa(fsm)
+    else:
+        return fsm
+
+
+def equal_alphabets(fsm1, fsm2):
+
+    alpha1 = fsm1.input_symbols
+    alpha2 = fsm2.input_symbols
+
+    if '' in alpha1:
+        alpha1.remove('')
+    if '' in alpha2:
+        alpha2.remove('')
+
+    return alpha1 == alpha2
+
+
 def equal(fsm1, fsm2, exact):
 
     if exact:
@@ -225,36 +245,19 @@ def equal_states(qi, qj, dfa1, dfa2):
 def equal_language(fsm1, fsm2):
 
     # first check alphabet equivalence
-    alpha1 = fsm1.input_symbols
-    alpha2 = fsm2.input_symbols
-
-    if '' in alpha1:
-        alpha1.remove('')
-    if '' in alpha2:
-        alpha2.remove('')
-
-    if alpha1 != alpha2:
+    if not equal_alphabets(fsm1, fsm2):
         return False
 
-    alphabet = alpha1
+    alphabet = fsm1.input_symbols
 
     # if FSMs are NFAs, convert them to DFAs
-    if type(fsm1) is NFA:
-        dfa1 = DFA.from_nfa(fsm1)
-    else:
-        dfa1 = fsm1
-    if type(fsm2) is NFA:
-        dfa2 = DFA.from_nfa(fsm2)
-    else:
-        dfa2 = fsm2
-
-    # get minimal DFAs
-    min_dfa1 = dfa1.minify()
-    min_dfa2 = dfa2.minify()
+    # minimize DFAs
+    dfa1 = determinize(fsm1).minify()
+    dfa2 = determinize(fsm2).minify()
 
     # begin with initial states
-    q0 = min_dfa1.initial_state
-    r0 = min_dfa2.initial_state
+    q0 = dfa1.initial_state
+    r0 = dfa2.initial_state
     inital_pair = (q0, r0)
 
     # maintain verified and unverfied states
@@ -268,18 +271,58 @@ def equal_language(fsm1, fsm2):
         # pop state pair, and check if equal
         qi, qj = state_pairs.pop()
         visited_pairs.add((qi, qj))
-        if not equal_states(qi, qj, min_dfa1, min_dfa2):
+        if not equal_states(qi, qj, dfa1, dfa2):
             print('here2')
             return False
 
         for sym in alphabet:
-            ri = min_dfa1.transitions[qi][sym]
-            rj = min_dfa2.transitions[qj][sym]
+            ri = dfa1.transitions[qi][sym]
+            rj = dfa2.transitions[qj][sym]
             new_pair = (ri, rj)
             if new_pair not in visited_pairs:
                 state_pairs.append(new_pair)
 
     return True
+
+
+# Compute L(fsm1) - L(fsm2). Return the DFA recognizing this difference.
+def fsm_difference(fsm1, fsm2):
+
+    # if FSMs are NFAs, convert them to DFAs
+    dfa1 = determinize(fsm1).minify()
+    dfa2 = determinize(fsm2).minify()
+    assert(equal_alphabets(dfa1, dfa2))
+    alphabet = dfa1.input_symbols
+
+    states = set()
+    for s1 in dfa1.states:
+        for s2 in dfa2.states:
+            states.add(s1 + ',' + s2)
+    initial_state = dfa1.initial_state + ',' + dfa2.initial_state
+
+    final_states = set()
+    for s1 in dfa1.states:
+        for s2 in dfa2.states:
+            a1 = s1 in dfa1.final_states
+            a2 = s2 not in dfa2.final_states
+            if a1 and a2:
+                final_states.add(s1 + ',' + s2)
+
+    transitions = {}
+    for s1 in dfa1.states:
+        for s2 in dfa2.states:
+            state = s1 + ',' + s2
+            transitions[state] = {}
+            for sym in alphabet:
+                r1 = dfa1.transitions[s1][sym]
+                r2 = dfa2.transitions[s2][sym]
+                transitions[state][sym] = r1 + ',' + r2
+
+    difference = DFA(states=states,
+                    input_symbols=alphabet,
+                    transitions=transitions,
+                    initial_state=initial_state,
+                    final_states=final_states)
 
 
 def parse_json(json_string, is_deterministic):
