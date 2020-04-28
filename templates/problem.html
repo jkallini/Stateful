@@ -9,6 +9,8 @@
 <script src="{{ url_for('static', filename='js/math.js') }}"></script>
 <script src="{{ url_for('static', filename='js/save.js') }}"></script>
 <script src="{{ url_for('static', filename='js/scale-canvas.js') }}"></script>
+<script src="{{ url_for('static', filename='js/noam.util.js') }}"></script>
+<script src="{{ url_for('static', filename='js/noam.fsm.js') }}"></script>
 <script>
     /*
      * base64.js - Base64 encoding and decoding functions
@@ -180,10 +182,32 @@
         title = res.title
         message = res.message
 
+        hint = '<br><span class="term">Hint:</span> ';
         if (res.hasOwnProperty('hint')) {
             console.log(res.hint)
-            hint = '<br><span class="term">Hint:</span> ' + res.hint
-            message = message + hint
+            if (res.show_diff == 'True') {
+                console.log('Hehehehe')
+                automaton = noam.fsm.parseFsmFromString(res.hint);
+                example_string = noam.fsm.randomStringInLanguage(automaton);
+                if (example_string != null) {
+                    example_string = example_string.join("");
+                }
+                else {
+                    example_string = '\\varepsilon'
+                }
+                if (example_string.trim() == '') {
+                    example_string = '\\varepsilon'
+                }
+                example_string = '<span class="math-color">\\(' + example_string + 
+                    '\\)</span>'
+                hint += 'Consider the string ' + example_string + '. Should your machine ' +
+                'accept or reject this string? What does your machine do when ' + example_string
+                + ' is read as input?';
+            }
+            else {
+                hint += res.hint;
+            }
+            message = message + hint;
         }
         // do something with the response
         output(title, message);

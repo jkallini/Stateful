@@ -368,24 +368,28 @@ def noam_fsm(fsm):
     state_map = {}
     
     state_list = list(fsm.states)
-    state_string = '#state\n'
+    state_string = '#states\n'
 
     i = 0
     for state in fsm.states:
-        state_map[state] = i
-        state_string += str(i) + '\n'
+        state_map[state] = 's' + str(i)
+        state_string += state_map[state] + '\n'
         i += 1
 
-    start_string = '#initial\n' + str(state_map[fsm.initial_state]) + '\n'
+    start_string = '#initial\n' + state_map[fsm.initial_state] + '\n'
+
+    alpha_string = '#alphabet\n'
+    for sym in fsm.input_symbols:
+        alpha_string += sym + '\n'
 
     final_string = '#accepting\n'
     for state in fsm.final_states:
-        final_string += str(state_map[state]) + '\n'
+        final_string += state_map[state] + '\n'
 
     transition_string = '#transitions\n'
     for state in fsm.states:
         for sym in fsm.input_symbols:
-            trans = str(state_map[state]) + ':' + sym + '>' + \
-                str(state_map[fsm.transitions[state][sym]])
+            trans = state_map[state] + ':' + sym + '>' + \
+                state_map[fsm.transitions[state][sym]]
             transition_string += trans + '\n'
-    return state_string + start_string + final_string + transition_string
+    return state_string + start_string + alpha_string +final_string + transition_string
