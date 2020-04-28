@@ -13,7 +13,48 @@
             <a href='/DFApractice'>DFA practice problems</a> and <a href='/NFApractice'>NFA practice problems</a>. Each
             section below describes a different functionality of the FSM Editor, along with short demonstrations.
         </p>
-        <h3 style='color:var(--main-green); padding-top:18px'>What is the FSM Editor?</h3>
+
+        <br>
+        <h2 style="text-align: center; color: var(--main-aqua)">Contents</h2>
+        <div class='row'>
+            <div class='col-lg-6 col-sm-12'>
+                <p style="text-align: center; font-weight: bold">
+                    <a href='#fsm_editor'>What is the FSM Editor?</a>
+                </p>
+                <p style="text-align: center; font-weight: bold">
+                    <a href='#add_state'>Adding a State</a>
+                </p>
+                <p style="text-align: center; font-weight: bold">
+                    <a href='#add_transition'>Adding a Transition</a>
+                </p>
+                <p style="text-align: center; font-weight: bold">
+                    <a href='#self_transition'>Adding a Self-Transition</a>
+                </p>
+                <p style="text-align: center; font-weight: bold">
+                    <a href='#transition_tip'>Tip: Shorthand for Parallel Transitions</a>
+                </p>
+            </div>
+            <div class='col-lg-6 col-sm-12'>
+                <p style="text-align: center; font-weight: bold">
+                    <a href='#deletion'>Deleting States and Transitions</a>
+                </p>
+                <p style="text-align: center; font-weight: bold">
+                    <a href='#start_state'>Adding a Start State</a>
+                </p>
+                <p style="text-align: center; font-weight: bold">
+                    <a href='#accept_state'>Adding an Accept State</a>
+                </p>
+                <p style="text-align: center; font-weight: bold">
+                    <a href='#special_symbols'>Typing Numeric Subscripts and Greek Letters</a>
+                </p>
+                <p style="text-align: center; font-weight: bold">
+                    <a href='#submission'>Submitting an Answer</a>
+                </p>
+            </div>
+        </div>
+        <br>
+
+        <h3 id='fsm_editor' style='color:var(--main-green); padding-top:18px'>What is the FSM Editor?</h3>
         <p>
             The FSM Editor is the big white box displayed on every problem page. Each problem asks you to design a DFA
             or
@@ -32,7 +73,7 @@
             may refer to the <span class="badge badge-pill badge-warning">Info <i class="fas fa-info-circle"
                     aria-hidden="true"></i></span> button at the bottom of each problem page.
         </p>
-        <h3 style='color:var(--main-green); padding-top:18px'>Adding a State</h3>
+        <h3 id='add_state' style='color:var(--main-green); padding-top:18px'>Adding a State</h3>
         <p>
             To add a state, <span class='term'>double-click</span> anywhere on the editor. You will see a green state
             appear, with a blinking cursor in its center. Make sure to give your state a <span class='term'>label</span>
@@ -46,7 +87,7 @@
             <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
                 src=" {{ url_for('static', filename='assets/tutorial/tutorial-2.gif') }}" alt="State Tutorial">
         </div>
-        <h3 style='color:var(--main-green); padding-top:18px'>Adding a Transition</h3>
+        <h3 id='add_transition' style='color:var(--main-green); padding-top:18px'>Adding a Transition</h3>
         <p>
             To add a transition between two <em>distinct</em> states, hold down <kbd>shift</kbd>, and <span
                 class='term'>click and drag</span> your pointer from one state to the other. This will create a green
@@ -60,7 +101,7 @@
             <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
                 src=" {{ url_for('static', filename='assets/tutorial/tutorial-3.gif') }}" alt="Transition Tutorial">
         </div>
-        <h3 style='color:var(--main-green); padding-top:18px'>Adding a Self-Transition</h3>
+        <h3 id='self_transition' style='color:var(--main-green); padding-top:18px'>Adding a Self-Transition</h3>
         <p>
             To add a transition from a state back to the same state, hold down <kbd>shift</kbd>, and <span
                 class='term'>click</span> on the state that you want to add the self-transition to. This will create a
@@ -71,7 +112,8 @@
             <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
                 src=" {{ url_for('static', filename='assets/tutorial/tutorial-4.gif') }}" alt="Self-Transition">
         </div>
-        <h3 style='color:var(--main-green); padding-top:18px'>Tip: Shorthand for Parallel Transitions</h3>
+        <h3 id='transition_tip' style='color:var(--main-green); padding-top:18px'>Tip: Shorthand for Parallel
+            Transitions</h3>
         <p>
             Sometimes, you may have two transitions with different labels that have the same start and end states. A
             short-hand way of representing these 'parallel transitions' is by using commas to separate the distinct
@@ -95,7 +137,7 @@
             </div>
         </div>
 
-        <h3 style='color:var(--main-green); padding-top:18px'>Deleting States and Transitions</h3>
+        <h3 id='deletion' style='color:var(--main-green); padding-top:18px'>Deleting States and Transitions</h3>
         <p>
             To delete a state or transition, click on it and press the <kbd>delete</kbd> key (<span class='text-danger'
                 style='font-weight: bold'>NOT the backspace key!</span>).
@@ -108,7 +150,7 @@
         </div>
 
 
-        <h3 style='color:var(--main-green); padding-top:18px'>Adding a Start State</h3>
+        <h3 id='start_state' style='color:var(--main-green); padding-top:18px'>Adding a Start State</h3>
         <p>
             To indicate that some state is a start state, hold down <kbd>shift</kbd>, and <span class='term'>click and
                 drag</span> your pointer from nowhere toward the state. This will create a green
@@ -119,7 +161,7 @@
             <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
                 src=" {{ url_for('static', filename='assets/tutorial/tutorial-6.gif') }}" alt="Start State">
         </div>
-        <h3 style='color:var(--main-green); padding-top:18px'>Adding an Accept State</h3>
+        <h3 id='accept_state' style='color:var(--main-green); padding-top:18px'>Adding an Accept State</h3>
         <p>
             To make an existing state an accept state, <span class='term'>double-click</span> on the state. You may
             change it back to a non-accept state by double-clicking it again.
@@ -128,7 +170,8 @@
             <img class='tutorial-gif' style='max-width: 80%; max-height: 100vh; margin: auto;'
                 src=" {{ url_for('static', filename='assets/tutorial/tutorial-7.gif') }}" alt="Accept State">
         </div>
-        <h3 style='color:var(--main-green); padding-top:18px'>Typing Numeric Subscripts and Greek Letters</h3>
+        <h3 id='special_symbols' style='color:var(--main-green); padding-top:18px'>Typing Numeric Subscripts and Greek
+            Letters</h3>
         <p>
             You may label states or transitions with numeric subscripts or Greek Letters.
         </p>
@@ -159,7 +202,7 @@
                 class='math-color'>\(\varepsilon\)</span> character is by typing <code>\epsilon</code>. Otherwise, the
             Editor will think you are typing an invalid character.
         </p>
-        <h3 style='color:var(--main-green); padding-top:18px'>Submitting an Answer</h3>
+        <h3 id='submission' style='color:var(--main-green); padding-top:18px'>Submitting an Answer</h3>
         <p>
             When you've drawn a DFA or an NFA and you're ready to submit your answer, click on the
             <span class="badge badge-pill badge-primary">Submit <i class="fas fa-check" aria-hidden="true"></i></span>
