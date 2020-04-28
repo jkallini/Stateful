@@ -205,27 +205,8 @@ def get_NFA_transitions(fsm, states, node_map, alphabet):
     return initial_state, transitions
 
 
-def determinize(fsm):
-    if type(fsm) is NFA:
-        return DFA.from_nfa(fsm)
-    else:
-        return fsm
-
-
-def equal_alphabets(fsm1, fsm2):
-
-    alpha1 = fsm1.input_symbols
-    alpha2 = fsm2.input_symbols
-
-    if '' in alpha1:
-        alpha1.remove('')
-    if '' in alpha2:
-        alpha2.remove('')
-
-    return alpha1 == alpha2
-
-
 def equal(fsm1, fsm2, exact):
+
     if exact:
         return fsm1 == fsm2
     else:
@@ -244,19 +225,36 @@ def equal_states(qi, qj, dfa1, dfa2):
 def equal_language(fsm1, fsm2):
 
     # first check alphabet equivalence
-    if not equal_alphabets(fsm1, fsm2):
+    alpha1 = fsm1.input_symbols
+    alpha2 = fsm2.input_symbols
+
+    if '' in alpha1:
+        alpha1.remove('')
+    if '' in alpha2:
+        alpha2.remove('')
+
+    if alpha1 != alpha2:
         return False
 
-    alphabet = fsm1.input_symbols
+    alphabet = alpha1
 
     # if FSMs are NFAs, convert them to DFAs
-    # minimize DFAs
-    dfa1 = determinize(fsm1).minify()
-    dfa2 = determinize(fsm2).minify()
+    if type(fsm1) is NFA:
+        dfa1 = DFA.from_nfa(fsm1)
+    else:
+        dfa1 = fsm1
+    if type(fsm2) is NFA:
+        dfa2 = DFA.from_nfa(fsm2)
+    else:
+        dfa2 = fsm2
+
+    # get minimal DFAs
+    min_dfa1 = dfa1.minify()
+    min_dfa2 = dfa2.minify()
 
     # begin with initial states
-    q0 = dfa1.initial_state
-    r0 = dfa2.initial_state
+    q0 = min_dfa1.initial_state
+    r0 = min_dfa2.initial_state
     inital_pair = (q0, r0)
 
     # maintain verified and unverfied states
@@ -270,62 +268,18 @@ def equal_language(fsm1, fsm2):
         # pop state pair, and check if equal
         qi, qj = state_pairs.pop()
         visited_pairs.add((qi, qj))
-        if not equal_states(qi, qj, dfa1, dfa2):
+        if not equal_states(qi, qj, min_dfa1, min_dfa2):
             print('here2')
             return False
 
         for sym in alphabet:
-            ri = dfa1.transitions[qi][sym]
-            rj = dfa2.transitions[qj][sym]
+            ri = min_dfa1.transitions[qi][sym]
+            rj = min_dfa2.transitions[qj][sym]
             new_pair = (ri, rj)
             if new_pair not in visited_pairs:
                 state_pairs.append(new_pair)
 
     return True
-
-
-# Compute L(fsm1) - L(fsm2). Return the DFA recognizing this difference.
-def fsm_difference(fsm1, fsm2):
-
-    # if FSMs are NFAs, convert them to DFAs
-    dfa1 = determinize(fsm1).minify()
-    dfa2 = determinize(fsm2).minify()
-    assert(equal_alphabets(dfa1, dfa2))
-    alphabet = dfa1.input_symbols
-
-    states = set()
-    print(dfa1.states)
-    print(dfa2.states)
-    for s1 in dfa1.states:
-        for s2 in dfa2.states:
-            states.add('(' + s1 + '/' + s2 + ')')
-    initial_state = '(' + dfa1.initial_state + '/' + dfa2.initial_state + ')'
-
-    final_states = set()
-    for s1 in dfa1.states:
-        for s2 in dfa2.states:
-            a1 = s1 in dfa1.final_states
-            a2 = s2 not in dfa2.final_states
-            if a1 and a2:
-                final_states.add('(' + s1 + '/' + s2 + ')' )
-
-    transitions = {}
-    for s1 in dfa1.states:
-        for s2 in dfa2.states:
-            state = '(' + s1 + '/' + s2 + ')'
-            transitions[state] = {}
-            for sym in alphabet:
-                r1 = dfa1.transitions[s1][sym]
-                r2 = dfa2.transitions[s2][sym]
-                transitions[state][sym] = '(' +  r1 + '/' + r2 + ')'
-
-    difference = DFA(states=states,
-                    input_symbols=alphabet,
-                    transitions=transitions,
-                    initial_state=initial_state,
-                    final_states=final_states)
-
-    return difference
 
 
 def parse_json(json_string, is_deterministic):
@@ -361,35 +315,3 @@ def parse_json(json_string, is_deterministic):
         )
 
     return False, fsm
-
-
-def noam_fsm(fsm):
-
-    state_map = {}
-    
-    state_list = list(fsm.states)
-    state_string = '#states\n'
-
-    i = 0
-    for state in fsm.states:
-        state_map[state] = 's' + str(i)
-        state_string += state_map[state] + '\n'
-        i += 1
-
-    start_string = '#initial\n' + state_map[fsm.initial_state] + '\n'
-
-    alpha_string = '#alphabet\n'
-    for sym in fsm.input_symbols:
-        alpha_string += sym + '\n'
-
-    final_string = '#accepting\n'
-    for state in fsm.final_states:
-        final_string += state_map[state] + '\n'
-
-    transition_string = '#transitions\n'
-    for state in fsm.states:
-        for sym in fsm.input_symbols:
-            trans = state_map[state] + ':' + sym + '>' + \
-                state_map[fsm.transitions[state][sym]]
-            transition_string += trans + '\n'
-    return state_string + start_string + alpha_string +final_string + transition_string
