@@ -62,7 +62,12 @@ def lesson(lessonid):
     elif lessonid == '2.3':
         html = render_template('lessons/lesson2-3.html')
     else:
-        html = render_template('index.html')
+        return render_template('message.html',
+                               title='Oops!',
+                               message='The lesson you are looking for ' +
+                               'does not exist.<br> ' +
+                               'Click <a href="/">here</a> to ' +
+                               'return to the home page.'), 404
 
     return make_response(html)
 
@@ -97,11 +102,11 @@ def DFA_problem(probid):
 
     if not TL.DFA_probid_exists(probid):
         return render_template('message.html',
-                           title='Oops!',
-                           message='The DFA problem you are looking for ' +
-                           'does not exist.<br> ' +
-                           'Click <a href="/DFApractice">here</a> to ' +
-                           'view other DFA problems.'), 404
+                               title='Oops!',
+                               message='The DFA problem you are looking for ' +
+                               'does not exist.<br> ' +
+                               'Click <a href="/DFApractice">here</a> to ' +
+                               'view other DFA problems.'), 404
 
     problem = TL.get_DFA_problem(probid)
     html = render_template('problem.html', problem=problem)
@@ -114,11 +119,11 @@ def NFA_problem(probid):
 
     if not TL.NFA_probid_exists(probid):
         return render_template('message.html',
-                           title='Oops!',
-                           message='The NFA problem you are looking for ' +
-                           'does not exist.<br> ' +
-                           'Click <a href="/NFApractice">here</a> to ' +
-                           'view other NFA problems.'), 404
+                               title='Oops!',
+                               message='The NFA problem you are looking for ' +
+                               'does not exist.<br> ' +
+                               'Click <a href="/NFApractice">here</a> to ' +
+                               'view other NFA problems.'), 404
 
     problem = TL.get_NFA_problem(probid)
     html = render_template('problem.html', problem=problem)
