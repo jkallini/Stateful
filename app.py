@@ -163,9 +163,18 @@ def submit():
     exact = problem.is_exact()
 
     # check student's answer against solution
-    if not FSM.equal(solution, fsm_or_exception, exact):
+    equal = FSM.equal(solution, fsm_or_exception, exact)
+    if not equal:
+        hint = ''
+        if FSM.equal_alphabets(solution, fsm_or_exception):
+            difference = FSM.fsm_difference(solution, fsm_or_exception)
+            hint = FSM.fsm_str(difference)
+        else:
+            hint = 'Check the alphabet of your FSM. Is it missing any symbols?' + \
+                'Does it have extraneous symbols? Did you mistype a transition label?'
         response = {'title': "Incorrect",
-                    'message': "That's not quite right. Give it another try!"}
+                    'message': "That's not quite right. Give it another try!",
+                    'hint': hint}
     else:
         response = {'title': "Great Job!",
                     'message': 'Here is the 5-tuple for your FSM: <br>'

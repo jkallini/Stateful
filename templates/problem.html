@@ -177,8 +177,19 @@
     function callbackFunc(response) {
 
         var res = JSON.parse(response);
+        title = res.title
+        message = res.message
+
+        if (res.hasOwnProperty('hint')) {
+            console.log('here')
+            hint = '<br><span class="term">Hint:</span> ' + res.hint
+            message = message + hint
+        }
+        else {
+            console.log('ewww')
+        }
         // do something with the response
-        output(res.title, res.message);
+        output(title, message);
     }
 </script>
 

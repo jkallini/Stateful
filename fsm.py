@@ -226,7 +226,6 @@ def equal_alphabets(fsm1, fsm2):
 
 
 def equal(fsm1, fsm2, exact):
-
     if exact:
         return fsm1 == fsm2
     else:
@@ -295,10 +294,12 @@ def fsm_difference(fsm1, fsm2):
     alphabet = dfa1.input_symbols
 
     states = set()
+    print(dfa1.states)
+    print(dfa2.states)
     for s1 in dfa1.states:
         for s2 in dfa2.states:
-            states.add(s1 + ',' + s2)
-    initial_state = dfa1.initial_state + ',' + dfa2.initial_state
+            states.add('(' + s1 + '/' + s2 + ')')
+    initial_state = '(' + dfa1.initial_state + '/' + dfa2.initial_state + ')'
 
     final_states = set()
     for s1 in dfa1.states:
@@ -306,23 +307,25 @@ def fsm_difference(fsm1, fsm2):
             a1 = s1 in dfa1.final_states
             a2 = s2 not in dfa2.final_states
             if a1 and a2:
-                final_states.add(s1 + ',' + s2)
+                final_states.add('(' + s1 + '/' + s2 + ')' )
 
     transitions = {}
     for s1 in dfa1.states:
         for s2 in dfa2.states:
-            state = s1 + ',' + s2
+            state = '(' + s1 + '/' + s2 + ')'
             transitions[state] = {}
             for sym in alphabet:
                 r1 = dfa1.transitions[s1][sym]
                 r2 = dfa2.transitions[s2][sym]
-                transitions[state][sym] = r1 + ',' + r2
+                transitions[state][sym] = '(' +  r1 + '/' + r2 + ')'
 
     difference = DFA(states=states,
                     input_symbols=alphabet,
                     transitions=transitions,
                     initial_state=initial_state,
                     final_states=final_states)
+
+    return difference
 
 
 def parse_json(json_string, is_deterministic):
