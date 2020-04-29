@@ -160,8 +160,6 @@
 
                 // Store JSON data in a JS variable
                 var fsm = sessionStorage['fsm'];
-                //var json = JSON.parse(fsm);
-                console.log(fsm)
 
                 $.ajax({
                     type: "POST",
@@ -179,8 +177,17 @@
     function callbackFunc(response) {
 
         var res = JSON.parse(response);
+        title = res.title;
+        message = res.message;
+
+        hint = '<br><span class="term">Hint:</span> ';
+        if (res.hasOwnProperty('alpha_hint')) {
+            hint += res.alpha_hint;
+            message += hint;
+        }
+
         // do something with the response
-        output(res.title, res.message);
+        output(title, message);
     }
 </script>
 

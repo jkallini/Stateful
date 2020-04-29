@@ -167,6 +167,14 @@ def submit():
     solution = problem.get_fsm()
     exact = problem.is_exact()
 
+    # check alphabet
+    if not FSM.valid_alphabet(solution, fsm_or_exception, det):
+        response = {'title': "Incorrect",
+                    'message': "That's not quite right. Give it another try!",
+                    'alpha_hint': "Check the alphabet of your FSM. Is it " + \
+                        "missing any symbols? Does it have any extraneous symbols?"}
+        return json.dumps(response)
+
     # check student's answer against solution
     if not FSM.equal(solution, fsm_or_exception, exact):
         response = {'title': "Incorrect",

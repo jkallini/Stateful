@@ -227,6 +227,21 @@ def determinize(fsm):
         return fsm
 
 
+def valid_alphabet(fsm1, fsm2, det):
+    alpha1 = fsm1.input_symbols
+    alpha2 = fsm2.input_symbols
+
+    if '' in alpha1:
+        alpha1.remove('')
+    if '' in alpha2:
+        alpha2.remove('')
+
+    if det:
+        return alpha1 == alpha2
+    else:
+        return alpha2.issubset(alpha1)
+
+
 def equal_alphabets(fsm1, fsm2):
     alpha1 = fsm1.input_symbols
     alpha2 = fsm2.input_symbols
@@ -237,6 +252,7 @@ def equal_alphabets(fsm1, fsm2):
         alpha2.remove('')
 
     return alpha1 == alpha2
+
 
 # Check whether fsm1 and fsm2 recognize the same language.
 # If so, return true, else return false.
@@ -251,7 +267,7 @@ def equal_language(fsm1, fsm2):
     # if FSMs are NFAs, convert them to DFAs
     # minimize
     dfa1 = determinize(fsm1).minify()
-    dfa2 = determinize(fsm1).minify()
+    dfa2 = determinize(fsm2).minify()
 
     # begin with initial states
     q0 = dfa1.initial_state
