@@ -39,7 +39,8 @@ function callbackFunc(response) {
     title = res.title;
     message = res.message;
 
-    hint = '<br><span class="term">Hint:</span> ';
+    hint = '<br><span style="color: var(--main-aqua);' +
+        'font-weight:bold; font-size:18px">Hint:</span><br> ';
     if (res.hasOwnProperty('hint'))
     {
         hint += res.hint;
@@ -55,9 +56,6 @@ function callbackFunc(response) {
         student_fsm = noam.fsm.parseFsmFromString(res.student_fsm);
         console.log(res.solution_fsm);
         console.log(res.student_fsm)
-
-        sol_minus_stud = noam.fsm.difference(solution_fsm, student_fsm);
-        example_string = noam.fsm.randomStringInLanguage(sol_minus_stud);
 
         if (output_diff_hint(solution_fsm, student_fsm, true) == 0) return;
         if (output_diff_hint(student_fsm, solution_fsm, false) == 0) return;
