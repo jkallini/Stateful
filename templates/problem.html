@@ -49,7 +49,9 @@
 <!-- Page Content -->
 <div id="content" style="text-align: center">
 
-    <div class='container' style='max-width: 900px;'>
+    {% include 'navbar.html' %}
+
+    <div class='container' style='max-width: 900px; padding: 40px;'>
 
         <h2 style="color: var(--main-green)">
             {% if problem.is_deterministic() %}

@@ -66,7 +66,7 @@
     height: 100vh;
     z-index: 999;
     background: rgb(7, 132, 192);
-    background: linear-gradient(119deg, rgba(7, 132, 192, 1) 6%, rgba(38, 197, 193, 1) 53%, rgba(114, 233, 130, 1) 88%);
+    background: linear-gradient(119deg, rgba(7, 132, 192, 1) 28%, rgba(38, 197, 193, 1) 74%, rgba(114, 223, 130, 1) 96%);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -81,23 +81,21 @@
     DISMISS
 ----------------------------------------------------- */
 
-#dismiss {
-    width: 32px;
-    height: 32px;
+#sidebarCollapse {
+    width: 38px;
+    height: 38px;
     border-radius: 20px;
-    font-size: 18px;
-    line-height: 35px;
+    font-size: 16px;
     text-align: center;
-    position: absolute;
-    top: 10px;
-    right: 10px;
     cursor: pointer;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
+    color: white;
+    background: var(--main-blue)
 }
 
-#dismiss:hover {
+#sidebarCollapse:hover {
     background: #fff;
     color: var(--main-aqua);
 }
@@ -185,7 +183,6 @@ a.article:hover {
 
 #content {
     width: calc(100% - 280px);
-    padding: 40px;
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;

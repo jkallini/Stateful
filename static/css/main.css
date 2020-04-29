@@ -218,3 +218,11 @@ a:focus {
   line-height: 70px;
   font-size: 1.3rem;
 }
+
+#navbar {
+  position: fixed;
+  top: 0px;
+  z-index: 10;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
