@@ -331,3 +331,35 @@ def parse_json(json_string, is_deterministic):
         )
 
     return False, fsm
+
+
+def noam_fsm(fsm):
+
+    state_map = {}
+    
+    state_list = list(fsm.states)
+    state_string = '#states\n'
+
+    i = 0
+    for state in fsm.states:
+        state_map[state] = 's' + str(i)
+        state_string += state_map[state] + '\n'
+        i += 1
+
+    start_string = '#initial\n' + state_map[fsm.initial_state] + '\n'
+
+    alpha_string = '#alphabet\n'
+    for sym in fsm.input_symbols:
+        alpha_string += sym + '\n'
+
+    final_string = '#accepting\n'
+    for state in fsm.final_states:
+        final_string += state_map[state] + '\n'
+
+    transition_string = '#transitions\n'
+    for state in fsm.states:
+        for sym in fsm.input_symbols:
+            trans = state_map[state] + ':' + sym + '>' + \
+                state_map[fsm.transitions[state][sym]]
+            transition_string += trans + '\n'
+    return state_string + start_string + alpha_string +final_string + transition_string

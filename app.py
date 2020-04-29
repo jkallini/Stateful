@@ -171,14 +171,24 @@ def submit():
     if not FSM.valid_alphabet(solution, fsm_or_exception, det):
         response = {'title': "Incorrect",
                     'message': "That's not quite right. Give it another try!",
-                    'alpha_hint': "Check the alphabet of your FSM. Is it " + \
+                    'hint': "Check the alphabet of your FSM. Is it " + \
                         "missing any symbols? Does it have any extraneous symbols?"}
         return json.dumps(response)
 
     # check student's answer against solution
-    if not FSM.equal(solution, fsm_or_exception, exact):
+    equal = FSM.equal(solution, fsm_or_exception, exact)
+
+    if (not equal) and exact:
         response = {'title': "Incorrect",
-                    'message': "That's not quite right. Give it another try!"}
+                'message': "That's not quite right. Give it another try!",
+                'hint': "Did you label all states and transitions correctly?"}
+        return response
+
+    if not equal:
+        response = {'title': "Incorrect",
+                    'message': "That's not quite right. Give it another try!",
+                    'solution_fsm': FSM.noam_fsm(FSM.determinize(solution)),
+                    'student_fsm': FSM.noam_fsm(FSM.determinize(fsm_or_exception))}
     else:
         response = {'title': "Great Job!",
                     'message': 'Here is the 5-tuple for your FSM: <br>'

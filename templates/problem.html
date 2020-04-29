@@ -181,9 +181,16 @@
         message = res.message;
 
         hint = '<br><span class="term">Hint:</span> ';
-        if (res.hasOwnProperty('alpha_hint')) {
-            hint += res.alpha_hint;
+        if (res.hasOwnProperty('hint')) {
+            hint += res.hint;
             message += hint;
+            output(title, message);
+        }
+
+        if (res.hasOwnProperty('solution_fsm') &&
+            res.hasOwnProperty('student_fsm')) {
+                console.log(res.solution_fsm);
+                console.log(res.student_fsm);
         }
 
         // do something with the response
