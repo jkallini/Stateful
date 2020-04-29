@@ -349,7 +349,7 @@ def noam_fsm(fsm):
     start_string = '#initial\n' + state_map[fsm.initial_state] + '\n'
 
     alpha_string = '#alphabet\n'
-    for sym in fsm.input_symbols:
+    for sym in sorted(fsm.input_symbols):
         alpha_string += sym + '\n'
 
     final_string = '#accepting\n'

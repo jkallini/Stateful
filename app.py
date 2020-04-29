@@ -178,6 +178,7 @@ def submit():
     # check student's answer against solution
     equal = FSM.equal(solution, fsm_or_exception, exact)
 
+    # if question requires exact match, generate simple hint
     if (not equal) and exact:
         response = {'title': "Incorrect",
                 'message': "That's not quite right. Give it another try!",
@@ -185,7 +186,10 @@ def submit():
                     " Are the appropriate accept states indicated?"}
         return json.dumps(response)
 
+    # make alphabets equal, in case this was an issue
+    fsm_or_exception.input_symbols = solution.input_symbols
     if not equal:
+        assert(FSM.equal_alphabets(fsm_or_exception, solution))
         response = {'title': "Incorrect",
                     'message': "That's not quite right. Give it another try!",
                     'solution_fsm': FSM.noam_fsm(FSM.determinize(solution)),

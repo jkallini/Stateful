@@ -167,7 +167,7 @@ function snapNode(node) {
 
 window.onload = function() {
     canvas = document.getElementById('canvas');
-    // restoreBackup();
+    restoreBackup();
     draw();
 
     canvas.onmousedown = function(e) {
