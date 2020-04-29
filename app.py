@@ -181,8 +181,9 @@ def submit():
     if (not equal) and exact:
         response = {'title': "Incorrect",
                 'message': "That's not quite right. Give it another try!",
-                'hint': "Did you label all states and transitions correctly?"}
-        return response
+                'hint': "Did you label all states and transitions correctly?" + \
+                    " Are the appropriate accept states indicated?"}
+        return json.dumps(response)
 
     if not equal:
         response = {'title': "Incorrect",

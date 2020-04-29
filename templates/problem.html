@@ -9,6 +9,8 @@
 <script src="{{ url_for('static', filename='js/math.js') }}"></script>
 <script src="{{ url_for('static', filename='js/save.js') }}"></script>
 <script src="{{ url_for('static', filename='js/scale-canvas.js') }}"></script>
+<script src="{{ url_for('static', filename='js/noam.util.js') }}"></script>
+<script src="{{ url_for('static', filename='js/noam.fsm.js') }}"></script>
 <script>
     /*
      * base64.js - Base64 encoding and decoding functions
@@ -181,21 +183,74 @@
         message = res.message;
 
         hint = '<br><span class="term">Hint:</span> ';
-        if (res.hasOwnProperty('hint')) {
+        if (res.hasOwnProperty('hint'))
+        {
             hint += res.hint;
             message += hint;
             output(title, message);
+            return;
         }
 
         if (res.hasOwnProperty('solution_fsm') &&
-            res.hasOwnProperty('student_fsm')) {
-                console.log(res.solution_fsm);
-                console.log(res.student_fsm);
+            res.hasOwnProperty('student_fsm'))
+            {
+            solution_fsm = noam.fsm.parseFsmFromString(res.solution_fsm);
+            student_fsm = noam.fsm.parseFsmFromString(res.student_fsm);
+
+            sol_minus_stud = noam.fsm.difference(solution_fsm, student_fsm);
+            example_string = noam.fsm.randomStringInLanguage(sol_minus_stud);
+
+            if (example_string != null)
+            {
+                example_string = example_string.join("");
+
+                if (example_string.trim() == '')
+                {
+                    example_string = '\\varepsilon'
+                }
+
+                example_string = '<span class="math-color">\\(' + example_string +
+                    '\\)</span>'
+
+                hint += 'Consider the string ' + example_string + '. Your machine should' +
+                    ' accept this string, but it rejects it.';
+
+                message = message + hint;
+                output(title, message);
+                return
+            }
+
+            stud_minus_sol = noam.fsm.difference(student_fsm, solution_fsm);
+            example_string = noam.fsm.randomStringInLanguage(stud_minus_sol);
+
+            if (example_string != null)
+            {
+                example_string = example_string.join("");
+
+                if (example_string.trim() == '')
+                {
+                    example_string = '\\varepsilon'
+                }
+
+                example_string = '<span class="math-color">\\(' + example_string +
+                    '\\)</span>'
+
+                hint += 'Consider the string ' + example_string + '. Your machine should' +
+                    ' reject this string, but it accepts it.';
+
+                message = message + hint;
+                output(title, message);
+                return
+            }
+
+            hint += 'This hint shouldn\'t look like this'
+            message = message + hint;
         }
 
         // do something with the response
         output(title, message);
     }
+    
 </script>
 
 {% endblock %}
