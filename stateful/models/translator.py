@@ -6,7 +6,7 @@
 # -----------------------------------------------------------------------
 
 import fsm as FSM
-from problem import Problem
+from stateful.models.problem import Problem
 from automata.fa.dfa import DFA
 from automata.fa.nfa import NFA
 

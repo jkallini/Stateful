@@ -5,49 +5,50 @@
 # author: Julie Kallini
 # -----------------------------------------------------------------------
 
-from flask import Flask, render_template, url_for, request, make_response
-import translator as TL
+from flask import Flask, Blueprint, render_template, url_for, request, \
+    make_response
 import fsm as FSM
-from problem import Problem
+import stateful.models.translator as TL
+from stateful.models.problem import Problem
 import json
 
-app = Flask(__name__)
+mod = Blueprint('routes', __name__)
 
 
-# 404 error message
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('message.html',
-                           title='Oops!',
-                           message='The page you are looking for ' +
-                           'does not exist.<br> ' +
-                           'Click <a href="/">here</a> to ' +
-                           'return to the home page.'), 404
+# # 404 error message
+# @app.errorhandler(404)
+# def page_not_found(e):
+#     return render_template('message.html',
+#                            title='Oops!',
+#                            message='The page you are looking for ' +
+#                            'does not exist.<br> ' +
+#                            'Click <a href="/">here</a> to ' +
+#                            'return to the home page.'), 404
 
 
-@app.errorhandler(500)
-def server_error(e):
-    return render_template('message.html',
-                           title='A server error occurred.',
-                           message="Please try again later."), 500
+# @app.errorhandler(500)
+# def server_error(e):
+#     return render_template('message.html',
+#                            title='A server error occurred.',
+#                            message="Please try again later."), 500
 
 
-@app.errorhandler(405)
-def bad_method(e):
-    return render_template('message.html',
-                           title='Bad method',
-                           message="This request method has been disabled."), 405
+# @app.errorhandler(405)
+# def bad_method(e):
+#     return render_template('message.html',
+#                            title='Bad method',
+#                            message="This request method has been disabled."), 405
 
 
-@app.route('/', methods=['GET'])
-@app.route('/index', methods=['GET'])
+@mod.route('/', methods=['GET'])
+@mod.route('/index', methods=['GET'])
 def index():
     html = render_template('index.html')
     response = make_response(html)
     return response
 
 
-@app.route('/lesson/<string:lessonid>')
+@mod.route('/lesson/<string:lessonid>')
 def lesson(lessonid):
     if lessonid == '1.1':
         html = render_template('lessons/lesson1-1.html')
@@ -72,14 +73,14 @@ def lesson(lessonid):
     return make_response(html)
 
 
-@app.route('/tutorial')
+@mod.route('/tutorial')
 def tutorial():
     html = render_template('tutorial.html')
     response = make_response(html)
     return response
 
 
-@app.route('/DFApractice')
+@mod.route('/DFApractice')
 def DFApractice():
     DFA_probs = TL.get_DFA_problems()
     html = render_template(
@@ -88,7 +89,7 @@ def DFApractice():
     return response
 
 
-@app.route('/NFApractice')
+@mod.route('/NFApractice')
 def NFApractice():
     NFA_probs = TL.get_NFA_problems()
     html = render_template(
@@ -97,7 +98,7 @@ def NFApractice():
     return response
 
 
-@app.route('/DFAproblem/<int:probid>')
+@mod.route('/DFAproblem/<int:probid>')
 def DFA_problem(probid):
 
     if not TL.DFA_probid_exists(probid):
@@ -114,7 +115,7 @@ def DFA_problem(probid):
     return response
 
 
-@app.route('/NFAproblem/<int:probid>')
+@mod.route('/NFAproblem/<int:probid>')
 def NFA_problem(probid):
 
     if not TL.NFA_probid_exists(probid):
@@ -131,7 +132,7 @@ def NFA_problem(probid):
     return response
 
 
-@app.route('/submit', methods=['POST'])
+@mod.route('/submit', methods=['POST'])
 def submit():
 
     # get JS variables
@@ -199,7 +200,3 @@ def submit():
                     'message': 'Here is the 5-tuple for your FSM: <br>'
                     + FSM.fsm_str(fsm_or_exception)}
     return json.dumps(response)
-
-
-if __name__ == "__main__":
-    app.run(port=5555, debug=True)
