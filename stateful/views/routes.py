@@ -7,9 +7,9 @@
 
 from flask import Flask, Blueprint, render_template, url_for, request, \
     make_response
-import fsm as FSM
-import stateful.models.translator as TL
 from stateful.models.problem import Problem
+import stateful.models.bank as Bank
+import stateful.models.fsm as FSM
 import json
 
 
@@ -58,7 +58,7 @@ def tutorial():
 
 @page.route('/DFApractice')
 def DFApractice():
-    DFA_probs = TL.get_DFA_problems()
+    DFA_probs = Bank.get_DFA_problems()
     html = render_template(
         'practice.html', probs=DFA_probs, det=True)
     response = make_response(html)
@@ -67,7 +67,7 @@ def DFApractice():
 
 @page.route('/NFApractice')
 def NFApractice():
-    NFA_probs = TL.get_NFA_problems()
+    NFA_probs = Bank.get_NFA_problems()
     html = render_template(
         'practice.html', probs=NFA_probs, det=False)
     response = make_response(html)
@@ -77,7 +77,7 @@ def NFApractice():
 @page.route('/DFAproblem/<int:probid>')
 def DFA_problem(probid):
 
-    if not TL.DFA_probid_exists(probid):
+    if not Bank.DFA_probid_exists(probid):
         return render_template('message.html',
                                title='Oops!',
                                message='The DFA problem you are looking for ' +
@@ -85,7 +85,7 @@ def DFA_problem(probid):
                                'Click <a href="/DFApractice">here</a> to ' +
                                'view other DFA problems.'), 404
 
-    problem = TL.get_DFA_problem(probid)
+    problem = Bank.get_DFA_problem(probid)
     html = render_template('problem.html', problem=problem)
     response = make_response(html)
     return response
@@ -94,7 +94,7 @@ def DFA_problem(probid):
 @page.route('/NFAproblem/<int:probid>')
 def NFA_problem(probid):
 
-    if not TL.NFA_probid_exists(probid):
+    if not Bank.NFA_probid_exists(probid):
         return render_template('message.html',
                                title='Oops!',
                                message='The NFA problem you are looking for ' +
@@ -102,7 +102,7 @@ def NFA_problem(probid):
                                'Click <a href="/NFApractice">here</a> to ' +
                                'view other NFA problems.'), 404
 
-    problem = TL.get_NFA_problem(probid)
+    problem = Bank.get_NFA_problem(probid)
     html = render_template('problem.html', problem=problem)
     response = make_response(html)
     return response
@@ -115,23 +115,28 @@ def submit():
     fsm_json = request.form['fsm_json']
     probid = int(request.form['probid'])
     det = (request.form['deterministic'] == 'True')
+    
+    return get_feedback(fsm_json, probid, det)
 
+
+def get_feedback(fsm_json, probid, det):
+    
     # get the problem and parse it into JSON
     if det:
         # verify that this problem exists (it should)
-        if not TL.DFA_probid_exists(probid):
+        if not Bank.DFA_probid_exists(probid):
             response = {'title': "An Error Occurred",
                         'message': "Sorry for the inconvenience!"}
             return response
 
-        problem = TL.get_DFA_problem(probid)
+        problem = Bank.get_DFA_problem(probid)
     else:
         # verify that this problem exists (it should)
-        if not TL.NFA_probid_exists(probid):
+        if not Bank.NFA_probid_exists(probid):
             response = {'title': "An Error Occurred",
                         'message': "Sorry for the inconvenience!"}
             return response
-        problem = TL.get_NFA_problem(probid)
+        problem = Bank.get_NFA_problem(probid)
     error, fsm_or_exception = FSM.parse_json(fsm_json, det)
 
     # check if the input is valid

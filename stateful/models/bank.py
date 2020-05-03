@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 
 # -----------------------------------------------------------------------
-# translator.py
+# bank.py
 # author: Julie Kallini
 # -----------------------------------------------------------------------
 
-import fsm as FSM
 from stateful.models.problem import Problem
 from automata.fa.dfa import DFA
 from automata.fa.nfa import NFA
