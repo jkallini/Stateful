@@ -12,43 +12,19 @@ import stateful.models.translator as TL
 from stateful.models.problem import Problem
 import json
 
-mod = Blueprint('routes', __name__)
+
+page = Blueprint('routes', __name__)
 
 
-# # 404 error message
-# @app.errorhandler(404)
-# def page_not_found(e):
-#     return render_template('message.html',
-#                            title='Oops!',
-#                            message='The page you are looking for ' +
-#                            'does not exist.<br> ' +
-#                            'Click <a href="/">here</a> to ' +
-#                            'return to the home page.'), 404
-
-
-# @app.errorhandler(500)
-# def server_error(e):
-#     return render_template('message.html',
-#                            title='A server error occurred.',
-#                            message="Please try again later."), 500
-
-
-# @app.errorhandler(405)
-# def bad_method(e):
-#     return render_template('message.html',
-#                            title='Bad method',
-#                            message="This request method has been disabled."), 405
-
-
-@mod.route('/', methods=['GET'])
-@mod.route('/index', methods=['GET'])
+@page.route('/', methods=['GET'])
+@page.route('/index', methods=['GET'])
 def index():
     html = render_template('index.html')
     response = make_response(html)
     return response
 
 
-@mod.route('/lesson/<string:lessonid>')
+@page.route('/lesson/<string:lessonid>')
 def lesson(lessonid):
     if lessonid == '1.1':
         html = render_template('lessons/lesson1-1.html')
@@ -73,14 +49,14 @@ def lesson(lessonid):
     return make_response(html)
 
 
-@mod.route('/tutorial')
+@page.route('/tutorial')
 def tutorial():
     html = render_template('tutorial.html')
     response = make_response(html)
     return response
 
 
-@mod.route('/DFApractice')
+@page.route('/DFApractice')
 def DFApractice():
     DFA_probs = TL.get_DFA_problems()
     html = render_template(
@@ -89,7 +65,7 @@ def DFApractice():
     return response
 
 
-@mod.route('/NFApractice')
+@page.route('/NFApractice')
 def NFApractice():
     NFA_probs = TL.get_NFA_problems()
     html = render_template(
@@ -98,7 +74,7 @@ def NFApractice():
     return response
 
 
-@mod.route('/DFAproblem/<int:probid>')
+@page.route('/DFAproblem/<int:probid>')
 def DFA_problem(probid):
 
     if not TL.DFA_probid_exists(probid):
@@ -115,7 +91,7 @@ def DFA_problem(probid):
     return response
 
 
-@mod.route('/NFAproblem/<int:probid>')
+@page.route('/NFAproblem/<int:probid>')
 def NFA_problem(probid):
 
     if not TL.NFA_probid_exists(probid):
@@ -132,7 +108,7 @@ def NFA_problem(probid):
     return response
 
 
-@mod.route('/submit', methods=['POST'])
+@page.route('/submit', methods=['POST'])
 def submit():
 
     # get JS variables
