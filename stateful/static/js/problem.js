@@ -13,7 +13,9 @@ initQuestionHandler = function () {
                 document.getElementById('view-sol').style.display = 'inline';
             }
 
-            output('Processing submission...', 'Please wait...');
+            output('<div class="spinner-border text-light" role="status">' +
+                '<span class="sr-only">Loading...</span></div>' +
+                ' Processing submission...', 'Please wait...');
 
             // Store JSON data in a JS variable
             var fsm = sessionStorage['fsm'];
@@ -41,8 +43,7 @@ function callbackFunc(response) {
 
     hint = '<br><span style="color: var(--main-aqua);' +
         'font-weight:bold; font-size:18px">Hint:</span><br> ';
-    if (res.hasOwnProperty('hint'))
-    {
+    if (res.hasOwnProperty('hint')) {
         hint += res.hint;
         message += hint;
         output(title, message);
@@ -50,8 +51,7 @@ function callbackFunc(response) {
     }
 
     if (res.hasOwnProperty('solution_fsm') &&
-        res.hasOwnProperty('student_fsm'))
-        {
+        res.hasOwnProperty('student_fsm')) {
         solution_fsm = noam.fsm.parseFsmFromString(res.solution_fsm);
         student_fsm = noam.fsm.parseFsmFromString(res.student_fsm);
         console.log(res.solution_fsm);
@@ -101,13 +101,13 @@ function output_diff_hint(fsm1, fsm2, sol_first) {
     if (sol_first) {
         hint += 'Consider the string ' + example_string + '. Your machine should' +
             ' <span class="text-success" style="font-weight:bold">accept</span> ' +
-            'this string, but it <span class="text-danger" ' + 
+            'this string, but it <span class="text-danger" ' +
             'style="font-weight:bold">rejects</span> it.';
     }
     else {
         hint += 'Consider the string ' + example_string + '. Your machine should' +
             ' <span class="text-danger" style="font-weight:bold">reject</span> ' +
-            'this string, but it <span class="text-success" ' + 
+            'this string, but it <span class="text-success" ' +
             'style="font-weight:bold">accepts</span> it.';
     }
 
