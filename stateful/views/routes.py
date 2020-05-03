@@ -5,7 +5,7 @@
 # author: Julie Kallini
 # -----------------------------------------------------------------------
 
-from flask import Flask, Blueprint, render_template, url_for, request, \
+from flask import Blueprint, render_template, url_for, request, \
     make_response
 from stateful.models.problem import Problem
 import stateful.models.bank as Bank

@@ -5,7 +5,7 @@
 # author: Julie Kallini
 # -----------------------------------------------------------------------
 
-from flask import Flask, Blueprint, render_template
+from flask import Blueprint, render_template
 
 
 page = Blueprint('error', __name__)
