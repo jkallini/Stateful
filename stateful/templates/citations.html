@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block head %}
+<title>Stateful | Home</title>
+{% endblock %} {% block body %}
+<!-- Page Content -->
+<div id="content" style="text-align: center">
+
+    {% include 'navbar.html' %}
+
+    <div class='container' style='max-width: 900px; padding: 40px;'>
+        <h1 class="display-3" style="font-weight: 500">Citations</h1>
+        <p>M. Sipser, <em>Introduction to the Theory of Computation</em>, 3rd ed. Cengage Learning, 2015.</p>
+        <p> Princeton University. (2020) COS 126: Syllabus (Spring 2020). Available: <a
+                href='https://www.cs.princeton.edu/courses/archive/spring20/cos126/'>https://www.cs.princeton.edu/courses/archive/spring20/cos126/</a>.
+        </p>
+        <p> J. E. Hopcroft, R. D. Motwani, and J. D. Ullman, <em>Introduction to Automata Theory, Languages, and
+                Computation</em>, 2nd ed. Pearson Education, 2014.</p>
+        </p>
+    </div>
+
+</div>
+{% endblock %}

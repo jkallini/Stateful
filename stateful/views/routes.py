@@ -56,6 +56,13 @@ def tutorial():
     return response
 
 
+@page.route('/citations')
+def citations():
+    html = render_template('citations.html')
+    response = make_response(html)
+    return response
+
+
 @page.route('/DFApractice')
 def DFApractice():
     DFA_probs = Bank.get_DFA_problems()
